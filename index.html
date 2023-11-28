@@ -1,2 +1,137 @@
-<h1>こんにちは</h1>
-<p>testです</p>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+<style>
+    html {
+        font-family: 'Zen Maru Gothic', sans-serif;
+        font-size: 62.5%;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: auto;
+        height: 100vh;
+    }
+
+    .main p {
+        font-size: 1.3em;
+    }
+
+</style>
+<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+<script>
+    // LIFFの初期化を行う
+liff
+.init({
+// 自分のLIFF IDを入力する
+liffId: "2000014015-QqLAlNmW"
+}).then(async() => { // 初期化完了. 以降はLIFF SDKの各種メソッドを利用できる
+
+if(!liff.isLoggedIn() && !liff.isInClient()) {
+    liff.login();
+} else {
+    try {
+        // ユーザーのLINEアカウントのアクセストークンを取得
+        let accessToken = liff.getAccessToken();
+
+        await fetch(`https://futarino.uruma.mixh.jp/api/v1/is_registed?line_access_token=${accessToken}`);
+    
+        } catch (error) {
+            console.error('Error caught:', error); // エラーをキャッチし、それをログとして出力
+        }
+    }
+})
+.catch((err) => {
+// 初期化中にエラーが発生します
+console.error(err.code, err.message);
+});
+</script>
+</head>
+<body>
+    <div class="main">
+        <p>読み込み中です…</p>
+</div>
+</body>
+</html><!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+<style>
+    html {
+        font-family: 'Zen Maru Gothic', sans-serif;
+        font-size: 62.5%;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: auto;
+        height: 100vh;
+    }
+
+    .main p {
+        font-size: 1.3em;
+    }
+
+</style>
+<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+<script>
+    // LIFFの初期化を行う
+liff
+.init({
+// 自分のLIFF IDを入力する
+liffId: "2000014015-QqLAlNmW"
+}).then(async() => { // 初期化完了. 以降はLIFF SDKの各種メソッドを利用できる
+
+if(!liff.isLoggedIn() && !liff.isInClient()) {
+    liff.login();
+} else {
+    try {
+        // ユーザーのLINEアカウントのアクセストークンを取得
+        let accessToken = liff.getAccessToken();
+
+        await fetch(`https://futarino.uruma.mixh.jp/api/v1/is_registed?line_access_token=${accessToken}`);
+    
+        } catch (error) {
+            console.error('Error caught:', error); // エラーをキャッチし、それをログとして出力
+        }
+    }
+})
+.catch((err) => {
+// 初期化中にエラーが発生します
+console.error(err.code, err.message);
+});
+</script>
+</head>
+<body>
+    <div class="main">
+        <p>読み込み中です…</p>
+</div>
+</body>
+</html>
