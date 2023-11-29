@@ -20,7 +20,7 @@ if (!allowedHostnames.includes(window.location.hostname)) {
 liff
 .init({
 // 自分のLIFF IDを入力する
-liffId: "2000014015-340Je5dX"
+liffId: "2000014015-QqLAlNmW"
 }).then(async() => { // 初期化完了. 以降はLIFF SDKの各種メソッドを利用できる
 
 if(!liff.isLoggedIn() && !liff.isInClient()) {
@@ -39,7 +39,7 @@ if(!liff.isLoggedIn() && !liff.isInClient()) {
     let partnerData = await partnerUser(accessToken);
         if(partnerData.data.partner_user){
             // 連携完了ページに遷移
-            window.location.href = ("https://liff.line.me/2000014015-340Je5dX/completed/index.html");
+            window.location.href = ("https://liff.line.me/2000014015-QqLAlNmW/completed/index.html");
             return ;
         }
     }

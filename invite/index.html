@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:description" content="パートナー連携をする">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+<link type="text/css" rel="stylesheet" media="screen,print" href="css/style.css">
+<script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+</head>
+<body>
+    <div class="main">
+        <div class="logo"><img src="image/logo.png" alt="ロゴ"></div>
+        <p>パートナー登録が完了しました！</p>
+        <p><span id="countdown"></span>後に公式アカウントへ移動します</p>
+    </div>
+<script type="text/javascript" src="js/script.js"></script>
+<script>
+    // カウントダウンの秒数
+    let seconds = 5;
+
+    function updateCountdown() {
+    let countdownElement = document.getElementById('countdown');
+    countdownElement.textContent = seconds + '秒';
+
+    if (seconds > 0) {
+        seconds--;
+        setTimeout(updateCountdown, 1000); // 1秒ごとに更新
+    } else {
+        // カウントダウンが終了したら、リダイレクト
+        window.location.href = 'https://page.line.me/446lukuu';
+        }
+    }
+
+    // ページの読み込みが完了したらカウントダウンを開始
+    window.onload = function() {
+        updateCountdown();
+};
+</script>
+</body>
+</html>
