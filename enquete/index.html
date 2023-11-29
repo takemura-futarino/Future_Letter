@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ご利用登録</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+<link type="text/css" rel="stylesheet" media="screen,print" href="css/style.css">
+<script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+</head>
+<body>
+    <div class="main">
+        <div class="top">
+            <div class="logo"><img src="image/logo.png" alt="ロゴ"></div>
+            <h2>ご利用登録</h2>
+            <p>はじめに、あなたのことを教えてください</p>
+        </div>
+
+        <form id="myForm" action="">
+            <div>
+                <label for="name">ニックネーム:</label>
+                <input type="text" id="name" name="name" placeholder="記入してください">
+            </div>
+
+            <div>
+                <label for="gender">性別:</label>
+                <select id="gender" name="gender">
+                    <option value="" selected>選択してください</option>
+                    <option value="1" number>男性</option>
+                    <option value="2">女性</option>
+                    <option value="3">回答しない</option>
+                </select>
+            </div>
+
+
+            <div>
+                <label for="birthday">お誕生日:</label>
+                <input type="date" id="birthday" name="birthday">
+            </div>
+
+            <div>
+                <label for="pref">お住まいの都道府県:</label>
+                <select id="pref" name="pref">
+                    <option value="" selected>選択してください</option>
+                    <option value="1">北海道</option>
+                    <option value="2">青森県</option>
+                    <option value="3">岩手県</option>
+                    <option value="4">宮城県</option>
+                    <option value="5">秋田県</option>
+                    <option value="6">山形県</option>
+                    <option value="7">福島県</option>
+                    <option value="8">茨城県</option>
+                    <option value="9">栃木県</option>
+                    <option value="10">群馬県</option>
+                    <option value="11">埼玉県</option>
+                    <option value="12">千葉県</option>
+                    <option value="13">東京都</option>
+                    <option value="14">神奈川県</option>
+                    <option value="15">新潟県</option>
+                    <option value="16">富山県</option>
+                    <option value="17">石川県</option>
+                    <option value="18">福井県</option>
+                    <option value="19">山梨県</option>
+                    <option value="20">長野県</option>
+                    <option value="21">岐阜県</option>
+                    <option value="22">静岡県</option>
+                    <option value="23">愛知県</option>
+                    <option value="24">三重県</option>
+                    <option value="25">滋賀県</option>
+                    <option value="26">京都府</option>
+                    <option value="27">大阪府</option>
+                    <option value="28">兵庫県</option>
+                    <option value="29">奈良県</option>
+                    <option value="30">和歌山県</option>
+                    <option value="31">鳥取県</option>
+                    <option value="32">島根県</option>
+                    <option value="33">岡山県</option>
+                    <option value="34">広島県</option>
+                    <option value="35">山口県</option>
+                    <option value="36">徳島県</option>
+                    <option value="37">香川県</option>
+                    <option value="38">愛媛県</option>
+                    <option value="39">高知県</option>
+                    <option value="40">福岡県</option>
+                    <option value="41">佐賀県</option>
+                    <option value="42">長崎県</option>
+                    <option value="43">熊本県</option>
+                    <option value="44">大分県</option>
+                    <option value="45">宮崎県</option>
+                    <option value="46">鹿児島県</option>
+                    <option value="47">沖縄県</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="state">現在の状況:</label>
+                <select id="state" name="state">
+                    <option value="">選択してください</option>
+                    <option value="1">交際中</option>
+                    <option value="2">婚約中</option>
+                    <option value="3">既婚</option>
+                    <option value="4">その他</option>
+                </select>
+            </div>
+
+            <div class="confirmation">
+                <div>
+                    <label for="accept" class="checkbox01">
+                        <input type="checkbox" id="accept" name="accept">
+                        <a href="https://web.futa-rino.com/privacy/">プライバシーポリシー</a> および<a href="https://web.futa-rino.com/terms/">利用規約</a>に同意する
+                    </label>
+                </div>            
+                <input type="submit" id="submit" value="登録" disabled>
+            </div>
+
+        </form>
+    </div>
+    <script>
+        let acceptCheckbox = document.getElementById('accept');
+        let submitButton = document.getElementById('submit');
+    
+        // ページ読み込み時にチェックボックスの状態をチェックし、ボタンの状態を設定
+        window.onload = function() {
+            submitButton.disabled = !acceptCheckbox.checked;
+        };
+    
+        // チェックボックス状態変更時のイベントハンドラ
+        acceptCheckbox.addEventListener('change', function(event) {
+            submitButton.disabled = !event.target.checked;
+            if(event.target.checked) {
+            event.target.parentNode.classList.add("checked");
+            } else {
+                event.target.parentNode.classList.remove("checked");
+            }
+        });
+    </script>
+    <script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>
+
