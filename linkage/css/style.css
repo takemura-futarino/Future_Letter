@@ -1,0 +1,246 @@
+@charset "UTF-8";
+/* ページレイアウトとフォントサイズ調整 */
+body {
+    opacity: 0;
+    /*transition: opacity 1s; /*アニメーションの期間。 */
+}
+
+/* ページレイアウトとフォントサイズ調整 */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    width: 100%;
+    display: block;
+}
+
+html {
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-size: 62.5%;
+}
+
+.msgContents,
+.invitationArea,
+.questionArea {
+    max-width: 330px;
+    width: 100%;
+    margin: 0 auto;
+    font-size: 1.2em;
+}
+
+ul li {
+    list-style: none;
+}
+
+.h2tit {
+    font-size: 1.4em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.h2tit span{
+    display: block;
+    font-size: 2.7em;
+}
+
+.postPartner,
+.friendAddition,
+.registered {
+    padding-top: 44px;
+}
+
+
+/*各箇所レイアウト調整*/
+.msgContents {
+    padding-top: 48px;
+    padding-bottom: 40px;
+}
+
+.msgContentsWrap {
+    width: auto;
+}
+
+.list_01 {
+    padding: 30px 35px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.list_01 li {
+    font-size: 1.1em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.list_01 li:nth-child(n+2) {
+    margin-top: 12px;
+}
+
+.list_01 li::before {
+    content: "";
+    height: 32px;
+    width: 32px;
+    display: inline-block;
+    margin-right: 15px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    vertical-align: middle;
+}
+
+.list_01 li:first-child::before {
+    background-image: url(../image/talk_icon.png);
+}
+
+.list_01 li:nth-child(2)::before {
+    background-image: url(../image/key_icon.png);
+}
+
+.list_01 li:nth-child(3)::before {
+    background-image: url(../image/shakehands_icon.png);
+}
+
+.btnArea {
+    padding: 10px 40px;
+    font-size: 1.3em;
+    text-align: center;
+}
+
+.listButton {
+    margin-top: 10px;
+}
+
+.or {
+    margin: 10px 0;
+}
+
+#urlLink {
+    font-size: 0.6em;
+    background-color: #D5DADC;
+    display: inline-block;
+    border-radius: 10px;
+    padding: 5px 0px;
+    border: none;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #76BDDE;
+    color: #FFFFFF;
+    display: inline-block;
+    border-radius: 40px;
+    padding: 18px 20px 16px;
+    border: none;
+    width: 100%;
+    font-size: 0.9em;
+}
+
+#shareTargetPicker::before,
+.inviteArea a::before {
+    content: "";
+    height: 18px;
+    width: 18px;
+    display: inline-block;
+    margin-right: 6px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    vertical-align: middle;
+}
+
+.inviteArea a {
+    text-decoration: none;
+    background-color: #76BDDE;
+    color: #FFFFFF;
+    display: inline-block;
+    border-radius: 40px;
+    padding: 18px 20px 16px;
+    border: none;
+    width: 100%;
+    font-size: 0.9em;
+    box-sizing: border-box;
+}
+
+#shareTargetPicker::before {
+    background-image: url(../image/arrow_icon.png);
+}
+
+.inviteArea a::before {
+    background-image: url(../image/copy_icon.png);
+}
+
+button a:visited,
+.inviteArea button a {
+    color: #FFFFFF;
+}
+
+.list_02 {
+    margin: 0 auto;
+}
+
+.list_02 li {
+    position: relative;
+    padding-left: 1.2em;
+}
+
+.list_02 li .noIndent {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.description {
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+.spImg {
+    width: 200px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+.questionArea {
+    padding-top: 80px;
+    padding-bottom: 66px;
+}
+
+.questionArea dt {
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.questionArea dt span {
+    color: #FFBA38;
+}
+
+.questionArea .qaContents {
+    padding-top: 30px;
+    margin: 0 auto;
+}
+
+.questionArea .qaContents dd {
+    padding-left: 28px;
+    margin-top: 7px;
+}
+
+.questionArea .qaContents dt:nth-child(n+2) {
+    margin-top: 18px;
+}
+
+
+
+@media screen and (max-width: 290px) {
+    .msgContents,
+    .invitationArea,
+    .questionArea {
+        max-width: 245px;
+        width: 100%;
+        margin: 0 auto;
+        font-size: 1.1em;
+    }
+}
