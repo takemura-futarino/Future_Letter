@@ -20,9 +20,35 @@ liffId: "2000014015-QqLAlNmW"
         //ユーザーのLINEアカウントのアクセストークンを取得
         let accessToken = liff.getAccessToken();
         console.log(accessToken);
+
+        //callApi()関数の呼び出し
+        await callApi();
     }
 })
 .catch((err) => {
     //初期化中にエラーが発生します
     console.error(err.code, err.message);
 });
+
+//--------アクセストークンを登録する--------
+async function callApi(accessToken) {
+    try {
+        //パラメータ（line_access_token）を付与するために、クエリ文字列を作成する
+        let queryString = `?line_access_token=${accessToken}`;
+
+        //アクセストークンが登録済みか未登録か判定する----------------
+        const api = await fetch("https://dev.2-rino.com/api/v1/is_registed" + queryString);
+        const res = await api.json();
+        console.log(res.data);
+
+        //フタリノに登録していない（false）の場合に実行するAPI
+        if (res.data.result === "false") {
+            const apiReg = await fetch("https://dev.2-rino.com/api/v1/regist" + queryString);
+            const reg = await apiReg.json();
+            console.log(reg.data);
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
