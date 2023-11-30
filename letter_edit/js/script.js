@@ -22,7 +22,9 @@ liffId: "2000014015-QqLAlNmW"
         console.log(accessToken);
 
         //callApi()関数の呼び出し
-        await callApi();
+        await callApi(accessToken);
+        //partnerUser()関数の呼び出し
+        await partnerUser(accessToken);
     }
 })
 .catch((err) => {
@@ -62,6 +64,10 @@ async function partnerUser(accessToken) {
     });
     const partnerData = await getUser.json();
     console.log(partnerData.data);
+    if (!partnerData.data.partner_user) {
+        window.location.href = ("https://liff.line.me/2000014015-QqLAlNmW/")
+    }
+
     return partnerData;
     } catch (error) {
       // エラーが発生した場合は、コンソールに出力する
