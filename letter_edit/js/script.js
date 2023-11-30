@@ -52,3 +52,19 @@ async function callApi(accessToken) {
     }
 }
 
+//--------パートナー連携しているか確認する-------
+async function partnerUser(accessToken) {
+    try {
+        const getUser = await fetch("https://dev.2-rino.com/api/v1/user",{
+        headers:{
+            Authorization: `Bearer ${accessToken}`
+        }
+    });
+    const partnerData = await getUser.json();
+    console.log(partnerData.data);
+    return partnerData;
+    } catch (error) {
+      // エラーが発生した場合は、コンソールに出力する
+        console.error(error);
+    }
+}
