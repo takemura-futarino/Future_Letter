@@ -17,6 +17,16 @@
 <body>
     <div id="main">
         <div class="main__inner">
+            <header id="header">
+                <div class="header__inner">
+                    <h1 class="header__title">手紙を送る</h1>
+                </div>
+            </header>
+
+            <div id="saving">
+                <button>一次保存</button>
+            </div>
+
             <form id="letter_form">
                 <div>
                     <select name="address" id="address">
@@ -25,7 +35,26 @@
                         <option value="2">パートナーへ</option>
                     </select>
                 </div>
-            </form>
+
+                <div>
+                    <input type="text" id="subject" name="subject" placeholder="件名：">
+                </div>
+
+                <div>
+                    <input type="text" id="contain" name="contain" placeholder="内容：">
+                </div>
+
+                <div>
+                    <button>配信日設定</button>
+                </div>
+
+                <div>
+                    <button>配信時間設定</button>
+                </div>
+
+                <p>2023.12.1 AM 配信予定</p>
+
+                
             </form>
         </div>
     </div>
