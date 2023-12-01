@@ -27,9 +27,9 @@
                 <button class="saving__btn">一次保存</button>
             </div>
 
-            <form id="letter_form">
+            <form id="form">
                 <div>
-                    <select name="address" id="address">
+                    <select name="address" id="address" class="letter__item">
                         <option value="" selected>宛先：</option>
                         <option value="1">自分自身へ</option>
                         <option value="2">パートナーへ</option>
@@ -37,24 +37,24 @@
                 </div>
 
                 <div>
-                    <input type="text" id="subject" name="subject" placeholder="件名：">
+                    <input type="text" id="subject" name="subject" placeholder="件名：" class="letter__item">
                 </div>
 
                 <div>
-                    <input type="text" id="contain" name="contain" placeholder="内容：">
+                    <textarea name="contain" id="" cols="30" rows="10" class="letter__contain">内容：</textarea>
                 </div>
 
-                <div>
-                    <button>配信日設定</button>
+                <div class="form__rsv">
+                    <button class="form__rsv__day">配信日設定</button>
+                    <button class="form__rsv__time">配信時間設定</button>
                 </div>
 
-                <div>
-                    <button>配信時間設定</button>
+                <div class="form__confirm">
+                    <p class="form__confirm__contain">配信予定</p>
                 </div>
 
-                <p>2023.12.1 AM 配信予定</p>
-
-                
+                <button class="form__send">未来に手紙を送る</button>
+    
             </form>
         </div>
     </div>
