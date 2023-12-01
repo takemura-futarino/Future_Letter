@@ -1,0 +1,33 @@
+/* 共通部分 */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-size: 62.5%;
+}
+
+img {
+    width: 100%;
+    display: block;
+}
+
+/* HEADER
+----------------------- */
+#header {
+    background: linear-gradient(to right, #D4EEFC, #FEEAC4);
+    /* グラデーションの開始色（左側）と終了色（右側）を指定 */
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header__title {
+    font-size: 1.6em;
+}
+
+
+
