@@ -9,9 +9,17 @@ html {
     font-size: 62.5%;
 }
 
+body {
+    background-color: #EAF4FC;
+}
+
 img {
     width: 100%;
     display: block;
+}
+
+button {
+    border: none;
 }
 
 
@@ -24,13 +32,32 @@ img {
     display: flex;
     justify-content: center;
     align-items: center;
-
+    margin-bottom: 18px;
 }
 
 .header__title {
     font-size: 1.6em;
 }
 
+/* MAIN
+--------------------------*/
+.main__inner {
+    width: 83%;
+    margin: 0 auto;
+}
 
+/* Saving */
+#saving {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 18px;
+}
+
+.saving__btn {
+    background-color: #70C7F5;
+    color: #FFF;
+    padding: 5px 22px 4px;
+    border-radius: 8px;
+}
 
 
