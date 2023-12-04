@@ -24,7 +24,7 @@ liffId: "2000014015-QqLAlNmW"
         //callApi()関数の呼び出し
         await callApi(accessToken);
         //partnerUser()関数の呼び出し
-        await partnerUser(accessToken);
+        // await partnerUser(accessToken);
     }
 })
 .catch((err) => {
@@ -55,22 +55,22 @@ async function callApi(accessToken) {
 }
 
 //--------パートナー連携しているか確認する-------
-async function partnerUser(accessToken) {
-    try {
-        const getUser = await fetch("https://dev.2-rino.com/api/v1/user",{
-        headers:{
-            Authorization: `Bearer ${accessToken}`
-        }
-    });
-    const partnerData = await getUser.json();
-    console.log(partnerData.data);
-    if (!partnerData.data.partner_user) {
-        window.location.href = ("https://liff.line.me/2000014015-QqLAlNmW/")
-    }
+// async function partnerUser(accessToken) {
+//     try {
+//         const getUser = await fetch("https://dev.2-rino.com/api/v1/user",{
+//         headers:{
+//             Authorization: `Bearer ${accessToken}`
+//         }
+//     });
+//     const partnerData = await getUser.json();
+//     console.log(partnerData.data);
+//     if (!partnerData.data.partner_user) {
+//         window.location.href = ("https://liff.line.me/2000014015-QqLAlNmW/")
+//     }
 
-    return partnerData;
-    } catch (error) {
-      // エラーが発生した場合は、コンソールに出力する
-        console.error(error);
-    }
-}
+//     return partnerData;
+//     } catch (error) {
+//       // エラーが発生した場合は、コンソールに出力する
+//         console.error(error);
+//     }
+// }

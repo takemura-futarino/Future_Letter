@@ -97,6 +97,7 @@ button {
     background: #FFF;
     font-size: 1.6em;
     font-weight: bold;
+    color: #252525;
 }
 
 .form__rsv__time {
@@ -106,6 +107,7 @@ button {
     background: #FFF;
     font-size: 1.6em;
     font-weight: bold;
+    color: #252525;
 }
 
 .form__confirm {
@@ -117,6 +119,7 @@ button {
     align-items: center;
     border-radius: 8px;
     margin-bottom: 31px;
+    font-size: 1.2em;
 }
 
 .form__send{
