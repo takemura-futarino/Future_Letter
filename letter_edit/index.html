@@ -29,7 +29,7 @@
 
             <form id="form">
                 <div>
-                    <select name="address" id="address" class="letter__item">
+                    <select name="send_to" id="send_to" class="letter__item">
                         <option value="" selected>宛先：</option>
                         <option value="1">自分自身へ</option>
                         <option value="2">パートナーへ</option>
@@ -37,11 +37,11 @@
                 </div>
 
                 <div>
-                    <input type="text" id="subject" name="subject" placeholder="件名：" class="letter__item">
+                    <input type="text" id="title" name="title" class="letter__item"  placeholder="件名：">
                 </div>
 
                 <div>
-                    <textarea name="contain" id="" cols="30" rows="10" class="letter__contain">内容：</textarea>
+                    <textarea name="content" id="content" cols="30" rows="10" class="letter__contain" placeholder="内容："></textarea>
                 </div>
 
                 <div class="form__rsv">
@@ -50,7 +50,7 @@
                 </div>
 
                 <div class="form__confirm">
-                    <p class="form__confirm__contain">配信予定</p>
+                    <p class="form__confirm__contain"><span id="send_at">2023-12-04 15:11:05</span>配信予定</p>
                 </div>
 
                 <button class="form__send">未来に手紙を送る</button>

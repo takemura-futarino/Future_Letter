@@ -23,8 +23,13 @@ liffId: "2000014015-QqLAlNmW"
 
         //callApi()関数の呼び出し
         await callApi(accessToken);
+
         //partnerUser()関数の呼び出し
         // await partnerUser(accessToken);
+
+        //send()関数の呼び出し
+        await send(accessToken);
+
     }
 })
 .catch((err) => {
@@ -74,3 +79,44 @@ async function callApi(accessToken) {
 //         console.error(error);
 //     }
 // }
+
+//----------手紙送信のAPI---------------
+async function send(accessToken) {
+    document.querySelector('form').addEventListener('submit', async function(event) {
+        event.preventDefault();
+
+    const send_to = document.querySelector('#send_to').value;
+    console.log(send_to);
+    const title = document.querySelector('#title').value;
+    console.log(title);
+    const content = document.querySelector('#content').value;
+    const send_at = document.querySelector('#send_at').innerHTML;
+    console.log(send_at);
+
+    try {
+        const sendApi = await fetch(
+            `https://dev.2-rino.com/api/v1/letter/`,{
+                method: "POST",
+                headers: {
+                    Authorization : `Bearer ${accessToken}`,
+                    'Content-Type': 'application/json'  // JSON形式のデータを送信する場合に必要
+                },
+                body: JSON.stringify({
+                    title: title,
+                    content: content,
+                    send_to: send_to,
+                    send_at: send_at
+                })
+            });
+        // レスポンスオブジェクトから JSON データを抽出
+        const response = await sendApi.json();
+        console.log(JSON.stringify(response));
+        
+    } catch (error) {
+        // エラーハンドリング
+        console.error(error.code, err.message);
+        return null;
+    }
+
+    });
+}
