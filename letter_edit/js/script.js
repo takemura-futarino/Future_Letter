@@ -23,10 +23,6 @@ liffId: "2000014015-QqLAlNmW"
 
         //callApi()関数の呼び出し
         await callApi(accessToken);
-
-        //partnerUser()関数の呼び出し
-        // await partnerUser(accessToken);
-
         //send()関数の呼び出し
         await send(accessToken);
 
@@ -36,6 +32,7 @@ liffId: "2000014015-QqLAlNmW"
     //初期化中にエラーが発生します
     console.error(err.code, err.message);
 });
+
 
 //--------アクセストークンを登録する--------
 async function callApi(accessToken) {
@@ -59,39 +56,16 @@ async function callApi(accessToken) {
     }
 }
 
-//--------パートナー連携しているか確認する-------
-// async function partnerUser(accessToken) {
-//     try {
-//         const getUser = await fetch("https://dev.2-rino.com/api/v1/user",{
-//         headers:{
-//             Authorization: `Bearer ${accessToken}`
-//         }
-//     });
-//     const partnerData = await getUser.json();
-//     console.log(partnerData.data);
-//     if (!partnerData.data.partner_user) {
-//         window.location.href = ("https://liff.line.me/2000014015-QqLAlNmW/")
-//     }
-
-//     return partnerData;
-//     } catch (error) {
-//       // エラーが発生した場合は、コンソールに出力する
-//         console.error(error);
-//     }
-// }
-
 //----------手紙送信のAPI---------------
 async function send(accessToken) {
-    document.querySelector('form').addEventListener('submit', async function(event) {
+    const form_btn = document.querySelector('#form-btn');
+    form_btn.addEventListener('click', async function(event) {
         event.preventDefault();
 
     const send_to = document.querySelector('#send_to').value;
-    console.log(send_to);
     const title = document.querySelector('#title').value;
-    console.log(title);
     const content = document.querySelector('#content').value;
     const send_at = document.querySelector('#send_at').innerHTML;
-    console.log(send_at);
 
     try {
         const sendApi = await fetch(
@@ -117,6 +91,5 @@ async function send(accessToken) {
         console.error(error.code, err.message);
         return null;
     }
-
     });
 }
