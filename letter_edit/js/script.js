@@ -62,7 +62,9 @@ async function send(accessToken) {
     form_btn.addEventListener('click', async function(event) {
         event.preventDefault();
 
-    const send_to = document.querySelector('#send_to').value;
+    const str = document.querySelector('#send_to').value; // valueで得たデータは全て文字列で返ってくるため、数値に変換する必要がある
+    let send_to = parseInt(str, 10); // 数値に変換するプログラム
+    console.log(send_to);
     const title = document.querySelector('#title').value;
     const content = document.querySelector('#content').value;
     const send_at = document.querySelector('#send_at').innerHTML;
