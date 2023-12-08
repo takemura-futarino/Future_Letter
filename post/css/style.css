@@ -27,7 +27,7 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 18px;
+    margin-bottom: 50px;
 }
 
 .header__title {
@@ -39,6 +39,13 @@ button {
 .main__inner {
     width: 83%;
     margin: 0 auto;
+}
+
+.post_mainimage{
+    width: 40%;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 45px;
 }
 
 
@@ -58,11 +65,12 @@ button {
     background-color: #EAF4FC;
     color: #252525;
     border-radius: 8px;
-    font-size:.8em;
+    font-size: 2em;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 18px 0;
 }
 
 .form__send img {
