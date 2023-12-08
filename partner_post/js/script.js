@@ -25,6 +25,7 @@ liffId: "2000014015-QqLAlNmW"
         await callApi(accessToken);
         //letter_indexApi()関数の呼び出し
         letter_indexApi(accessToken);
+
     }
 })
 .catch((err) => {
@@ -66,7 +67,27 @@ async function letter_indexApi(accessToken) {
         const postdata = await getLetter.json();
         console.log(postdata);
         console.log(postdata.data.from_me[0]);
+        console.log(postdata.data.from_me.length); //届いている手紙の数の確認
+
+        //パートナーからの手紙がある場合の挙動
+        const non_item = document.querySelector('.non_item');
+        if (postdata.data.from_me) {
+            non_item.classList.add('comment_flash');
+            // for(let i=0; i <= 5; i++) {
+            //     non_item += `<li>${postdata.data.from_me[i]}</li>`;
+            // }
+            // const listContainer = document.createElement('ul'); // 新しい ul 要素を作成
+
+            // for (let i = 0;i < postdata.data.from_me.length; i++) {
+            //     const listItem = document.createElement('li'); // 新しい li 要素を作成
+            //     listItem.textContent = postdata.data.from_me[i]; // テキストを設定
+            //     listContainer.appendChild(listItem); // li 要素を ul 要素に追加
+            // }
+        }
     } catch (error) {
         console.error(error);
     }
 } 
+
+
+

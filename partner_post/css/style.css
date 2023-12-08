@@ -67,3 +67,7 @@ button {
     display: block;
     font-size: 1.27em;
 }
+
+.comment_flash {
+    display: none;
+}
