@@ -35,3 +35,35 @@ button {
 .header__title {
     font-size: 1.6em;
 }
+
+/* MAIN
+----------------------- */
+#main {
+    width: 83%;
+    margin: 0 auto;
+}
+
+/* Change_btn */
+.change_btn {
+    margin-bottom: 86px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* letter_list */
+.non_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    color: #B9BCBD;
+}
+
+.non_item p {
+    font-size: 1.9em;
+}
+
+.non_item span {
+    display: block;
+    font-size: 1.27em;
+}
