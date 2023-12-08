@@ -23,6 +23,8 @@ liffId: "2000014015-QqLAlNmW"
 
         //callApi()関数の呼び出し
         await callApi(accessToken);
+        //letter_indexApi()関数の呼び出し
+        letter_indexApi(accessToken);
     }
 })
 .catch((err) => {
@@ -52,3 +54,19 @@ async function callApi(accessToken) {
         console.error(error);
     }
 }
+
+//--------手紙一覧の取得----------
+async function letter_indexApi(accessToken) {
+    try {
+        const getLetter = await fetch('https://dev.2-rino.com/api/v1/letter/',{
+            headers:{
+                Authorization: `Bearer ${accessToken}`
+            }
+        });
+        const postdata = await getLetter.json();
+        console.log(postdata);
+        console.log(postdata.data.from_me[0]);
+    } catch (error) {
+        console.error(error);
+    }
+} 
