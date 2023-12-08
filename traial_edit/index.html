@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>手紙作成</title>
+    <!-- reset.css ress -->
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <script src="js/script.js" defer></script>
+</head>
+
+<body>
+    <header id="header">
+        <div class="header__inner">
+            <h1 class="header__title">手紙を送る</h1>
+        </div>
+    </header>
+
+    <div id="main">
+        <div class="main__inner">
+            <div id="saving">
+                <button class="saving__btn">一次保存</button>
+            </div>
+
+            <form id="form">
+                <div>
+                    <select name="send_to" id="send_to" class="letter__item">
+                        <option value="" selected>宛先：</option>
+                        <option value="1">自分自身へ</option>
+                        <option value="2">パートナーへ</option>
+                    </select>
+                </div>
+
+                <div>
+                    <input type="text" id="title" name="title" class="letter__item"  placeholder="件名：">
+                </div>
+
+                <div>
+                    <textarea name="content" id="content" cols="30" rows="10" class="letter__contain" placeholder="内容："></textarea>
+                </div>
+
+                <div class="form__rsv">
+                    <button class="form__rsv__day">配信日設定</button>
+                    <button class="form__rsv__time">配信時間設定</button>
+                </div>
+
+                <div class="form__confirm">
+                    <p class="form__confirm__contain"><span id="send_at">2023-12-04 15:11:05</span>配信予定</p>
+                </div>
+
+                <button id="form-btn" class="form__send">未来に手紙を送る</button>
+    
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
