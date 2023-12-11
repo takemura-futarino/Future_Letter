@@ -13,8 +13,8 @@ body {
     background-color: #fff;
 }
 
-button {
-    border: none;
+a {
+    text-decoration: none;
 }
 
 
