@@ -7,6 +7,7 @@ if (!allowedHostnames.includes(window.location.hostname)) {
     // 必要に応じて他のメソッドも無効化
 }
 
+
 // LIFFの初期化を行う
 liff
 .init({
@@ -24,7 +25,7 @@ liffId: "2000014015-QqLAlNmW"
         //callApi()関数の呼び出し
         await callApi(accessToken);
         //letter_indexApi()関数の呼び出し
-        letter_indexApi(accessToken);
+        await letter_indexApi(accessToken);
 
     }
 })
@@ -67,27 +68,48 @@ async function letter_indexApi(accessToken) {
         const postdata = await getLetter.json();
         console.log(postdata);
         console.log(postdata.data.from_me[0]);
-        console.log(postdata.data.from_me.length); //届いている手紙の数の確認
+        const post_number = postdata.data.from_me.length;
+        console.log(post_number); //届いている手紙の数の確認
 
         //パートナーからの手紙がある場合の挙動
         const non_item = document.querySelector('.non_item');
         if (postdata.data.from_me) {
             non_item.classList.add('comment_flash');
-            // for(let i=0; i <= 5; i++) {
-            //     non_item += `<li>${postdata.data.from_me[i]}</li>`;
-            // }
-            // const listContainer = document.createElement('ul'); // 新しい ul 要素を作成
-
-            // for (let i = 0;i < postdata.data.from_me.length; i++) {
-            //     const listItem = document.createElement('li'); // 新しい li 要素を作成
-            //     listItem.textContent = postdata.data.from_me[i]; // テキストを設定
-            //     listContainer.appendChild(listItem); // li 要素を ul 要素に追加
-            // }
+            letter_data(post_number);
         }
     } catch (error) {
         console.error(error);
     }
 } 
+
+//--------手紙の数だけ画像を追加する関数-------------
+async function letter_data(post_number) {
+    const letter_list = document.querySelector('.letter_list');
+    // 画像の情報
+    const imageUrl = "image/unopened_male.png";
+    const imageAltText = "未開封の手紙";
+    // <img> 要素を作成
+    const imageElement = document.createElement("img");
+    imageElement.src = imageUrl;
+    imageElement.alt = imageAltText;
+    // <img> にクリックイベントの追加
+    imageElement.addEventListener('click', async() => {
+
+    })
+     // <img> にクラスを追加
+    imageElement.classList.add("lette_list_item"+i);
+
+    for (let i = 0; i < post_number; i++) {
+        // 新しい <li> 要素を作成
+        const newListItem = document.createElement("li");
+        // <li> に <img> を追加
+        newListItem.appendChild(imageElement);
+        // <ul> に <li> を追加
+        letter_list.appendChild(newListItem);
+    }
+}
+
+
 
 
 
