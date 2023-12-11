@@ -82,32 +82,5 @@ async function letter_indexApi(accessToken) {
     }
 } 
 
-//--------手紙の数だけ画像を追加する関数-------------
-async function letter_data(post_number) {
-    const letter_list = document.querySelector('.letter_list');
-    // 画像の情報
-    const imageUrl = "image/unopened_male.png";
-    const imageAltText = "未開封の手紙";
-    // <img> 要素を作成
-    const imageElement = document.createElement("img");
-    imageElement.src = imageUrl;
-    imageElement.alt = imageAltText;
-    // <img> にクリックイベントの追加
-    imageElement.addEventListener('click', async() => {
-
-    })
-
-    for (let i = 0; i < post_number; i++) {
-        // 新しい <li> 要素を作成
-        const newListItem = document.createElement("li");
-        // <li> に <img> を追加
-        newListItem.appendChild(imageElement);
-        // <ul> に <li> を追加
-        letter_list.appendChild(newListItem);
-    }
-}
-
-
-
 
 
