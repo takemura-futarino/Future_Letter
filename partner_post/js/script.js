@@ -85,25 +85,60 @@ async function letter_indexApi(accessToken) {
 async function letter_data(post_number) {
     const letter_list = document.querySelector('.letter_list');
 
+    // for (let i = 0; i < post_number.length; i++) {
+    //     // 新しい <li> 要素を作成
+    //     const newListItem = document.createElement("li");
+    //     // 画像の情報
+    //     const imageUrl = "image/unopened_male.png";
+    //     const imageAltText = "未開封の手紙";
+    //     // <img> 要素を作成
+    //     const imageElement = document.createElement("img");
+    //     imageElement.src = imageUrl;
+    //     imageElement.alt = imageAltText;
+    //     // <img> にクラスを追加
+    //     imageElement.classList.add("letter_list_item_"+i);
+    //     imageElement.classList.add("letter_number");
+    //     // <li> に <img> を追加
+    //     newListItem.appendChild(imageElement);
+    //     // <ul> に <li> を追加
+    //     letter_list.appendChild(newListItem);
+    // }
+
     for (let i = 0; i < post_number.length; i++) {
         // 新しい <li> 要素を作成
         const newListItem = document.createElement("li");
-        // 画像の情報
-        const imageUrl = "image/unopened_male.png";
-        const imageAltText = "未開封の手紙";
-        // <img> 要素を作成
-        const imageElement = document.createElement("img");
-        imageElement.src = imageUrl;
-        imageElement.alt = imageAltText;
-        // <img> にクラスを追加
-        imageElement.classList.add("letter_list_item_"+i);
-        imageElement.classList.add("letter_number");
-        // <li> に <img> を追加
-        newListItem.appendChild(imageElement);
+        // 新しい <a> 要素を作成
+        const newListURL = document.createElement("a");
+        
+        // 未開封か既読かの確認
+        if (post_number[i].is_read === 0) {
+            // 画像の情報
+            const imageUrl = "image/unopened_male.png";
+            const imageAltText = "未開封の手紙";
+            // <img> 要素を作成
+            const imageElement = document.createElement("img");
+            imageElement.src = imageUrl;
+            imageElement.alt = imageAltText;
+            // <img> にクラスを追加
+            imageElement.classList.add("letter_number");
+
+            // <a> に <img> を追加
+            newListURL.appendChild(imageElement);
+        } else {
+            // 既読の場合の処理
+        }
+        // 新しい要素 <p> 要素を作成
+        const newListDay = document.createElement("p");
+        console.log(newListDay);
+        // <p> に日付の情報を入れる
+        newListDay.textContent = post_number[i].send_at;
+        console.log(newListDay);
+        // <a> に <p> を追加
+        newListURL.appendChild(newListDay);
+        // <li> に <a> を追加
+        newListItem.appendChild(newListURL);
         // <ul> に <li> を追加
         letter_list.appendChild(newListItem);
-
-        
     }
 }
 
