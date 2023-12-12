@@ -68,7 +68,7 @@ async function letter_indexApi(accessToken) {
         const postdata = await getLetter.json();
         console.log(postdata);
         console.log(postdata.data.from_me[0]);
-        const post_number = postdata.data.from_me.length;
+        const post_number = postdata.data.from_me;
         console.log(post_number); //届いている手紙の数の確認
 
         //　パートナーからの手紙がある場合の挙動
@@ -85,7 +85,7 @@ async function letter_indexApi(accessToken) {
 async function letter_data(post_number) {
     const letter_list = document.querySelector('.letter_list');
 
-    for (let i = 0; i < post_number; i++) {
+    for (let i = 0; i < post_number.length; i++) {
         // 新しい <li> 要素を作成
         const newListItem = document.createElement("li");
         // 画像の情報
@@ -96,11 +96,14 @@ async function letter_data(post_number) {
         imageElement.src = imageUrl;
         imageElement.alt = imageAltText;
         // <img> にクラスを追加
-        imageElement.classList.add("lette_list_item"+i);
+        imageElement.classList.add("letter_list_item_"+i);
+        imageElement.classList.add("letter_number");
         // <li> に <img> を追加
         newListItem.appendChild(imageElement);
         // <ul> に <li> を追加
         letter_list.appendChild(newListItem);
+
+        
     }
 }
 
