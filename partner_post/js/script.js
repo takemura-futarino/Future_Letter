@@ -76,40 +76,24 @@ async function letter_indexApi(accessToken) {
         if (postdata.data.from_me) {
             non_item.classList.add('comment_flash');
             await letter_data(post_number);
+
         }
     } catch (error) {
         console.error(error);
     }
 } 
 
+//----------手紙一覧の表示---------
 async function letter_data(post_number) {
     const letter_list = document.querySelector('.letter_list');
-
-    // for (let i = 0; i < post_number.length; i++) {
-    //     // 新しい <li> 要素を作成
-    //     const newListItem = document.createElement("li");
-    //     // 画像の情報
-    //     const imageUrl = "image/unopened_male.png";
-    //     const imageAltText = "未開封の手紙";
-    //     // <img> 要素を作成
-    //     const imageElement = document.createElement("img");
-    //     imageElement.src = imageUrl;
-    //     imageElement.alt = imageAltText;
-    //     // <img> にクラスを追加
-    //     imageElement.classList.add("letter_list_item_"+i);
-    //     imageElement.classList.add("letter_number");
-    //     // <li> に <img> を追加
-    //     newListItem.appendChild(imageElement);
-    //     // <ul> に <li> を追加
-    //     letter_list.appendChild(newListItem);
-    // }
 
     for (let i = 0; i < post_number.length; i++) {
         // 新しい <li> 要素を作成
         const newListItem = document.createElement("li");
         // 新しい <a> 要素を作成
-        const newListURL = document.createElement("a");
-        
+        const newListURL = document.createElement("a"); 
+        // <a> にクラスを追加   
+        newListURL.classList.add("newID"); 
         // 未開封か既読かの確認
         if (post_number[i].is_read === 0) {
             // 画像の情報
@@ -122,6 +106,11 @@ async function letter_data(post_number) {
             // <img> にクラスを追加
             imageElement.classList.add("letter_number");
 
+            imageElement.addEventListener('click', () => {
+                const value = post_number[i].id;
+                window.location.href = `https://liff.line.me/2000014015-QqLAlNmW/view?value=${value}`;
+            });
+
             // <a> に <img> を追加
             newListURL.appendChild(imageElement);
         } else {
@@ -129,10 +118,8 @@ async function letter_data(post_number) {
         }
         // 新しい要素 <p> 要素を作成
         const newListDay = document.createElement("p");
-        console.log(newListDay);
         // <p> に日付の情報を入れる
         newListDay.textContent = post_number[i].send_at;
-        console.log(newListDay);
         // <a> に <p> を追加
         newListURL.appendChild(newListDay);
         // <li> に <a> を追加
@@ -142,4 +129,14 @@ async function letter_data(post_number) {
     }
 }
 
+// //-----------手紙にURLをつける------------
+// async function letter_URL(post_number) {
+//     const newID = document.querySelector(".newID");
+//     for (let i = 0; i < post_number.length; i++) {
+//         newID.addEventListener('click', () => {
+//             const value = post_number[i].id;
+//             window.location.href = `https://liff.line.me/2000014015-QqLAlNmW/view?value=${value}`;
+//         });
+//     }
+// }
 
