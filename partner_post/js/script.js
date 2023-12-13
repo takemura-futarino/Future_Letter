@@ -105,12 +105,11 @@ async function letter_data(post_number) {
             imageElement.alt = imageAltText;
             // <img> にクラスを追加
             imageElement.classList.add("letter_number");
-
+            // <img> にクリックイベント追加/idを割り振った手紙閲覧ページのURL発行
             imageElement.addEventListener('click', () => {
                 const value = post_number[i].id;
                 window.location.href = `https://liff.line.me/2000014015-QqLAlNmW/view?value=${value}`;
             });
-
             // <a> に <img> を追加
             newListURL.appendChild(imageElement);
         } else {
@@ -129,14 +128,5 @@ async function letter_data(post_number) {
     }
 }
 
-// //-----------手紙にURLをつける------------
-// async function letter_URL(post_number) {
-//     const newID = document.querySelector(".newID");
-//     for (let i = 0; i < post_number.length; i++) {
-//         newID.addEventListener('click', () => {
-//             const value = post_number[i].id;
-//             window.location.href = `https://liff.line.me/2000014015-QqLAlNmW/view?value=${value}`;
-//         });
-//     }
-// }
+
 
