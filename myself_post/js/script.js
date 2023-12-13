@@ -127,6 +127,3 @@ async function letter_data(post_number) {
         letter_list.appendChild(newListItem);
     }
 }
-
-
-
