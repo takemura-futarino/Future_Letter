@@ -112,8 +112,25 @@ async function letter_data(post_number) {
             });
             // <a> に <img> を追加
             newListURL.appendChild(imageElement);
-        } else {
-            // 既読の場合の処理
+
+        } else if (post_number[i].is_read === 1) {
+        // 既読の場合の処理
+            // 画像の情報
+            const imageUrl = "image/opened_male.png";
+            const imageAltText = "開封済みの手紙";
+            // <img> 要素を作成
+            const imageElement = document.createElement("img");
+            imageElement.src = imageUrl;
+            imageElement.alt = imageAltText;
+            // <img> にクラスを追加
+            imageElement.classList.add("letter_number");
+            // <img> にクリックイベント追加/idを割り振った手紙閲覧ページのURL発行
+            imageElement.addEventListener('click', () => {
+                const value = post_number[i].id;
+                window.location.href = `https://liff.line.me/2000014015-QqLAlNmW/view?value=${value}`;
+            });
+            // <a> に <img> を追加
+            newListURL.appendChild(imageElement);
         }
         // 新しい要素 <p> 要素を作成
         const newListDay = document.createElement("p");
