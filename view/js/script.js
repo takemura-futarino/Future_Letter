@@ -74,7 +74,7 @@ async function letter_indexApi(accessToken) {
 
         //receopt()関数呼び出し
         const letterContain = await receipt(post_me);
-        console.log(letterContain);
+        console.log(letterContain.content);
 
     } catch (error) {
         console.error(error);

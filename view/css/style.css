@@ -29,7 +29,7 @@ li {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 18px;
+    margin-bottom: 67px;
 }
 
 .header__title {
@@ -41,6 +41,22 @@ li {
 #main {
     width: 83%;
     margin: 0 auto;
+}
+
+.contain {
+    height: 513px;
+    background-color: #FCF7ED;
+    margin-bottom: 70px;
+}
+
+.contain__inner {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.thought {
+    height: 319px;
+    overflow: scroll;
 }
 
 /*btn*/
