@@ -24,11 +24,10 @@ liffId: "2000014015-QqLAlNmW"
 
         //callApi()関数の呼び出し
         await callApi(accessToken);
-        //letter_indexApi()関数の呼び出し
-        await letter_indexApi(accessToken);
         //letter_showApi()関数の呼び出し
         await letter_showApi(accessToken);
-
+        //letter_indexApi()関数の呼び出し
+        await letter_indexApi(accessToken);
     }
 })
 .catch((err) => {
@@ -59,6 +58,28 @@ async function callApi(accessToken) {
     }
 }
 
+// 手紙を既読状態にする
+async function letter_showApi(accessToken) {
+
+    // URLからvalueデータ値を受け取る
+    const urlParams = await new URLSearchParams(window.location.search);
+    const value = await urlParams.get('value');
+    const numValue = parseInt(value, 10); //数値に変換
+    
+    try {
+        const getLetter = await fetch(`https://dev.2-rino.com/api/v1/letter/${value}/`,{
+            headers:{
+                Authorization: `Bearer ${accessToken}`
+            }
+        });
+        const postdata = await getLetter.json();
+        console.log(postdata);
+
+    } catch(error) {
+        console.error(error);
+    }
+}
+
 //--------手紙一覧の情報取得----------
 async function letter_indexApi(accessToken) {
     try {
@@ -74,7 +95,26 @@ async function letter_indexApi(accessToken) {
 
         //receopt()関数呼び出し
         const letterContain = await receipt(post_me);
-        console.log(letterContain.content);
+        console.log(letterContain);
+
+        //JSONデータを記入する
+        const Partner = document.querySelector('.partner');
+        const Thought = document.querySelector('.thought');
+        const Me = document.querySelector('.me');
+        const Days = document.querySelector(".days");
+
+        // 誰に送る？　誰から？
+        if (letterContain.send_to === 1) {
+            Partner.textContent = "私へ";
+            Me.textContent = "私";
+        } else if (letterContain.send_to === 2) {
+            Partner.textContent = "パートナーへ";
+            Me.textContent = "パートナーより";
+        }
+        // 内容は？
+        Thought.textContent = letterContain.content;
+        // 日付は？
+        Days.textContent = letterContain.send_at;
 
     } catch (error) {
         console.error(error);
@@ -98,24 +138,3 @@ async function receipt(post_me) {
 }
 
 
-// 手紙を既読状態にする
-async function letter_showApi(accessToken) {
-
-    // URLからvalueデータ値を受け取る
-    const urlParams = await new URLSearchParams(window.location.search);
-    const value = await urlParams.get('value');
-    const numValue = parseInt(value, 10); //数値に変換
-    
-    try {
-        const getLetter = await fetch(`https://dev.2-rino.com/api/v1/letter/${value}/`,{
-            headers:{
-                Authorization: `Bearer ${accessToken}`
-            }
-        });
-        const postdata = await getLetter.json();
-        console.log(postdata);
-
-    } catch(error) {
-        console.error(error);
-    }
-}
