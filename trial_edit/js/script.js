@@ -24,8 +24,6 @@ liffId: "2000014015-QqLAlNmW"
         //callApi()関数の呼び出し
         await callApi(accessToken);
         //send()関数の呼び出し
-        await send(accessToken);
-
     }
 })
 .catch((err) => {
