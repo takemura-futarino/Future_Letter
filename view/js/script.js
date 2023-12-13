@@ -25,7 +25,7 @@ liffId: "2000014015-QqLAlNmW"
         //callApi()関数の呼び出し
         await callApi(accessToken);
         // //letter_indexApi()関数の呼び出し
-        // await letter_indexApi(accessToken);
+        await letter_indexApi(accessToken);
 
     }
 })
@@ -56,3 +56,42 @@ async function callApi(accessToken) {
         console.error(error);
     }
 }
+
+//--------手紙一覧の情報取得----------
+async function letter_indexApi(accessToken) {
+    try {
+        const getLetter = await fetch('https://dev.2-rino.com/api/v1/letter/',{
+            headers:{
+                Authorization: `Bearer ${accessToken}`
+            }
+        });
+        const postdata = await getLetter.json();
+        console.log(postdata);
+        const post_me = postdata.data.from_me;
+        console.log(post_me);
+
+        //receopt()関数呼び出し
+        const letterContain = await receipt(post_me);
+        console.log(letterContain);
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+// ↓↓
+//-----------特定の手紙の情報取得------------ 
+async function receipt(post_me) {
+    // URLからvalueデータ値を受け取る
+    const urlParams = await new URLSearchParams(window.location.search);
+    const value = await urlParams.get('value');
+    const numValue = parseInt(value, 10); //数値に変換
+
+    for (let i = 0; i < post_me.length; i++) {
+        if (post_me[i].id === numValue) {
+            const letterData = post_me[i];
+            
+            return letterData;
+        }
+    }
+}
+
