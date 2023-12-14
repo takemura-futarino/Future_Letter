@@ -59,7 +59,7 @@ li {
     display: flex;
     flex-direction: column;
     gap: 11px;
-    font-size: 1.3em;
+    font-size: 1.5em;
 }
 
 .contain__inner img {
@@ -72,6 +72,8 @@ li {
 .thought {
     height: 319px;
     overflow: scroll;
+    line-height: 2em;
+    text-decoration: underline;
 }
 
 .me {
