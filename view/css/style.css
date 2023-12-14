@@ -1,0 +1,97 @@
+/* 共通部分 */
+* {
+    font-family: 'Zen Maru Gothic', sans-serif;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    width: 100%;
+    display: block;
+}
+
+button {
+    border: none;
+}
+
+li {
+    list-style: none;
+}
+
+/* HEADER
+----------------------- */
+#header {
+    background: linear-gradient(to right, #D4EEFC, #FEEAC4);
+    /* グラデーションの開始色（左側）と終了色（右側）を指定 */
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 67px;
+}
+
+.header__title {
+    font-size: 1.6em;
+}
+
+/* MAIN
+----------------------- */
+#main {
+    width: 83%;
+    margin: 0 auto;
+}
+
+.contain {
+    height: 513px;
+    background-color: #FCF7ED;
+    margin-bottom: 70px;
+}
+
+.contain__inner {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    font-size: 1.5em;
+}
+
+.contain__inner img {
+    width: 15%;
+    padding-top: 26px;
+    align-self: center;
+    margin-bottom: 21px;
+}
+
+.thought {
+    height: 319px;
+    overflow: scroll;
+    line-height: 2em;
+    text-decoration: underline;
+}
+
+.me {
+    align-self: flex-end;
+}
+
+.days {
+    align-self: flex-end;
+}
+
+/*btn*/
+.form__send {
+    display: block;
+    text-align: center;
+    padding: 16px 0;
+    width: 100%;
+    background-color: #FFBA38;
+    color: #FFF;
+    border-radius: 8px;
+    margin-bottom: 42px;
+}
