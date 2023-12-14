@@ -1,0 +1,51 @@
+@charset "UTF-8";
+/* ページレイアウトとフォントサイズ調整 */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    display: block;
+    width: auto;
+}
+
+html {
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-size: 62.5%;
+}
+
+.main {
+    max-width: 315px;
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 35px;
+    font-size: 1.2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* レイアウト調整 */
+.main .logo img {
+    width: 80px;
+}
+
+.userInfo {
+    margin-top: 75px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 250px;
+}
+
+button {
+    background-color: #FFBA38;
+    color: #FFFFFF;
+    border-radius: 4px;
+    padding: 12px 6px;
+    border: none;
+    width: 100%;
+    margin-top: 10px;
+}
