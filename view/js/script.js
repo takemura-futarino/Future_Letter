@@ -61,10 +61,9 @@ async function callApi(accessToken) {
 // 手紙を既読状態にする
 async function letter_showApi(accessToken) {
 
-    // URLからvalueデータ値を受け取る
+    // URLからvalueデータ値を受け取る　// myself_postページから飛ばないとvalueを取得できない
     const urlParams = await new URLSearchParams(window.location.search);
     const value = await urlParams.get('value');
-    const numValue = parseInt(value, 10); //数値に変換
     
     try {
         const getLetter = await fetch(`https://dev.2-rino.com/api/v1/letter/${value}/`,{
@@ -123,7 +122,7 @@ async function letter_indexApi(accessToken) {
 // ↓↓
 //-----------特定の手紙の情報取得------------ 
 async function receipt(post_me) {
-    // URLからvalueデータ値を受け取る
+    // URLからvalueデータ値を受け取る　// myself_postページから飛ばないとvalueを取得できない
     const urlParams = await new URLSearchParams(window.location.search);
     const value = await urlParams.get('value');
     const numValue = parseInt(value, 10); //数値に変換
