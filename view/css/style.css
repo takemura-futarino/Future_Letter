@@ -56,11 +56,30 @@ li {
 .contain__inner {
     width: 90%;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    font-size: 1.3em;
+}
+
+.contain__inner img {
+    width: 15%;
+    padding-top: 26px;
+    align-self: center;
+    margin-bottom: 21px;
 }
 
 .thought {
     height: 319px;
     overflow: scroll;
+}
+
+.me {
+    align-self: flex-end;
+}
+
+.days {
+    align-self: flex-end;
 }
 
 /*btn*/
