@@ -26,8 +26,10 @@ liffId: "2000014015-QqLAlNmW"
         await callApi(accessToken);
         //letter_showApi()関数の呼び出し
         await letter_showApi(accessToken);
+        //get_userApi()関数の呼び出し
+        const userName = await get_userApi(accessToken);
         //letter_indexApi()関数の呼び出し
-        await letter_indexApi(accessToken);
+        await letter_indexApi(accessToken, userName);
     }
 })
 .catch((err) => {
@@ -58,7 +60,7 @@ async function callApi(accessToken) {
     }
 }
 
-// 手紙を既読状態にする
+//------- 手紙を既読状態にする -------
 async function letter_showApi(accessToken) {
 
     // URLからvalueデータ値を受け取る　// myself_postページから飛ばないとvalueを取得できない
@@ -79,8 +81,25 @@ async function letter_showApi(accessToken) {
     }
 }
 
-//--------手紙一覧の情報取得----------
-async function letter_indexApi(accessToken) {
+//-------- ユーザーとパートナーの名前取得 ---------
+async function get_userApi(accessToken) {
+    try {
+        const getuser = await fetch("https://dev.2-rino.com/api/v1/user",{
+            headers:{
+                Authorization: `Bearer ${accessToken}`
+            }
+        });
+        const name = await getuser.json();
+        console.log(name);
+        return name;
+
+    } catch(error) {
+        console.error(error);
+    }
+}
+
+//-------- 手紙一覧の情報取得 ----------
+async function letter_indexApi(accessToken, username) {
     try {
         const getLetter = await fetch('https://dev.2-rino.com/api/v1/letter/',{
             headers:{
@@ -105,10 +124,10 @@ async function letter_indexApi(accessToken) {
         // 誰に送る？　誰から？
         if (letterContain.send_to === 1) {
             Partner.textContent = "私へ";
-            Me.textContent = "私";
+            Me.textContent = username.data.name + "より";
         } else if (letterContain.send_to === 2) {
-            Partner.textContent = "パートナーへ";
-            Me.textContent = "パートナーより";
+            Partner.textContent = username.data.partner_user.line_display_name + "へ";
+            Me.textContent = username.data.name +"より";
         }
         // 内容は？
         Thought.textContent = letterContain.content;
