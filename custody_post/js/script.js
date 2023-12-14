@@ -67,17 +67,16 @@ async function letter_indexApi(accessToken) {
         });
         const postdata = await getLetter.json();
         console.log(postdata);
-        console.log(postdata.data.from_me[0]);
-        const post_number = postdata.data.from_me;
+        const post_number = postdata.data.is_sending;
         console.log(post_number); //届いている手紙の数の確認
 
         //　パートナーからの手紙がある場合の挙動
         const non_item = document.querySelector('.non_item');
-        if (postdata.data.from_me) {
+        if (post_number) {
             non_item.classList.add('comment_flash');
             await letter_data(post_number);
-
         }
+
     } catch (error) {
         console.error(error);
     }
@@ -90,57 +89,32 @@ async function letter_data(post_number) {
     for (let i = 0; i < post_number.length; i++) {
         // 新しい <li> 要素を作成
         const newListItem = document.createElement("li");
-        // 新しい <a> 要素を作成
-        const newListURL = document.createElement("a"); 
-        // <a> にクラスを追加   
-        newListURL.classList.add("newID"); 
-        // 未開封か既読かの確認
-        if (post_number[i].is_read === 0) {
-            // 画像の情報
-            const imageUrl = "image/unopened_male.png";
-            const imageAltText = "未開封の手紙";
-            // <img> 要素を作成
-            const imageElement = document.createElement("img");
-            imageElement.src = imageUrl;
-            imageElement.alt = imageAltText;
-            // <img> にクラスを追加
-            imageElement.classList.add("letter_number");
-            // <img> にクリックイベント追加/idを割り振った手紙閲覧ページのURL発行
-            imageElement.addEventListener('click', () => {
-                const value = post_number[i].id;
-                window.location.href = `https://liff.line.me/2000014015-QqLAlNmW/view?value=${value}`;
-            });
-            // <a> に <img> を追加
-            newListURL.appendChild(imageElement);
-
-        } else if (post_number[i].is_read === 1) {
-        // 既読の場合の処理
-            // 画像の情報
-            const imageUrl = "image/opened_male.png";
-            const imageAltText = "開封済みの手紙";
-            // <img> 要素を作成
-            const imageElement = document.createElement("img");
-            imageElement.src = imageUrl;
-            imageElement.alt = imageAltText;
-            // <img> にクラスを追加
-            imageElement.classList.add("letter_number");
+        // 画像の情報
+        const imageUrl = "image/unopened_male.png";
+        const imageAltText = "お預かり中の手紙";
+        // <img> 要素を作成
+        const imageElement = document.createElement("img");
+        imageElement.src = imageUrl;
+        imageElement.alt = imageAltText;
+        // <img> にクラスを追加
+        imageElement.classList.add("letter_number");
+        // 宛先がパートナーなら
+        if (post_number[i].send_to === 2) {
             // どの手紙を押したのかを手紙閲覧ページに伝える必要がある。 id を送る。
             // <img> にクリックイベント追加/idを割り振った手紙閲覧ページのURL発行
             imageElement.addEventListener('click', () => {
                 const value = post_number[i].id;
                 window.location.href = `https://liff.line.me/2000014015-QqLAlNmW/view?value=${value}`;
-            });
-            // <a> に <img> を追加
-            newListURL.appendChild(imageElement);
+            })
         }
+        // <li> に <img> を追加
+        newListItem.appendChild(imageElement);
         // 新しい要素 <p> 要素を作成
         const newListDay = document.createElement("p");
         // <p> に日付の情報を入れる
         newListDay.textContent = post_number[i].send_at;
-        // <a> に <p> を追加
-        newListURL.appendChild(newListDay);
-        // <li> に <a> を追加
-        newListItem.appendChild(newListURL);
+        // <li> に <p> を追加
+        newListItem.appendChild(newListDay);
         // <ul> に <li> を追加
         letter_list.appendChild(newListItem);
     }
