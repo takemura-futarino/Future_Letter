@@ -89,9 +89,32 @@ async function letter_data(post_number) {
     for (let i = 0; i < post_number.length; i++) {
         // 新しい <li> 要素を作成
         const newListItem = document.createElement("li");
-
-
-
+        // 画像の情報
+        const imageUrl = "image/unopened_male.png";
+        const imageAltText = "お預かり中の手紙";
+        // <img> 要素を作成
+        const imageElement = document.createElement("img");
+        imageElement.src = imageUrl;
+        imageElement.alt = imageAltText;
+        // <img> にクラスを追加
+        imageElement.classList.add("letter_number");
+        // 宛先がパートナーなら
+        if (post_number[i].send_to === 2) {
+            // どの手紙を押したのかを手紙閲覧ページに伝える必要がある。 id を送る。
+            // <img> にクリックイベント追加/idを割り振った手紙閲覧ページのURL発行
+            imageElement.addEventListener('click', () => {
+                const value = post_number[i].id;
+                window.location.href = `https://liff.line.me/2000014015-QqLAlNmW/view?value=${value}`;
+            })
+        }
+        // <li> に <img> を追加
+        newListItem.appendChild(imageElement);
+        // 新しい要素 <p> 要素を作成
+        const newListDay = document.createElement("p");
+        // <p> に日付の情報を入れる
+        newListDay.textContent = post_number[i].send_at;
+        // <li> に <p> を追加
+        newListItem.appendChild(newListDay);
         // <ul> に <li> を追加
         letter_list.appendChild(newListItem);
     }

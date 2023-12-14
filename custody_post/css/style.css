@@ -64,3 +64,13 @@ li {
 .comment_flash {
     display: none;
 }
+
+.letter_list {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+.letter_list li {
+    width: 50%;;
+}
