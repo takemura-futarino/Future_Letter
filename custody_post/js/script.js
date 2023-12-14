@@ -56,3 +56,43 @@ async function callApi(accessToken) {
         console.error(error);
     }
 }
+
+//--------手紙一覧の取得----------
+async function letter_indexApi(accessToken) {
+    try {
+        const getLetter = await fetch('https://dev.2-rino.com/api/v1/letter/',{
+            headers:{
+                Authorization: `Bearer ${accessToken}`
+            }
+        });
+        const postdata = await getLetter.json();
+        console.log(postdata);
+        const post_number = postdata.data.is_sending;
+        console.log(post_number); //届いている手紙の数の確認
+
+        //　パートナーからの手紙がある場合の挙動
+        const non_item = document.querySelector('.non_item');
+        if (post_number) {
+            non_item.classList.add('comment_flash');
+            await letter_data(post_number);
+        }
+
+    } catch (error) {
+        console.error(error);
+    }
+} 
+
+//----------手紙一覧の表示---------
+async function letter_data(post_number) {
+    const letter_list = document.querySelector('.letter_list');
+
+    for (let i = 0; i < post_number.length; i++) {
+        // 新しい <li> 要素を作成
+        const newListItem = document.createElement("li");
+
+
+
+        // <ul> に <li> を追加
+        letter_list.appendChild(newListItem);
+    }
+}

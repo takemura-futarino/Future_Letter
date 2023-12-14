@@ -124,6 +124,7 @@ async function letter_data(post_number) {
             imageElement.alt = imageAltText;
             // <img> にクラスを追加
             imageElement.classList.add("letter_number");
+            // どの手紙を押したのかを手紙閲覧ページに伝える必要がある。 id を送る。
             // <img> にクリックイベント追加/idを割り振った手紙閲覧ページのURL発行
             imageElement.addEventListener('click', () => {
                 const value = post_number[i].id;
