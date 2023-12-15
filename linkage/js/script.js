@@ -38,11 +38,11 @@ if(!liff.isLoggedIn() && !liff.isInClient()) {
 
     let partnerData = await partnerUser(accessToken);
     console.log(partnerData);
-    //     if(partnerData.data.partner_user){
-    //         // 連携完了ページに遷移
-    //         window.location.href = ("https://liff.line.me/2000014015-QqLAlNmW/completed/index.html");
-    //         return ;
-    //     }
+        if(partnerData.data.partner_user){
+            // 連携完了ページに遷移
+            window.location.href = ("https://liff.line.me/2000014015-QqLAlNmW/completed/index.html");
+            return ;
+        }
     }
 })
 .catch((err) => {

@@ -29,7 +29,7 @@ liffId: "2000014015-QqLAlNmW"
         //get_userApi()関数の呼び出し
         const userName = await get_userApi(accessToken);
         //letter_indexApi()関数の呼び出し
-        await letter_indexApi(accessToken, userName);
+        letter_indexApi(accessToken, userName);
     }
 })
 .catch((err) => {
@@ -108,7 +108,7 @@ async function letter_indexApi(accessToken, username) {
         });
         const postdata = await getLetter.json();
         console.log(postdata);
-        const post_me = postdata.data.from_me;
+        const post_me = postdata.data.from_me; //!!!!!!!!!! 修正箇所 !!!!!!!!!!!!!
         console.log(post_me);
 
         //receopt()関数呼び出し
@@ -145,6 +145,7 @@ async function receipt(post_me) {
     const urlParams = await new URLSearchParams(window.location.search);
     const value = await urlParams.get('value');
     const numValue = parseInt(value, 10); //数値に変換
+    console.log(numValue);
 
     for (let i = 0; i < post_me.length; i++) {
         if (post_me[i].id === numValue) {
