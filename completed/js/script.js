@@ -20,10 +20,10 @@ if(!liff.isLoggedIn() && !liff.isInClient()) {
 } else {
     // パートナーのLINEアカウントのアクセストークンを取得
     let accessToken = liff.getAccessToken();
-    await fetch(`https://futarino.uruma.mixh.jp/api/v1/is_registed?line_access_token=${accessToken}`);
+    await fetch(`https://dev.2-rino.com/api/v1/is_registed?line_access_token=${accessToken}`);
     console.log(accessToken); 
 
-    const getUser = await fetch("https://futarino.uruma.mixh.jp/api/v1/user",{
+    const getUser = await fetch("https://dev.2-rino.com/api/v1/user",{
         headers:{
             Authorization: `Bearer ${accessToken}`
         }
@@ -47,7 +47,7 @@ async function release(accessToken) {
         const releasebtn = document.getElementById('button');
         releasebtn.addEventListener('click', async function() {
 
-            const apiUrl = await fetch("https://futarino.uruma.mixh.jp/api/v1/room/destroy",{
+            const apiUrl = await fetch("https://dev.2-rino.com/api/v1/room/destroy",{
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${accessToken}`,
