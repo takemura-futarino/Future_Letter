@@ -104,7 +104,7 @@ async function letter_data(post_number) {
             // <img> にクリックイベント追加/idを割り振った手紙閲覧ページのURL発行
             imageElement.addEventListener('click', () => {
                 const value = post_number[i].id;
-                window.location.href = `https://liff.line.me/2000014015-QqLAlNmW/view?value=${value}`;
+                window.location.href = `https://liff.line.me/2000014015-QqLAlNmW/view_custody?value=${value}`;
             })
         }
         // <li> に <img> を追加
