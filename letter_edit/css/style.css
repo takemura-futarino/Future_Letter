@@ -91,6 +91,7 @@ button {
 }
 
 .form__rsv__day {
+    display: block;
     width: 46%;
     height: 100px;
     border-radius: 8px;
