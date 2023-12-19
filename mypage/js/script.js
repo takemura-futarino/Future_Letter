@@ -26,10 +26,13 @@ liffId: "2000014015-QqLAlNmW"
         await callApi(accessToken);
         //get_userApi()関数の呼び出し
         const userName = await get_userApi(accessToken);
-
+        //letter_indexApi()関数の呼び出し
+        const postData = await letter_indexApi(accessToken);
 
         //user_input()関数の呼び出し
         await userName_input(userName);
+        //letter_number()関数の呼び出し
+        await letter_number(userName, postData);
     }
 })
 .catch((err) => {
@@ -77,6 +80,22 @@ async function get_userApi(accessToken) {
     }
 }
 
+//--------- 手紙一覧の情報取得 ----------
+async function letter_indexApi(accessToken) {
+    try {
+        const getLetter = await fetch('https://dev.2-rino.com/api/v1/letter/',{
+            headers:{
+                Authorization: `Bearer ${accessToken}`
+            }
+        });
+        const postdata = await getLetter.json();
+        return postdata;
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 
 //--------- データの入力 ----------
 // 名前のデータ取得
@@ -84,3 +103,13 @@ const userName_input = (userName) => {
     const user = document.querySelector(".user");
     user.textContent = userName.data.name;
 } 
+
+// 各手紙情報の取得
+const letter_number = (userName, postData) => {
+    const onHand = document.querySelector(".onhand__letter");
+    onHand.textContent = userName.data.letter_num;
+
+    const custody = document.querySelector(".custody__letter");
+    console.log(postData);
+    custody.textContent = postData.data.is_sending.length;
+}
