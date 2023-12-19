@@ -72,7 +72,7 @@ async function letter_indexApi(accessToken) {
 
         //　パートナーからの手紙がある場合の挙動
         const non_item = document.querySelector('.non_item');
-        if (post_number) {
+        if (post_number.length !== 0) {
             non_item.classList.add('comment_flash');
             await letter_data(post_number);
         }
