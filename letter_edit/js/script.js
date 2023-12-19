@@ -93,5 +93,7 @@ async function send(accessToken) {
         console.error(error.code, err.message);
         return null;
     }
+    // クリックイベントが発生した後にウィンドウを閉じる
+    liff.closeWindow();
     });
 }
