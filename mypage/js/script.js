@@ -97,10 +97,10 @@ async function letter_indexApi(accessToken) {
 }
 
 
-//--------- データの入力 ----------
+//------------------------------ データの入力 -----------------------------------
 // 名前のデータ取得
 const userName_input = (userName) => {
-    const user = document.querySelector(".user");
+    const user = document.querySelector(".user__name__content");
     user.textContent = userName.data.name;
 } 
 
@@ -110,6 +110,5 @@ const letter_number = (userName, postData) => {
     onHand.textContent = userName.data.letter_num;
 
     const custody = document.querySelector(".custody__letter");
-    console.log(postData);
     custody.textContent = postData.data.is_sending.length;
 }
