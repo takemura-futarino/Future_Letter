@@ -28,10 +28,9 @@ liffId: "2000014015-QqLAlNmW"
         const postdata = await letter_indexApi(accessToken);
         console.log(postdata);
 
-        //change_data()関数の呼び出し
-        
         //letter_data()関数の呼び出し
         await letter_data(postdata);
+
     }
 })
 .catch((err) => {
@@ -82,7 +81,7 @@ async function letter_indexApi(accessToken) {
 async function letter_data(postdata) {
     // URLからvalueデータ値を受け取る　// myself_postページから飛ばないとvalueを取得できない
     const urlParams = await new URLSearchParams(window.location.search);
-    const value = await urlParams.get('value');
+    let value = await urlParams.get('value');
     console.log(value);
 
     // 「パートナーから」を押して遷移してきた場合
@@ -225,7 +224,10 @@ async function letter_data(postdata) {
             myselfList.appendChild(newListItem);
         }
     } 
+
 }
+
+
 
 //----------手紙一覧の表示---------
 // async function letter_data(post_number) {
