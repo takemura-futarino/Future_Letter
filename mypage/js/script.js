@@ -24,9 +24,12 @@ liffId: "2000014015-QqLAlNmW"
 
         //callApi()関数の呼び出し
         await callApi(accessToken);
-        // //letter_indexApi()関数の呼び出し
-        // await letter_indexApi(accessToken);
+        //get_userApi()関数の呼び出し
+        const userName = await get_userApi(accessToken);
 
+
+        //user_input()関数の呼び出し
+        await userName_input(userName);
     }
 })
 .catch((err) => {
@@ -56,3 +59,28 @@ async function callApi(accessToken) {
         console.error(error);
     }
 }
+
+//-------- ユーザーとパートナーの名前取得 ---------
+async function get_userApi(accessToken) {
+    try {
+        const getuser = await fetch("https://dev.2-rino.com/api/v1/user",{
+            headers:{
+                Authorization: `Bearer ${accessToken}`
+            }
+        });
+        const name = await getuser.json();
+        console.log(name);
+        return name;
+
+    } catch(error) {
+        console.error(error);
+    }
+}
+
+
+//--------- データの入力 ----------
+// 名前のデータ取得
+const userName_input = (userName) => {
+    const user = document.querySelector(".user");
+    user.textContent = userName.data.name;
+} 
