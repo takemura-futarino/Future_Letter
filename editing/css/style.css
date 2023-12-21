@@ -125,6 +125,24 @@ button {
     margin-bottom: 42px;
 }
 
+input[type="date"] {
+    appearance: none; /* ブラウザのデフォルトスタイルを無効化 */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: white;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input[type="time"] {
+    appearance: none; /* ブラウザのデフォルトスタイルを無効化 */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: white;
+    width: 100%;
+    box-sizing: border-box;
+}
+
 /*------------- モーダルウィンドウ--------- */
 .mask {
     background: rgba(0, 0, 0, .6);
