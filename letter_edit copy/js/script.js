@@ -66,6 +66,11 @@ async function getSelectedValue(accessToken) {
         const name = await getuser.json();
         console.log(name);
 
+        // 手持ちのレターがない場合
+        if (name.data.letter_num === 0) {
+            modalWindow('3');
+        }
+
         // select要素を取得
         const selectElement = document.getElementById('send_to');
         selectElement.addEventListener('change', () => {
@@ -133,7 +138,7 @@ function modalWindow(Id) {
     const close = document.querySelector(`#modal${Id} #close`);
     console.log (close);
     const modal = document.querySelector(`#modal${Id}`);
-    const mask = document.querySelector('#mask');
+    const mask = document.querySelector(`#mask${Id}`);
     const showKeyframes = {
         opacity: [0,1],
         visibility: 'visible',
@@ -155,16 +160,17 @@ function modalWindow(Id) {
         if (Id === "1") {
             modal.animate(hideKeyframes, options);
             mask.animate(hideKeyframes, options);
-        } else if (Id === "2") {
+        } else {
             liff.closeWindow();
         }
     });
 
     mask.addEventListener('click', () => {
         if (Id === "1") {
-        close.click();
-        } else if (Id === "2") {
+            close.click();
+        } else {
             liff.closeWindow();
         }
     });
 }
+
