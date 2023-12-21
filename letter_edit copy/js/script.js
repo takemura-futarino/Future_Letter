@@ -7,39 +7,6 @@ if (!allowedHostnames.includes(window.location.hostname)) {
     // 必要に応じて他のメソッドも無効化
 }
 
-//---------モーダルウィンドウを表示させる関数------------
-function modalWindow(Id) {
-    const close = document.querySelector(`#modal${Id} #close`);
-    console.log (close);
-    const modal = document.querySelector(`#modal${Id}`);
-    const mask = document.querySelector('#mask');
-    const showKeyframes = {
-        opacity: [0,1],
-        visibility: 'visible',
-    };
-    const hideKeyframes = {
-        opacity: [1,0],
-        visibility: 'hidden',
-    };
-    const options = {
-        duration: 800,
-        easing: 'ease',
-        fill: 'forwards',
-    };
-
-    modal.animate(showKeyframes, options);
-    mask.animate(showKeyframes, options);
-
-    close.addEventListener('click', () => {
-        modal.animate(hideKeyframes, options);
-        mask.animate(hideKeyframes, options);
-    });
-
-    mask.addEventListener('click', () => {
-        close.click();
-    });
-}
-
 // LIFFの初期化を行う
 liff
 .init({
@@ -156,6 +123,48 @@ async function send(accessToken) {
         }
         // クリックイベントが発生した後にウィンドウを閉じる
         // liff.closeWindow();
+        modalWindow('2');
         }
     );
+}
+
+//---------モーダルウィンドウを表示させる関数------------
+function modalWindow(Id) {
+    const close = document.querySelector(`#modal${Id} #close`);
+    console.log (close);
+    const modal = document.querySelector(`#modal${Id}`);
+    const mask = document.querySelector('#mask');
+    const showKeyframes = {
+        opacity: [0,1],
+        visibility: 'visible',
+    };
+    const hideKeyframes = {
+        opacity: [1,0],
+        visibility: 'hidden',
+    };
+    const options = {
+        duration: 800,
+        easing: 'ease',
+        fill: 'forwards',
+    };
+
+    modal.animate(showKeyframes, options);
+    mask.animate(showKeyframes, options);
+
+    close.addEventListener('click', () => {
+        if (Id === "1") {
+            modal.animate(hideKeyframes, options);
+            mask.animate(hideKeyframes, options);
+        } else if (Id === "2") {
+            liff.closeWindow();
+        }
+    });
+
+    mask.addEventListener('click', () => {
+        if (Id === "1") {
+        close.click();
+        } else if (Id === "2") {
+            liff.closeWindow();
+        }
+    });
 }
