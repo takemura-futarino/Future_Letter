@@ -55,8 +55,10 @@ liffId: "2000014015-QqLAlNmW"
         console.log(accessToken);
         //callApi()関数の呼び出し
         await callApi(accessToken);
+        //getSelectedValue()関数の呼び出し
         await getSelectedValue(accessToken);
-
+        //send()関数の呼び出し
+        await send(accessToken);
     }
 })
 .catch((err) => {
@@ -104,6 +106,7 @@ async function getSelectedValue(accessToken) {
             console.log("選択された値:", selectedValue);
 
             if (selectedValue === "2" && name.data.partner_user === null) {
+                // 引数に"1"を指定
                 modalWindow('1');
             } else {
                 console.log("ok");
@@ -113,5 +116,46 @@ async function getSelectedValue(accessToken) {
     } catch(error) {
         console.error(error);
     }
+}
 
+//----------手紙送信のAPI---------------
+async function send(accessToken) {
+    const formBtn = document.querySelector('#form-btn');
+    formBtn.addEventListener('click', async function(event) {
+        event.preventDefault();
+
+        const str = document.querySelector('#send_to').value; // valueで得たデータは全て文字列で返ってくるため、数値に変換する必要がある
+        let send_to = parseInt(str, 10); // 数値に変換するプログラム
+        const content = document.querySelector('#content').value;
+        const sendDay = document.querySelector("#send_day").value;
+        const sendTime = document.querySelector('#send_time').value;
+        const send_at = sendDay + sendTime;
+
+        try {
+            const sendApi = await fetch(
+                `https://dev.2-rino.com/api/v1/letter/`,{
+                    method: "POST",
+                    headers: {
+                        Authorization : `Bearer ${accessToken}`,
+                        'Content-Type': 'application/json'  // JSON形式のデータを送信する場合に必要
+                    },
+                    body: JSON.stringify({
+                        content: content,
+                        send_to: send_to,
+                        send_at: send_at
+                    })
+                });
+            // レスポンスオブジェクトから JSON データを抽出
+            const response = await sendApi.json();
+            console.log(JSON.stringify(response));
+            
+        } catch (error) {
+            // エラーハンドリング
+            console.error(error.code, err.message);
+            return null;
+        }
+        // クリックイベントが発生した後にウィンドウを閉じる
+        // liff.closeWindow();
+        }
+    );
 }
