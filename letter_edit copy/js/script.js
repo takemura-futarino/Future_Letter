@@ -7,6 +7,27 @@ if (!allowedHostnames.includes(window.location.hostname)) {
     // 必要に応じて他のメソッドも無効化
 }
 
+//
+document.addEventListener('DOMContentLoaded', () => {
+    const JSONData = localStorage.getItem('letterData') 
+    const letterData = JSON.parse(JSONData);
+    console.log(letterData);
+
+    if (letterData) {
+        const send_to = document.querySelector('#send_to');
+        const content = document.querySelector('#content');
+        const setDate = document.querySelector('#send_day');
+        const setTime = document.querySelector('#send_time');
+
+        send_to.value = letterData.address;
+        content.value = letterData.content;
+        setDate.value = letterData.sendDay;
+        setTime.value = letterData.sendTime;
+
+        localStorage.removeItem('letterData');
+    }
+});
+
 // LIFFの初期化を行う
 liff
 .init({
@@ -132,6 +153,29 @@ async function send(accessToken) {
         }
     );
 }
+
+//---------一時保存の関数-----------
+document.querySelector(".saving__btn").addEventListener('click', () => {
+    const str = document.querySelector('#send_to').value;
+    let send_to = parseInt(str, 10);
+    const content = document.querySelector('#content').value;
+    const sendDay = document.querySelector("#send_day").value;
+    const sendTime = document.querySelector('#send_time').value;
+
+    const array = [];
+    const obj = {
+        'address':send_to,
+        'content':content,
+        'sendDay':sendDay,
+        'sendTime':sendTime  
+    };
+    array.push(obj);
+
+    const setjson = JSON.stringify(obj);
+    localStorage.setItem('letterData', setjson);
+
+    modalWindow('0');
+});
 
 //---------モーダルウィンドウを表示させる関数------------
 function modalWindow(Id) {
