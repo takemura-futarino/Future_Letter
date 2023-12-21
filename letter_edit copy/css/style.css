@@ -135,9 +135,10 @@ button {
     visibility: hidden;
 }
 
-#modal {
+.modal_common {
     background-color: #FFF;
     max-width: 36rem;
+    width: 80%;
     padding: 2rem;
     border-radius: .5rem;
     position: absolute;
