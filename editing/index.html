@@ -52,11 +52,15 @@
         </div>
     </div>
 
+    <!-- モーダルウィンドウの設定 -->
+    <!-- 一時保存 -->
     <section id="modal0" class="modal_common">
-        <h1>一時保存しました</h1>
-        <button id="close">HOME画面に戻る</button>
+        <img src="image/blue_save.png" alt="保存確認のマーク">
+        <h1 class="blue_save">保存しました</h1>
+        <button id="close">＞ホームへ</button>
     </section>
 
+    <!-- パートナー連係の注意 -->
     <section id="modal1" class="modal_common">
         <h1>注意!</h1>
         <p>あんた、パートナー連係しなはれ。</p>
@@ -65,6 +69,7 @@
     </section>
 
     <section id="modal2" class="modal_common">
+        <img src="image/blue_letter.png" alt="送信が完了しました">
         <h1>送信が完了しました</h1>
         <p>お預かりBoxで確認できます</p>
         <button id="close">閉じる</button>
@@ -81,6 +86,10 @@
     <div id="mask1" class="mask"></div>
     <div id="mask2" class="mask"></div>
     <div id="mask3" class="mask"></div>
+
+    <script>
+        document.querySelector(".dateInput").value = "サンプルテキスト";
+    </script>
 </body>
 
 </html>

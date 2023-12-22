@@ -7,7 +7,7 @@ if (!allowedHostnames.includes(window.location.hostname)) {
     // 必要に応じて他のメソッドも無効化
 }
 
-//
+//　ローカルホストからデータを引っ張ってきた
 document.addEventListener('DOMContentLoaded', () => {
     const JSONData = localStorage.getItem('letterData') 
     const letterData = JSON.parse(JSONData);
