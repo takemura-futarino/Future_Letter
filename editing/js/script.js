@@ -124,6 +124,12 @@ async function send(accessToken) {
         const sendTime = document.querySelector('#send_time').value;
         const send_at = sendDay + sendTime;
 
+        // すべての項目が入力されているかのチェック
+        if (str.trim() === '' || content.trim() === '' || sendDay.trim() === '' || sendTime.trim === '' ) {
+            alert('全ての項目を入力してください。');
+            return;
+        } 
+
         try {
             const sendApi = await fetch(
                 `https://dev.2-rino.com/api/v1/letter/`,{
@@ -147,8 +153,7 @@ async function send(accessToken) {
             console.error(error.code, err.message);
             return null;
         }
-        // クリックイベントが発生した後にウィンドウを閉じる
-        // liff.closeWindow();
+
         modalWindow('2');
         }
     );
