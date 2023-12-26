@@ -1,6 +1,7 @@
 /* 共通部分 */
 * {
     font-family: 'Zen Maru Gothic', sans-serif;
+    border: .5px solid red;
 }
 
 html {
@@ -10,6 +11,10 @@ html {
 img {
     width: 100%;
     display: block;
+}
+
+a {
+    text-decoration: none;
 }
 
 button {
