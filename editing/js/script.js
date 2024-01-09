@@ -125,7 +125,7 @@ async function send(accessToken) {
         const send_at = sendDay + sendTime;
 
         // すべての項目が入力されているかのチェック
-        if (str.trim() === '' || content.trim() === '' || sendDay.trim() === '' || sendTime.trim === '' ) {
+        if (str.trim() === '' || content.trim() === '' || sendDay.trim() === '' || sendTime.trim() === '' ) {
             alert('全ての項目を入力してください。');
             return;
         } 
