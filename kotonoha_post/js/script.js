@@ -177,11 +177,23 @@ async function myselfLetter(postdata) {
                     imageElement.alt = imageAltText;
                     // <img> にクラスを追加
                     imageElement.classList.add("letter_number");
+                    // チュートリアルかどうかで条件分岐
                     // <img> にクリックイベント追加/idを割り振った手紙閲覧ページのURL発行
-                    imageElement.addEventListener('click', () => {
-                        const value = post_number[i].id;
-                        window.location.href = `https://liff.line.me/2000014015-QqLAlNmW/view?value=${value}`;
-                    });
+                    // チュートリアルのコトノハの場合
+                    if (post_number[i].letter_type === 1) {
+                        imageElement.addEventListener('click', () => {
+                            const value = "tutorial";
+                            window.location.href = `https://liff.line.me/2000014015-QqLAlNmW/view?value=${value}`;
+                        });
+                    }
+                    // 通常のコトノハの場合
+                    else {
+                        imageElement.addEventListener('click', () => {
+                            const value = post_number[i].id;
+                            window.location.href = `https://liff.line.me/2000014015-QqLAlNmW/view?value=${value}`;
+                        });
+                    }
+
                     // <a> に <img> を追加
                     newListURL.appendChild(imageElement);
                 
