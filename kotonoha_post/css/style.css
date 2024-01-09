@@ -81,3 +81,12 @@ li {
 .letter_list li {
     width: 50%;;
 }
+
+/* タブメニュー */
+.tab {
+    display: none;
+}
+
+.active {
+    display: block;
+}
