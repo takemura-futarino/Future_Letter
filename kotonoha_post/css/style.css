@@ -1,0 +1,92 @@
+/* 共通部分 */
+* {
+    font-family: 'Zen Maru Gothic', sans-serif;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+img {
+    width: 100%;
+    display: block;
+}
+
+button {
+    border: none;
+}
+
+li {
+    list-style: none;
+}
+
+/* HEADER
+----------------------- */
+#header {
+    background: linear-gradient(to right, #D4EEFC, #FEEAC4);
+    /* グラデーションの開始色（左側）と終了色（右側）を指定 */
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.header__title {
+    font-size: 1.6em;
+}
+
+/* MAIN
+----------------------- */
+#main {
+    width: 83%;
+    margin: 0 auto;
+}
+
+/* Change_btn */
+.change_btn {
+    margin-bottom: 86px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* letter_list */
+.non_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    color: #B9BCBD;
+}
+
+.non_item p {
+    font-size: 1.9em;
+}
+
+.non_item span {
+    display: block;
+    font-size: 1.27em;
+}
+
+.comment_flash {
+    display: none;
+}
+
+.letter_list {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+.letter_list li {
+    width: 50%;;
+}
+
+/* タブメニュー */
+.tab {
+    display: none;
+}
+
+.active {
+    display: block;
+}
