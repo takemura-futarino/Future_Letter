@@ -223,9 +223,9 @@ function modalWindow(Id) {
 }
 
 //----------メッセージを送信-----------
-async function sentMessage() {
+function sentMessage() {
     try {
-        await liff.sendMessages([
+        liff.sendMessages([
             {
                 type: "text",
                 text: "初めてのコトノハを送りました",
