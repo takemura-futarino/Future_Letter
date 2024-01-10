@@ -23,8 +23,9 @@ li {
 /* タブメニュー
 ---------------------------- */
 .change_btn {
-    border-bottom: 1px solid black;
+    border-bottom: 1.5px solid black;
     padding-top: 64px;
+    font-weight: bold;
 }
 
 .change_btn__inner {
@@ -42,12 +43,12 @@ li {
 
 .partner_badge {
     position: absolute;
-    top: 0;
-    right: 0;
-    background-color: red;
+    top: -7px;
+    right: -7px;
+    background-color: #ff8787;
     color: white;
     border-radius: 50%;
-    padding: 4px 8px;
+    padding: 0px 5px;
 }
 
 .icon-oneself {
@@ -67,14 +68,14 @@ li {
 }
 
 .active {
-    border: 1px solid black;
+    border: 1.5px solid black;
     border-bottom: none;
     border-radius: 7px 7px 0 0;
     padding: 5px;
 }
 
 .hidden {
-    border: 1px solid #B9BCBD;
+    border: 1.5px solid #B9BCBD;
     border-bottom: none;
     color: #B9BCBD;
     border-radius: 7px 7px 0 0;
@@ -90,7 +91,7 @@ li {
 
 /* Change_btn */
 .change_btn {
-    margin-bottom: 86px;
+    margin-bottom: 39px;
     display: flex;
     justify-content: space-between;
 }
