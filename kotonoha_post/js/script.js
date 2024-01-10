@@ -30,7 +30,8 @@ liffId: "2000014015-QqLAlNmW"
         await partnerLetter(postdata);
         //tabMenu()関数の呼び出し
         await tabMemu(postdata);
-
+        //unread()関数の呼び出し
+        await unread(postdata);
     }
 })
 .catch((err) => {
@@ -215,6 +216,7 @@ async function myselfLetter(postdata) {
                 newListItem.appendChild(newListURL);
                 // <ul> に <li> を追加
                 myselfList.appendChild(newListItem);
+
             } 
         }
   
@@ -226,19 +228,87 @@ async function myselfLetter(postdata) {
 //--------- タブメニュー ----------
 async function tabMemu(postdata) {
     try {
-        const partnerTab = document.querySelector(".partner_tab");
+        const partnerTab = document.querySelector(".icon-partner");
         let letterList = document.querySelector(".letter_list");
         partnerTab.addEventListener('click', () => {
+            toggleTabs("partner");
             // 重複を避けるために<ul>内を一度空にする必要がある
             letterList.innerHTML = "";
             partnerLetter(postdata);
         });
 
-        const oneself_tab = document.querySelector(".oneself_tab");
+        const oneself_tab = document.querySelector(".icon-oneself");
         oneself_tab.addEventListener('click', () => {
+            toggleTabs("oneself");
             letterList.innerHTML = "";
             myselfLetter(postdata);
         })
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+//----------- activeとhiddenの切り替え ------------
+function toggleTabs(tabType) {
+    // クリックされたタブの要素を取得
+    const clickedTab = document.querySelector(`.icon-${tabType}`);
+
+    // クリックされたタブに対して 'active' クラスをトグル
+    clickedTab.classList.remove('hidden');
+    clickedTab.classList.add('active');
+
+    // クリックされたタブの反対のタブの要素を取得
+    const otherTabType = (tabType === 'partner') ? 'oneself' : 'partner';
+    const otherTab = document.querySelector(`.icon-${otherTabType}`);
+    
+    // 反対のタブに対して 'active' クラスを削除し、'hidden' クラスを追加
+    otherTab.classList.remove('active');
+    otherTab.classList.add('hidden');
+}
+
+
+//---------- 未読の表記 -----------
+async function unread(postdata) {
+    try {
+        let partner_unreadletterCount = 0;
+        if (postdata.data.from_partner){
+            for (let i = 0; i < postdata.data.from_partner.length; i++) {
+                if (postdata.data.from_partner[i].is_read === 0) {
+                    partner_unreadletterCount++;
+                }
+            }
+        }
+        console.log(partner_unreadletterCount);
+        const iconPartner = document.querySelector(".icon-partner");
+        if (partner_unreadletterCount > 0) {
+            // <span class="partner_badge">を作成
+            const badge = document.createElement("span");
+            badge.classList.add("partner_badge");
+            // 未読の数字を入れる
+            badge.innerHTML = partner_unreadletterCount;
+            // <div> に <span> を入れる
+            iconPartner.appendChild(badge);
+        }
+
+        let myself_unreadletterCount = 0;
+        if (postdata.data.from_me) {
+            for (let i = 0; i < postdata.data.from_me.length; i++) {
+                if (postdata.data.from_me[i].is_read === 0) {
+                    myself_unreadletterCount++;
+                }
+            }
+        }
+        console.log(myself_unreadletterCount);
+        const iconMyself = document.querySelector(".icon-oneself");
+        if (myself_unreadletterCount > 0) {
+            // <span class="oneself_badge">を作成
+            const badge = document.createElement("span");
+            badge.classList.add("oneself_badge");
+            // 未読の数字を入れる
+            badge.innerHTML = myself_unreadletterCount;
+            // <div> に <span> を入れる
+            iconMyself.appendChild(badge);
+        }
     } catch (error) {
         console.error(error);
     }

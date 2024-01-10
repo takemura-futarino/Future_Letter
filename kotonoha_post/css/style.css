@@ -20,20 +20,66 @@ li {
     list-style: none;
 }
 
-/* HEADER
------------------------ */
-#header {
-    background: linear-gradient(to right, #D4EEFC, #FEEAC4);
-    /* グラデーションの開始色（左側）と終了色（右側）を指定 */
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 18px;
+/* タブメニュー
+---------------------------- */
+.change_btn {
+    border-bottom: 1.5px solid black;
+    padding-top: 64px;
+    font-weight: bold;
 }
 
-.header__title {
-    font-size: 1.6em;
+.change_btn__inner {
+    width: 83%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.icon-partner {
+    position: relative;
+    width: 49%;
+    text-align: center;
+}
+
+.partner_badge {
+    position: absolute;
+    top: -7px;
+    right: -7px;
+    background-color: #ff8787;
+    color: white;
+    border-radius: 50%;
+    padding: 0px 5px;
+}
+
+.icon-oneself {
+    position: relative;
+    width: 49%;
+    text-align: center;
+}
+
+.oneself_badge {
+    position: absolute;
+    top: -7px;
+    right: -7px;
+    background-color: #ff8787;
+    color: white;
+    border-radius: 50%;
+    padding: 0px 5px;
+}
+
+.active {
+    border: 1.5px solid black;
+    border-bottom: none;
+    border-radius: 7px 7px 0 0;
+    padding: 5px;
+}
+
+.hidden {
+    border: 1.5px solid #B9BCBD;
+    border-bottom: none;
+    color: #B9BCBD;
+    border-radius: 7px 7px 0 0;
+    padding: 5px;
 }
 
 /* MAIN
@@ -45,7 +91,7 @@ li {
 
 /* Change_btn */
 .change_btn {
-    margin-bottom: 86px;
+    margin-bottom: 39px;
     display: flex;
     justify-content: space-between;
 }
@@ -82,11 +128,6 @@ li {
     width: 50%;;
 }
 
-/* タブメニュー */
-.tab {
-    display: none;
-}
 
-.active {
-    display: block;
-}
+
+

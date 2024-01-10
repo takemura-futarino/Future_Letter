@@ -16,18 +16,20 @@
 </head>
 
 <body>
-    <header id="header">
-        <div class="header__inner">
-            <h1 class="header__title">受け取った手紙</h1>
+    <div class="change_btn">
+        <div class="change_btn__inner">
+            <div class="icon-partner active">
+                <p class="partner_tab">パートナーから</p>
+                <!-- <span class="partner_badge"></span> -->
+            </div>
+            <div class="icon-oneself hidden">
+                <p class="oneself_tab">私から</p>
+                <!-- <span class="oneself_badge"></span> -->
+            </div>
         </div>
-    </header>
+    </div>
 
     <main id="main">
-        <div class="change_btn">
-            <button class="partner_tab">パートナーから</button>
-            <button class="oneself_tab">私から</button>
-        </div>
-
         <ul class="letter_list partner_list myself_list">
             <!--  
             <div class="non_item">
