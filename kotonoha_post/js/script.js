@@ -228,16 +228,18 @@ async function myselfLetter(postdata) {
 //--------- タブメニュー ----------
 async function tabMemu(postdata) {
     try {
-        const partnerTab = document.querySelector(".partner_tab");
+        const partnerTab = document.querySelector(".icon-partner");
         let letterList = document.querySelector(".letter_list");
         partnerTab.addEventListener('click', () => {
+            toggleTabs("partner");
             // 重複を避けるために<ul>内を一度空にする必要がある
             letterList.innerHTML = "";
             partnerLetter(postdata);
         });
 
-        const oneself_tab = document.querySelector(".oneself_tab");
+        const oneself_tab = document.querySelector(".icon-oneself");
         oneself_tab.addEventListener('click', () => {
+            toggleTabs("oneself");
             letterList.innerHTML = "";
             myselfLetter(postdata);
         })
@@ -245,6 +247,25 @@ async function tabMemu(postdata) {
         console.error(error);
     }
 }
+
+//----------- activeとhiddenの切り替え ------------
+function toggleTabs(tabType) {
+    // クリックされたタブの要素を取得
+    const clickedTab = document.querySelector(`.icon-${tabType}`);
+
+    // クリックされたタブに対して 'active' クラスをトグル
+    clickedTab.classList.remove('hidden');
+    clickedTab.classList.add('active');
+
+    // クリックされたタブの反対のタブの要素を取得
+    const otherTabType = (tabType === 'partner') ? 'oneself' : 'partner';
+    const otherTab = document.querySelector(`.icon-${otherTabType}`);
+    
+    // 反対のタブに対して 'active' クラスを削除し、'hidden' クラスを追加
+    otherTab.classList.remove('active');
+    otherTab.classList.add('hidden');
+}
+
 
 //---------- 未読の表記 -----------
 async function unread(postdata) {
