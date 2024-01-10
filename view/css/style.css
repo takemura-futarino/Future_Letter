@@ -1,5 +1,5 @@
 /* 共通部分 */
-* {
+body {
     font-family: 'Zen Maru Gothic', sans-serif;
 }
 
@@ -58,7 +58,7 @@ li {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 11px;
+    gap: 3px;
     font-size: 1.5em;
     font-family: "vdl-penletter", sans-serif;
     font-weight: 500;

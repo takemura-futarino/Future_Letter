@@ -30,7 +30,8 @@ liffId: "2000014015-QqLAlNmW"
         await partnerLetter(postdata);
         //tabMenu()関数の呼び出し
         await tabMemu(postdata);
-
+        //unread()関数の呼び出し
+        await unread(postdata);
     }
 })
 .catch((err) => {
@@ -215,6 +216,7 @@ async function myselfLetter(postdata) {
                 newListItem.appendChild(newListURL);
                 // <ul> に <li> を追加
                 myselfList.appendChild(newListItem);
+
             } 
         }
   
@@ -239,6 +241,53 @@ async function tabMemu(postdata) {
             letterList.innerHTML = "";
             myselfLetter(postdata);
         })
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+//---------- 未読の表記 -----------
+async function unread(postdata) {
+    try {
+        let partner_unreadletterCount = 0;
+        if (postdata.data.from_partner){
+            for (let i = 0; i < postdata.data.from_partner.length; i++) {
+                if (postdata.data.from_partner[i].is_read === 0) {
+                    partner_unreadletterCount++;
+                }
+            }
+        }
+        console.log(partner_unreadletterCount);
+        const iconPartner = document.querySelector(".icon-partner");
+        if (partner_unreadletterCount > 0) {
+            // <span class="partner_badge">を作成
+            const badge = document.createElement("span");
+            badge.classList.add("partner_badge");
+            // 未読の数字を入れる
+            badge.innerHTML = partner_unreadletterCount;
+            // <div> に <span> を入れる
+            iconPartner.appendChild(badge);
+        }
+
+        let myself_unreadletterCount = 0;
+        if (postdata.data.from_me) {
+            for (let i = 0; i < postdata.data.from_me.length; i++) {
+                if (postdata.data.from_me[i].is_read === 0) {
+                    myself_unreadletterCount++;
+                }
+            }
+        }
+        console.log(myself_unreadletterCount);
+        const iconMyself = document.querySelector(".icon-oneself");
+        if (myself_unreadletterCount > 0) {
+            // <span class="oneself_badge">を作成
+            const badge = document.createElement("span");
+            badge.classList.add("oneself_badge");
+            // 未読の数字を入れる
+            badge.innerHTML = myself_unreadletterCount;
+            // <div> に <span> を入れる
+            iconMyself.appendChild(badge);
+        }
     } catch (error) {
         console.error(error);
     }
