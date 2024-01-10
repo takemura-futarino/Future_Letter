@@ -20,20 +20,65 @@ li {
     list-style: none;
 }
 
-/* HEADER
------------------------ */
-#header {
-    background: linear-gradient(to right, #D4EEFC, #FEEAC4);
-    /* グラデーションの開始色（左側）と終了色（右側）を指定 */
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 18px;
+/* タブメニュー
+---------------------------- */
+.change_btn {
+    border-bottom: 1px solid black;
+    padding-top: 64px;
 }
 
-.header__title {
-    font-size: 1.6em;
+.change_btn__inner {
+    width: 83%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.icon-partner {
+    position: relative;
+    width: 49%;
+    text-align: center;
+}
+
+.partner_badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 4px 8px;
+}
+
+.icon-oneself {
+    position: relative;
+    width: 49%;
+    text-align: center;
+}
+
+.oneself_badge {
+    position: absolute;
+    top: -7px;
+    right: -11px;
+    background-color: #ff8787;
+    color: white;
+    border-radius: 50%;
+    padding: 0px 5px;
+}
+
+.active {
+    border: 1px solid black;
+    border-bottom: none;
+    border-radius: 7px 7px 0 0;
+    padding: 5px;
+}
+
+.hidden {
+    border: 1px solid #B9BCBD;
+    border-bottom: none;
+    color: #B9BCBD;
+    border-radius: 7px 7px 0 0;
+    padding: 5px;
 }
 
 /* MAIN
@@ -82,33 +127,6 @@ li {
     width: 50%;;
 }
 
-/* タブメニュー */
-.icon-partner {
-    position: relative;
-}
 
-.partner_badge {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: red;
-    color: white;
-    border-radius: 50%;
-    padding: 4px 8px;
-}
-
-.icon-oneself {
-    position: relative;
-}
-
-.oneself_badge {
-    position: absolute;
-    top: -7px;
-    right: -11px;
-    background-color: #ff8787;
-    color: white;
-    border-radius: 50%;
-    padding: 0px 5px;
-}
 
 
