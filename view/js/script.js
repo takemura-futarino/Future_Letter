@@ -26,7 +26,8 @@ liffId: "2000014015-QqLAlNmW"
         //get_userApi()関数の呼び出し
         const userName = await get_userApi(accessToken);
         //letter_showApi()関数の呼び出し
-        letter_showApi(accessToken,userName);
+        await letter_showApi(accessToken,userName);
+
     }
 })
 .catch((err) => {
@@ -76,12 +77,12 @@ async function get_userApi(accessToken) {
 
 //------- 手紙を既読状態にする -------
 async function letter_showApi(accessToken, username) {
-
-    // URLからvalueデータ値を受け取る　// myself_postページから飛ばないとvalueを取得できない
-    const urlParams = await new URLSearchParams(window.location.search);
-    const value = await urlParams.get('value');
-    
     try {
+        // URLからvalueデータ値を受け取る　// myself_postページから飛ばないとvalueを取得できない
+        const urlParams = await new URLSearchParams(window.location.search);
+        const value = await urlParams.get('value');
+        console.log(value);
+
         const getLetter = await fetch(`https://dev.2-rino.com/api/v1/letter/${value}/`,{
             headers:{
                 Authorization: `Bearer ${accessToken}`
@@ -109,71 +110,48 @@ async function letter_showApi(accessToken, username) {
         // 日付は？
         Days.textContent = postdata.data.result.send_at;
 
+        const transitionBtn = document.querySelector(".form__send");
+        // もしチュートリアルのコトノハなら
+        if (postdata.data.result.letter_type === 1) {
+            transitionBtn.innerHTML = "チュートリアル完了"
+            transitionBtn.addEventListener('click', () => {
+                sentMessage();
+                liff.closeWindow();
+            });
+        } 
+        // それ以外なら
+        else {
+            transitionBtn.innerHTML = "もう一度手紙を送る";
+            transitionBtn.addEventListener('click', () => {
+                window.location.href = "https://liff.line.me/2000014015-QqLAlNmW/editing/";
+            });
+        }
+
     } catch(error) {
         console.error(error);
     }
 }
 
+//----------メッセージを送信-----------
+function sentMessage() {
+    try {
+        liff.sendMessages([
+            {
+                type: "text",
+                text: "チュートリアルを完了しました",
+            },
+        ]);
+
+        console.log("message sent");
+
+    } catch (error) {
+        // エラーハンドリング
+        console.error(error.code, err.message);
+        return null;
+    }
+}
 
 
-// //-------- 手紙一覧の情報取得 ----------
-// async function letter_indexApi(accessToken, username) {
-//     try {
-//         const getLetter = await fetch('https://dev.2-rino.com/api/v1/letter/',{
-//             headers:{
-//                 Authorization: `Bearer ${accessToken}`
-//             }
-//         });
-//         const postdata = await getLetter.json();
-//         console.log(postdata);
-//         const post_me = postdata.data.from_me; //!!!!!!!!!! 修正箇所 !!!!!!!!!!!!!
-//         console.log(post_me);
-//         const post_partner = postdata.from_partner;
-//         console.log(post_partner);
 
-//         //receopt()関数呼び出し
-//         const postdata.result = await receipt(post_me);
-//         console.log(postdata.result);
-
-//         //JSONデータを記入する
-//         const Partner = document.querySelector('.partner');
-//         const Thought = document.querySelector('.thought');
-//         const Me = document.querySelector('.me');
-//         const Days = document.querySelector(".days");
-
-//         // 誰に送る？　誰から？
-//         if (postdata.result.send_to === 1) {
-//             Partner.textContent = "私へ";
-//             Me.textContent = username.data.name + "より";
-//         } else if (postdata.result.send_to === 2) {
-//             Partner.textContent = username.data.partner_user.line_display_name + "へ";
-//             Me.textContent = username.data.name +"より";
-//         }
-//         // 内容は？
-//         Thought.textContent = postdata.result.content;
-//         // 日付は？
-//         Days.textContent = postdata.result.send_at;
-
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
-// // ↓↓
-// //-----------特定の手紙の情報取得------------ 
-// async function receipt(post_me) {
-//     // URLからvalueデータ値を受け取る　// myself_postページから飛ばないとvalueを取得できない
-//     const urlParams = await new URLSearchParams(window.location.search);
-//     const value = await urlParams.get('value');
-//     const numValue = parseInt(value, 10); //数値に変換
-//     console.log(numValue);
-
-//     for (let i = 0; i < post_me.length; i++) {
-//         if (post_me[i].id === numValue) {
-//             const letterData = post_me[i];
-            
-//             return letterData;
-//         }
-//     }
-// }
 
 
