@@ -214,7 +214,7 @@ function modalWindow(Id) {
 
     mask.addEventListener('click', () => {
         if (Id === "0") {
-            sentMessage()
+            sentMessage();
             liff.closeWindow();
         } else {
             liff.closeWindow();
