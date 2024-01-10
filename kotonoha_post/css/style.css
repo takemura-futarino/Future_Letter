@@ -26,6 +26,9 @@ li {
     border-bottom: 1.5px solid black;
     padding-top: 64px;
     font-weight: bold;
+    margin-bottom: 39px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .change_btn__inner {
@@ -87,13 +90,6 @@ li {
 #main {
     width: 83%;
     margin: 0 auto;
-}
-
-/* Change_btn */
-.change_btn {
-    margin-bottom: 39px;
-    display: flex;
-    justify-content: space-between;
 }
 
 /* letter_list */
