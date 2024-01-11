@@ -91,9 +91,9 @@ async function partnerLetter(postdata) {
             for (let i = 0; i < post_number.length; i++) {
                 // 新しい <li> 要素を作成
                 const newListItem = document.createElement("li");
-                // 新しい <a> 要素を作成
-                const newListURL = document.createElement("a"); 
-                // <a> にクラスを追加   
+                // 新しい <div> 要素を作成
+                const newListURL = document.createElement("div"); 
+                // <div> にクラスを追加   
                 newListURL.classList.add("newID"); 
                 // 未開封か既読かの確認
                 if (post_number[i].is_read === 0) {
@@ -111,7 +111,7 @@ async function partnerLetter(postdata) {
                         const value = post_number[i].id;
                         window.location.href = `https://liff.line.me/2000014015-QqLAlNmW/view?value=${value}`;
                     });
-                    // <a> に <img> を追加
+                    // <div> に <img> を追加
                     newListURL.appendChild(imageElement);
                 
                 } else if (post_number[i].is_read === 1) {
@@ -131,14 +131,28 @@ async function partnerLetter(postdata) {
                         const value = post_number[i].id;
                         window.location.href = `https://liff.line.me/2000014015-QqLAlNmW/view?value=${value}`;
                     });
-                    // <a> に <img> を追加
+                    // <div> に <img> を追加
                     newListURL.appendChild(imageElement);
                 }
                 // 新しい要素 <p> 要素を作成
                 const newListDay = document.createElement("p");
+
+                // 変換した日付情報
+                const newDateinfo = post_number[i].send_at
+                // Dateオブジェクトを作成して日付文字列を解析
+                var dateObject = new Date(newDateinfo);
+                // 年、月、日を取得
+                var year = dateObject.getFullYear();
+                var month = dateObject.getMonth() + 1; // 月は0から11で表されるため、1を加える
+                var day = dateObject.getDate();
+                // フォーマットした日付文字列を作成
+                var formattedDateString = year + "年" + month + "月" + day + "日";
+                // 結果をコンソールに表示
+                console.log(formattedDateString);
+
                 // <p> に日付の情報を入れる
-                newListDay.textContent = post_number[i].send_at;
-                // <a> に <p> を追加
+                newListDay.textContent = formattedDateString;
+                // <div> に <p> を追加
                 newListURL.appendChild(newListDay);
                 // <li> に <a> を追加
                 newListItem.appendChild(newListURL);
@@ -164,8 +178,8 @@ async function myselfLetter(postdata) {
                 // 新しい <li> 要素を作成
                 const newListItem = document.createElement("li");
                 // 新しい <a> 要素を作成
-                const newListURL = document.createElement("a"); 
-                // <a> にクラスを追加   
+                const newListURL = document.createElement("div"); 
+                // <div> にクラスを追加   
                 newListURL.classList.add("newID"); 
                 // 未開封か既読かの確認
                 if (post_number[i].is_read === 0) {
@@ -183,7 +197,7 @@ async function myselfLetter(postdata) {
                         const value = post_number[i].id;
                         window.location.href = `https://liff.line.me/2000014015-QqLAlNmW/view?value=${value}`;
                     });
-                    // <a> に <img> を追加
+                    // <div> に <img> を追加
                     newListURL.appendChild(imageElement);
                 
                 } else if (post_number[i].is_read === 1) {
@@ -203,14 +217,28 @@ async function myselfLetter(postdata) {
                         const value = post_number[i].id;
                         window.location.href = `https://liff.line.me/2000014015-QqLAlNmW/view?value=${value}`;
                     });
-                    // <a> に <img> を追加
+                    // <div> に <img> を追加
                     newListURL.appendChild(imageElement);
                 }
                 // 新しい要素 <p> 要素を作成
                 const newListDay = document.createElement("p");
+
+                // 変換した日付情報
+                const newDateinfo = post_number[i].send_at
+                // Dateオブジェクトを作成して日付文字列を解析
+                var dateObject = new Date(newDateinfo);
+                // 年、月、日を取得
+                var year = dateObject.getFullYear();
+                var month = dateObject.getMonth() + 1; // 月は0から11で表されるため、1を加える
+                var day = dateObject.getDate();
+                // フォーマットした日付文字列を作成
+                var formattedDateString = year + "年" + month + "月" + day + "日";
+                // 結果をコンソールに表示
+                console.log(formattedDateString);
+
                 // <p> に日付の情報を入れる
-                newListDay.textContent = post_number[i].send_at;
-                // <a> に <p> を追加
+                newListDay.textContent = formattedDateString;
+                // <div> に <p> を追加
                 newListURL.appendChild(newListDay);
                 // <li> に <a> を追加
                 newListItem.appendChild(newListURL);
