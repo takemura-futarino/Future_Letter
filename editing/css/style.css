@@ -9,9 +9,9 @@ html {
     font-size: 62.5%;
 }
 
-body {
+/* body {
     background-color: #EAF4FC;
-}
+} */
 
 a {
     text-decoration: none;
@@ -30,25 +30,16 @@ textarea {
     resize: none;
 }
 
-
-/* HEADER
------------------------ */
-#header {
-    background: linear-gradient(to right, #D4EEFC, #FEEAC4);
-    /* グラデーションの開始色（左側）と終了色（右側）を指定 */
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 18px;
-}
-
 .header__title {
     font-size: 1.6em;
 }
 
 /* MAIN
 --------------------------*/
+#main {
+    padding-top: 26px;
+}
+
 .main__inner {
     width: 83%;
     margin: 0 auto;
@@ -62,10 +53,12 @@ textarea {
 }
 
 .saving__btn {
-    background-color: #70C7F5;
-    color: #FFF;
+    background-color: white;
+    color: #252525;
     padding: 5px 22px 4px;
-    border-radius: 8px;
+    border: 1.5px solid #252525;
+    border-radius: 16px;
+    font-weight: bold;
 }
 
 /* FORM 
