@@ -40,7 +40,7 @@ li {
 
 .icon-partner {
     position: relative;
-    width: 49%;
+    width: 46%;
     text-align: center;
 }
 
@@ -56,7 +56,7 @@ li {
 
 .icon-oneself {
     position: relative;
-    width: 49%;
+    width: 46%;
     text-align: center;
 }
 
@@ -117,12 +117,27 @@ li {
 .letter_list {
     display: flex;
     flex-direction: column;
-    gap: 60px;
+    gap: 10px;
 }
 
 .letter_list li {
-    width: 50%;;
+    width: 100%;;
 }
+
+.newID {
+    display: flex;
+    gap: 5%;
+}
+
+.newID img {
+    width: 54%;
+}
+
+.newID p {
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
 
 
 
