@@ -98,8 +98,8 @@ async function partnerLetter(postdata) {
                 // 未開封か既読かの確認
                 if (post_number[i].is_read === 0) {
                     // 画像の情報
-                    const imageUrl = "image/unopened_male.png";
-                    const imageAltText = "未開封の手紙";
+                    const imageUrl = "image/kotonoha.png";
+                    const imageAltText = "未開封のコトノハ";
                     // <img> 要素を作成
                     const imageElement = document.createElement("img");
                     imageElement.src = imageUrl;
@@ -117,8 +117,8 @@ async function partnerLetter(postdata) {
                 } else if (post_number[i].is_read === 1) {
                 // 既読の場合の処理
                     // 画像の情報
-                    const imageUrl = "image/opened_male.png";
-                    const imageAltText = "開封済みの手紙";
+                    const imageUrl = "image/kotonoha.png";
+                    const imageAltText = "開封済みのコトノハ";
                     // <img> 要素を作成
                     const imageElement = document.createElement("img");
                     imageElement.src = imageUrl;
@@ -170,8 +170,8 @@ async function myselfLetter(postdata) {
                 // 未開封か既読かの確認
                 if (post_number[i].is_read === 0) {
                     // 画像の情報
-                    const imageUrl = "image/unopened_male.png";
-                    const imageAltText = "未開封の手紙";
+                    const imageUrl = "image/kotonoha.png";
+                    const imageAltText = "未開封のコトノハ";
                     // <img> 要素を作成
                     const imageElement = document.createElement("img");
                     imageElement.src = imageUrl;
@@ -189,8 +189,8 @@ async function myselfLetter(postdata) {
                 } else if (post_number[i].is_read === 1) {
                 // 既読の場合の処理
                     // 画像の情報
-                    const imageUrl = "image/opened_male.png";
-                    const imageAltText = "開封済みの手紙";
+                    const imageUrl = "image/kotonoha.png";
+                    const imageAltText = "開封済みのコトノハ";
                     // <img> 要素を作成
                     const imageElement = document.createElement("img");
                     imageElement.src = imageUrl;
