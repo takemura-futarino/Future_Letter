@@ -33,6 +33,8 @@ liffId: "2000014015-QqLAlNmW"
         await userName_input(userName);
         //letter_number()関数の呼び出し
         await letter_number(userName, postData);
+        //hitorino()関数の呼び出し
+        await hitorino(userName);
     }
 })
 .catch((err) => {
@@ -111,4 +113,13 @@ const letter_number = (userName, postData) => {
 
     const custody = document.querySelector(".custody__letter");
     custody.textContent = postData.data.is_sending.length;
+}
+
+// ヒトリノデーの情報の取得
+const hitorino = (userName) => {
+    const hitorinoDate = document.querySelector(".user__hitorino__date");
+    const DateInfo = userName.data.birthday;
+    const dateObject = new Date(DateInfo);
+    const day = dateObject.getDate();
+    hitorinoDate.textContent = day;
 }
