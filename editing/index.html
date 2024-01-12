@@ -47,7 +47,33 @@
                     </div>
                     <div class="form__time">
                         <img src="image/clock.png" alt="時計のアイコン">
-                        <input type="time" id="send_time" name="send_time" class="form__rsv__time">
+                        <input type="time" id="send_time" list="data-list" name="send_time" step="3600" class="form__rsv__time">
+                        <datalist id="data-list">
+                            <option value="00:00"></option>
+                            <option value="01:00"></option>
+                            <option value="02:00"></option>
+                            <option value="03:00"></option>
+                            <option value="04:00"></option>
+                            <option value="05:00"></option>
+                            <option value="06:00"></option>
+                            <option value="07:00"></option>
+                            <option value="08:00"></option>
+                            <option value="09:00"></option>
+                            <option value="10:00"></option>
+                            <option value="11:00"></option>
+                            <option value="12:00"></option>
+                            <option value="13:00"></option>
+                            <option value="14:00"></option>
+                            <option value="15:00"></option>
+                            <option value="16:00"></option>
+                            <option value="17:00"></option>
+                            <option value="18:00"></option>
+                            <option value="19:00"></option>
+                            <option value="20:00"></option>
+                            <option value="21:00"></option>
+                            <option value="22:00"></option>
+                            <option value="23:00"></option>
+                        </datalist>
                     </div>
                 </div>
 
@@ -59,16 +85,15 @@
     <!-- モーダルウィンドウの設定 -->
     <!-- 一時保存 -->
     <section id="modal0" class="modal_common">
-        <button id="close">✕</button>
         <div class="modal_content">
-            <img src="image/blue_save.png" alt="保存確認のマーク">
+            <img src="image/black_save.png" alt="保存確認のマーク">
             <h1 class="blue_save">保存しました</h1>
         </div>
+        <button id="close">> ホームへ</button>
     </section>
 
     <!-- パートナー連係の注意 -->
     <section id="modal1" class="modal_common">
-        <button id="close">✕</button>
         <div class="modal_content">
             <img src="image/warning.png" alt="注意！パートナー連係していません">
             <h1 class="h1_kome">注意!</h1>
@@ -82,7 +107,6 @@
     </section>
 
     <section id="modal2" class="modal_common">
-        <button id="close">✕</button>
         <div class="modal_content">
             <img src="image/blue_letter.png" alt="送信が完了しました">
             <h1 class="h1_kome">カードを預かりました</h1>
@@ -96,7 +120,6 @@
     </section>
 
     <section id="modal3" class="modal_common">
-        <button id="close">✕</button>
         <div class="modal_content">
             <h1 class="h1_kome">手持ちのカードがありません</h1>
             <p>

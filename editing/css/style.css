@@ -168,7 +168,7 @@ input[type="date"] {
 }
 
 input[type="time"] {
-    appearance: none; /* ブラウザのデフォルトスタイルを無効化 */
+    appearance: none; 
     -webkit-appearance: none;
     -moz-appearance: none;
     background-color: white;
@@ -200,6 +200,7 @@ input[type="time"] {
     z-index: 9999;
     opacity: 0;
     visibility: hidden;
+    text-align: center;
 }
 
 .modal_content {
@@ -220,8 +221,11 @@ input[type="time"] {
 .modal_common button {
     background: none;
     font-weight: bold;
-    padding-left: 6px;
-    font-size: 2em;
+    font-size: 1.5em;
+    height: 48px;
+    width: 80%;
+    border: 1px solid #252525;
+    border-radius: 24px;
 }
 
 .modal_common p {
@@ -244,7 +248,7 @@ input[type="time"] {
 }
 
 .blue_save {
-    margin-bottom: 13px;
+    margin-bottom: 24px;
 }
 
 .h1_kome {
