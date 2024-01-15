@@ -109,7 +109,16 @@ async function letter_showApi(accessToken, username) {
         // 内容は？
         Thought.textContent = postdata.data.result.content;
         // 日付は？
-        Days.textContent = postdata.data.result.send_at;
+        const newDateinfo = postdata.data.result.send_at;
+        // Dateオブジェクトを作成して日付文字列を解析
+        var dateObject = new Date(newDateinfo);
+        // 年、月、日を取得
+        var year = dateObject.getFullYear();
+        var month = dateObject.getMonth() + 1; // 月は0から11で表されるため、1を加える
+        var day = dateObject.getDate();
+        // フォーマットした日付文字列を作成
+        var formattedDateString = year + "年" + month + "月" + day + "日";
+        Days.textContent = formattedDateString;
 
         const tutorial = document.querySelector(".tutorial");
         const transitionBtn = document.querySelector(".form__send");
