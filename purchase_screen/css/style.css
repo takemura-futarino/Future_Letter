@@ -20,6 +20,10 @@ a {
 
 /* MAIN
 --------------------------*/
+#main {
+    padding-top: 49px;
+}
+
 .main__inner {
     width: 83%;
     margin: 0 auto;
@@ -43,7 +47,7 @@ a {
 .my-button {
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #ffba38;
+    background-color: #252525;
     color: #fff;
     border: none;
     border-radius: 24px;
@@ -59,14 +63,18 @@ a {
 }
 
 .form__send{
-    background-color: #EAF4FC;
     color: #252525;
     border-radius: 8px;
     font-size: 16px;
+    box-shadow: 0 3px 5px 0 rgba(0, 0, 0, .5);
     
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 8px 27px 9px 36px;
 
+}
+
+.form__send p {
+    font-weight: bold;
 }
