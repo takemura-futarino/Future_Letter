@@ -81,6 +81,7 @@ textarea {
     border: none;
     color: #B9BCBD;
     border-bottom: 1px solid #252525;
+    background-color: white;
 }
 
 .letter__contain {
@@ -178,7 +179,7 @@ input[type="time"] {
 
 
 /*------------- モーダルウィンドウ--------- */
-.mask {
+/* .mask {
     background: rgba(0, 0, 0, .6);
     position: fixed;
     inset: 0;
@@ -226,6 +227,7 @@ input[type="time"] {
     width: 80%;
     border: 1px solid #252525;
     border-radius: 24px;
+    color: #252525;
 }
 
 .modal_common p {
@@ -239,12 +241,27 @@ input[type="time"] {
     display: block;
 }
 
-.modal_common a {
-    background-color: #FFBA38;
+.send_link {
+    background-color: #252525;
+    border-radius: 24px;
     color: #FFF;
     width: 70%;
     padding: 12px;
     text-align: center;
+}
+
+.send_complete {
+    background: none;
+    font-weight: bold;
+    font-size: 1.5em;
+    height: 48px;
+    width: 80%;
+    border: 1px solid #252525;
+    border-radius: 24px;
+    color: #252525;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .blue_save {
@@ -253,4 +270,4 @@ input[type="time"] {
 
 .h1_kome {
     margin-bottom: 22px;
-}
+} */
