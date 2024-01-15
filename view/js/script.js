@@ -98,30 +98,48 @@ async function letter_showApi(accessToken, username) {
         const Days = document.querySelector(".days");
 
         // 誰に送る？　誰から？
-        if (postdata.data.result.send_to === 1) {
-            Partner.textContent = "私へ";
-            Me.textContent = username.data.name + "より";
-        } else if (postdata.data.result.send_to === 2) {
-            Partner.textContent = username.data.partner_user.line_display_name + "へ";
-            Me.textContent = username.data.name +"より";
-        }
+        // if (postdata.data.result.send_to === 1) {
+        //     Partner.textContent = "私へ";
+        //     Me.textContent = username.data.name + "より";
+        // } else if (postdata.data.result.send_to === 2) {
+        //     Partner.textContent = username.data.partner_user.line_display_name + "へ";
+        //     Me.textContent = username.data.name +"より";
+        // }
+        
         // 内容は？
         Thought.textContent = postdata.data.result.content;
         // 日付は？
         Days.textContent = postdata.data.result.send_at;
 
+        const tutorial = document.querySelector(".tutorial");
         const transitionBtn = document.querySelector(".form__send");
         // もしチュートリアルのコトノハなら
         if (postdata.data.result.letter_type === 1) {
-            transitionBtn.innerHTML = "チュートリアル完了"
+            let tutorial_content = "<div class='tutorial_up'>"
+            const tutorial_img = "<img src='image/stamp.png' alt='コトノハスタンプの画像'>";
+            tutorial_content += tutorial_img;
+            const tutorial_comment = "<p>おめでとうございます！</p><p>お試し終了です</p></div>";
+            tutorial_content += tutorial_comment;
+            const tutorial_present = "<p class='tutorial_down'>\\ 無料プレゼント/</p>";
+            tutorial_content += tutorial_present;
+            tutorial.innerHTML = tutorial_content;
+
+            transitionBtn.innerHTML = "コトノハを受け取る"
             transitionBtn.addEventListener('click', () => {
                 sentMessage();
                 liff.closeWindow();
             });
         } 
-        // それ以外なら
-        else {
-            transitionBtn.innerHTML = "もう一度手紙を送る";
+        // 自分宛てなら
+        else if (postdata.data.result.send_to === 1) {
+            transitionBtn.innerHTML = "もう一度コトノハを送る";
+            transitionBtn.addEventListener('click', () => {
+                window.location.href = "https://liff.line.me/2000014015-QqLAlNmW/editing/";
+            });
+        }
+        // パートナー宛てなら
+        else if (postdata.data.result.send_to === 2) {
+            transitionBtn.innerHTML = "パートナーにコトノハを送る";
             transitionBtn.addEventListener('click', () => {
                 window.location.href = "https://liff.line.me/2000014015-QqLAlNmW/editing/";
             });

@@ -13,7 +13,6 @@ a {
 
 img {
     width: 100%;
-    display: block;
 }
 
 button {
@@ -24,34 +23,30 @@ li {
     list-style: none;
 }
 
-/* HEADER
------------------------ */
-#header {
-    background: linear-gradient(to right, #D4EEFC, #FEEAC4);
-    /* グラデーションの開始色（左側）と終了色（右側）を指定 */
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 67px;
-}
-
-.header__title {
-    font-size: 1.6em;
-}
 
 /* MAIN
 ----------------------- */
 #main {
     width: 83%;
     margin: 0 auto;
+    padding-top: 110px;
 }
 
 .contain {
-    height: 513px;
+    height: 246px;
     background-color: #FCF7ED;
-    margin-bottom: 70px;
+    margin-bottom: 48px;
+    border-radius: 12px;
+
+    box-shadow:
+    0 1.9px 2.5px rgba(0, 0, 0, 0.057),
+    0 5px 6.1px rgba(0, 0, 0, 0.076),
+    0 10.1px 11.4px rgba(0, 0, 0, 0.086),
+    0 19.2px 19.8px rgba(0, 0, 0, 0.092),
+    0 38.4px 34.8px rgba(0, 0, 0, 0.1),
+    0 101px 74px rgba(0, 0, 0, 0.13);
 }
+
 
 .contain__inner {
     width: 90%;
@@ -60,7 +55,7 @@ li {
     flex-direction: column;
     gap: 3px;
     font-size: 1.5em;
-    font-family: "vdl-penletter", sans-serif;
+    /* font-family: "vdl-penletter", sans-serif; */
     font-weight: 500;
     font-style: normal;
 }
@@ -73,10 +68,10 @@ li {
 }
 
 .thought {
-    height: 319px;
+    height: 107px;
     overflow: scroll;
     line-height: 2em;
-    text-decoration: underline;
+    font-family: "vdl-penletter", sans-serif;
 }
 
 .me {
@@ -85,16 +80,41 @@ li {
 
 .days {
     align-self: flex-end;
+    font-weight: bold;
 }
 
-/*btn*/
+/* tutorial_comment */
+.tutorial {
+    text-align: center;
+}
+
+.tutorial_up {
+    margin-bottom: 77px;
+}
+
+.tutorial_up img {
+    width: 35%;
+}
+
+.tutorial_up p {
+    font-size: 1.2em;
+}
+
+.tutorial_down {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: 13px;
+}
+
+/* btn */
 .form__send {
     display: block;
     text-align: center;
     padding: 16px 0;
     width: 100%;
-    background-color: #FFBA38;
+    background-color: #252525;
     color: #FFF;
-    border-radius: 8px;
+    border-radius: 24px;
     margin-bottom: 42px;
+    font-size: 1.5em;
 }
