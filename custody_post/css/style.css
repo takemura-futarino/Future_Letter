@@ -20,21 +20,6 @@ li {
     list-style: none;
 }
 
-/* HEADER
------------------------ */
-#header {
-    background: linear-gradient(to right, #D4EEFC, #FEEAC4);
-    /* グラデーションの開始色（左側）と終了色（右側）を指定 */
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 18px;
-}
-
-.header__title {
-    font-size: 1.6em;
-}
 
 /* MAIN
 ----------------------- */
