@@ -36,27 +36,70 @@ li {
 
 .user{
     display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0 auto;
+    align-items: center;
+    margin-bottom: 4px;
 }
 
-.user__name  {
-     width: 30%;
+.icon {
+    width: 80px;
+    height: 80px;
+    background: #252525;
+    border-radius: 50%;
 }
 
-.user__name img{
-    width: 50%;
+.user__name__content{
+    font-size: 1.25em;
+    font-weight: bold;
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 19px;
 }
+
+.user__day{
+    display: flex;
+    gap: 3%;
+    justify-content: flex-end;
+    width: 70%;
+}
+
 
 .user__hitorino  {
-    width: 30%;
     text-align: center;
+    font-size: 1.25em;
+    font-weight: bold;
+    
+}
+
+.hitorino__day{
+    border-bottom: 1px solid #b9bcbd;
+    margin-bottom: 9px;
+    padding-bottom: 5px;
+}
+
+.user__hitorino__date{
     font-size: 1.5em;
 }
 
 .user__futarino  {
-    width: 30%;
     text-align: center;
+    font-size: 1.25em;
+    font-weight: bold;
+    
+}
+
+.futarino__day{
+    border-bottom: 1px solid #b9bcbd;
+    margin-bottom: 9px;
+    padding-bottom: 5px;
+}
+
+.user__futarino__date{
     font-size: 1.5em;
 }
+
 
 .my-button {
     font-size: 16px;
@@ -124,7 +167,7 @@ li {
     height: 57px;
     width: 90%;
     margin: 0 auto;
-    border-bottom: 1px solid #252525;
+    border-bottom: 1px solid #b9bcbd;
 
 }
 
@@ -135,6 +178,7 @@ li {
 .menu__title{
     display: flex;
     gap: 3%;
+    align-items: center;
 }
 
 .menu__title img{
@@ -142,5 +186,9 @@ li {
 }
 
 .menu__title p {
+    color: #252525;
+}
+
+.menu_arrow{
     color: #252525;
 }
