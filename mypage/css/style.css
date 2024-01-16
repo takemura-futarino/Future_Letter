@@ -9,7 +9,6 @@ html {
 
 img {
     width: 100%;
-    display: block;
 }
 
 a {
@@ -33,4 +32,53 @@ li {
 
 .main__inner {
     padding-top: 50px;
+}
+
+.user{
+    display: flex;
+}
+
+.user__name  {
+     width: 30%;
+}
+
+.user__name img{
+    width: 50%;
+}
+
+.user__hitorino  {
+    width: 30%;
+}
+
+.user__futarino  {
+    width: 30%;
+}
+
+.my-button {
+    font-size: 16px;
+    background-color: #252525;
+    border: none;
+    border-radius: 24px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3%;
+    height: 48px;
+}
+
+.my-button img{
+    width: 10%;
+}
+
+.my-button p {
+    color: #fff;
+}
+
+.user__hitorino  {
+    width: 30%;
+}
+
+.user__futarino  {
+    width: 30%;
 }
