@@ -102,6 +102,7 @@ async function letter_indexApi(accessToken) {
     }
 }
 
+//--------- アイコン表示 -----------
 async function icon(profile) {
     try {
         const iconImg = document.querySelector('.icon');
