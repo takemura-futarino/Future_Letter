@@ -35,6 +35,10 @@ liffId: "2000014015-QqLAlNmW"
         await letter_number(userName, postData);
         //hitorino()関数の呼び出し
         await hitorino(userName);
+        //liff.getProfileでユーザーの情報取得
+        const profile = await liff.getProfile();
+        console.log(profile);
+        await icon(profile);
     }
 })
 .catch((err) => {
@@ -98,6 +102,15 @@ async function letter_indexApi(accessToken) {
     }
 }
 
+async function icon(profile) {
+    try {
+        const iconImg = document.querySelector('.icon');
+        iconImg.src = profile.pictureUrl;
+
+    } catch (error) {
+        console.error(error);
+    }
+}
 
 //------------------------------ データの入力 -----------------------------------
 // 名前のデータ取得
