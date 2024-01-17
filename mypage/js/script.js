@@ -33,6 +33,12 @@ liffId: "2000014015-QqLAlNmW"
         await userName_input(userName);
         //letter_number()関数の呼び出し
         await letter_number(userName, postData);
+        //hitorino()関数の呼び出し
+        await hitorino(userName);
+        //liff.getProfileでユーザーの情報取得
+        const profile = await liff.getProfile();
+        console.log(profile);
+        await icon(profile);
     }
 })
 .catch((err) => {
@@ -96,6 +102,15 @@ async function letter_indexApi(accessToken) {
     }
 }
 
+async function icon(profile) {
+    try {
+        const iconImg = document.querySelector('.icon');
+        iconImg.src = profile.pictureUrl;
+
+    } catch (error) {
+        console.error(error);
+    }
+}
 
 //------------------------------ データの入力 -----------------------------------
 // 名前のデータ取得
@@ -111,4 +126,13 @@ const letter_number = (userName, postData) => {
 
     const custody = document.querySelector(".custody__letter");
     custody.textContent = postData.data.is_sending.length;
+}
+
+// ヒトリノデーの情報の取得
+const hitorino = (userName) => {
+    const hitorinoDate = document.querySelector(".user__hitorino__date");
+    const DateInfo = userName.data.birthday;
+    const dateObject = new Date(DateInfo);
+    const day = dateObject.getDate();
+    hitorinoDate.textContent = day;
 }
