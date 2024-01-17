@@ -26,6 +26,7 @@ li {
 #main {
     width: 83%;
     margin: 0 auto;
+    padding-top: 64px;
 }
 
 /* letter_list */
@@ -57,5 +58,19 @@ li {
 }
 
 .letter_list li {
-    width: 50%;;
+    width: 100%;;
+}
+
+.newID {
+    display: flex;
+    gap: 5%;
+}
+
+.newID img {
+    width: 54%;
+}
+
+.newID p {
+    font-weight: bold;
+    font-size: 1.5em;
 }
