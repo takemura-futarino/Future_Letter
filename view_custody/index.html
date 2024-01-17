@@ -37,17 +37,20 @@
             </div>
         </div>
 
-        <div class="tutorial">
-            <!-- <div class='tutorial_up'>
-                <img src="image/stamp.png" alt="コトノハスタンプの画像">
-                <p>おめでとうございます！</p>
-                <p>お試し終了です</p>
-            </div>
-            <p class='tutorial_down'>\無料プレゼント/</p> -->
-        </div>
-
         <!-- <a href="https://liff.line.me/2000014015-QqLAlNmW/letter_edit/" class="form__send">もう一度手紙を送る</a> -->
-        <button class="form__send"></button>
+        <button class="form__send">送信を取り消す</button>
     </main>
+
+    <!-- モーダルウィンドウの設定 -->
+    <!-- 注意喚起 -->
+    <section id="modal" class="modal_common">
+        <button id="close">✕</button>
+        <div class="modal_content">
+            <img src="#" alt="保存確認のマーク">
+            <h1 class="blue_save">保存しました</h1>
+        </div>
+    </section>
+
+    <div id="mask" class="mask"></div>
 </body>
 </html>

@@ -26,7 +26,8 @@ liffId: "2000014015-QqLAlNmW"
         await callApi(accessToken);
         //letter_showApi()関数の呼び出し
         await letter_showApi(accessToken);
-
+        //Note()関数の呼び出し
+        await Note();
     }
 })
 .catch((err) => {
@@ -96,6 +97,51 @@ async function letter_showApi(accessToken) {
     } catch(error) {
         console.error(error);
     }
+}
+
+// --------注意喚起--------
+async function Note() {
+    try {
+        const Cancel = document.querySelector('.form__send');
+        Cancel.addEventListener('click', () => {
+            modalWindow();
+        });
+    } catch(error) {
+        console.error(error);
+    }
+}
+
+//---------モーダルウィンドウを表示させる関数------------
+function modalWindow() {
+    const close = document.querySelector("#modal #close");
+    console.log (close);
+    const modal = document.querySelector("#modal");
+    const mask = document.querySelector("#mask");
+    const showKeyframes = {
+        opacity: [0,1],
+        visibility: 'visible',
+    };
+    const hideKeyframes = {
+        opacity: [1,0],
+        visibility: 'hidden',
+    };
+    const options = {
+        duration: 800,
+        easing: 'ease',
+        fill: 'forwards',
+    };
+
+    modal.animate(showKeyframes, options);
+    mask.animate(showKeyframes, options);
+
+    close.addEventListener('click', () => { 
+        modal.animate(hideKeyframes, options);
+        mask.animate(hideKeyframes, options);
+    });
+
+    mask.addEventListener('click', () => {    
+        close.click();
+    });
 }
 
 
