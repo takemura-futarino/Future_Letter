@@ -26,10 +26,7 @@ liffId: "2000014015-QqLAlNmW"
         await callApi(accessToken);
         //letter_showApi()関数の呼び出し
         await letter_showApi(accessToken);
-        //get_userApi()関数の呼び出し
-        const userName = await get_userApi(accessToken);
-        //letter_indexApi()関数の呼び出し
-        letter_indexApi(accessToken, userName);
+
     }
 })
 .catch((err) => {
@@ -62,12 +59,12 @@ async function callApi(accessToken) {
 
 //------- 手紙を既読状態にする -------
 async function letter_showApi(accessToken) {
-
-    // URLからvalueデータ値を受け取る　// myself_postページから飛ばないとvalueを取得できない
-    const urlParams = await new URLSearchParams(window.location.search);
-    const value = await urlParams.get('value');
-    
     try {
+        // URLからvalueデータ値を受け取る　// myself_postページから飛ばないとvalueを取得できない
+        const urlParams = await new URLSearchParams(window.location.search);
+        const value = await urlParams.get('value');
+        console.log(value);
+
         const getLetter = await fetch(`https://dev.2-rino.com/api/v1/letter/${value}/`,{
             headers:{
                 Authorization: `Bearer ${accessToken}`
@@ -76,83 +73,28 @@ async function letter_showApi(accessToken) {
         const postdata = await getLetter.json();
         console.log(postdata);
 
-    } catch(error) {
-        console.error(error);
-    }
-}
-
-//-------- ユーザーとパートナーの名前取得 ---------
-async function get_userApi(accessToken) {
-    try {
-        const getuser = await fetch("https://dev.2-rino.com/api/v1/user",{
-            headers:{
-                Authorization: `Bearer ${accessToken}`
-            }
-        });
-        const name = await getuser.json();
-        console.log(name);
-        return name;
-
-    } catch(error) {
-        console.error(error);
-    }
-}
-
-//-------- 手紙一覧の情報取得 ----------
-async function letter_indexApi(accessToken, username) {
-    try {
-        const getLetter = await fetch('https://dev.2-rino.com/api/v1/letter/',{
-            headers:{
-                Authorization: `Bearer ${accessToken}`
-            }
-        });
-        const postdata = await getLetter.json();
-        console.log(postdata);
-        const post_me = postdata.data.is_sending; //!!!!!!!!!! 修正箇所 !!!!!!!!!!!!!
-        console.log(post_me);
-
-        //receopt()関数呼び出し
-        const letterContain = await receipt(post_me);
-        console.log(letterContain);
-
         //JSONデータを記入する
         const Partner = document.querySelector('.partner');
         const Thought = document.querySelector('.thought');
         const Me = document.querySelector('.me');
         const Days = document.querySelector(".days");
-
-        // 誰に送る？　誰から？
-        if (letterContain.send_to === 1) {
-            Partner.textContent = "私へ";
-            Me.textContent = username.data.name + "より";
-        } else if (letterContain.send_to === 2) {
-            Partner.textContent = username.data.partner_user.line_display_name + "へ";
-            Me.textContent = username.data.name +"より";
-        }
+        
         // 内容は？
-        Thought.textContent = letterContain.content;
+        Thought.textContent = postdata.data.result.content;
         // 日付は？
-        Days.textContent = letterContain.send_at;
+        const newDateinfo = postdata.data.result.send_at;
+        // Dateオブジェクトを作成して日付文字列を解析
+        var dateObject = new Date(newDateinfo);
+        // 年、月、日を取得
+        var year = dateObject.getFullYear();
+        var month = dateObject.getMonth() + 1; // 月は0から11で表されるため、1を加える
+        var day = dateObject.getDate();
+        // フォーマットした日付文字列を作成
+        var formattedDateString = year + "年" + month + "月" + day + "日";
+        Days.textContent = formattedDateString;
 
-    } catch (error) {
+    } catch(error) {
         console.error(error);
-    }
-}
-// ↓↓
-//-----------特定の手紙の情報取得------------ 
-async function receipt(post_me) {
-    // URLからvalueデータ値を受け取る　// myself_postページから飛ばないとvalueを取得できない
-    const urlParams = await new URLSearchParams(window.location.search);
-    const value = await urlParams.get('value');
-    const numValue = parseInt(value, 10); //数値に変換
-    console.log(numValue);
-
-    for (let i = 0; i < post_me.length; i++) {
-        if (post_me[i].id === numValue) {
-            const letterData = post_me[i];
-            
-            return letterData;
-        }
     }
 }
 

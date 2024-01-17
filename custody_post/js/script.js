@@ -100,7 +100,7 @@ async function partnerLetter(postdata) {
                 // パートナー宛の場合
                 if (post_number[i].send_to === 2) {
                     // 画像の情報
-                    const imageUrl = "image/unopened_male.png";
+                    const imageUrl = "image/kotonoha.png";
                     const imageAltText = "パートナー宛てのコトノハ";
                     // <img> 要素を作成
                     const imageElement = document.createElement("img");
@@ -119,7 +119,7 @@ async function partnerLetter(postdata) {
                 // 自分宛の場合
                 } else if (post_number[i].send_to === 1) {
                     // 画像の情報
-                    const imageUrl = "image/unopened_male.png";
+                    const imageUrl = "image/kotonoha.png";
                     const imageAltText = "自分宛てのコトノハ";
                     // <img> 要素を作成
                     const imageElement = document.createElement("img");
