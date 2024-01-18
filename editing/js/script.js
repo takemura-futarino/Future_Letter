@@ -209,7 +209,12 @@ function modalWindow(Id) {
         if (Id === "1") {
             modal.animate(hideKeyframes, options);
             mask.animate(hideKeyframes, options);
-        } else {
+        } 
+        else if (Id === "2") {
+            sentMessage();
+            liff.closeWindow();
+        }
+        else {
             liff.closeWindow();
         }
     });
@@ -217,9 +222,32 @@ function modalWindow(Id) {
     mask.addEventListener('click', () => {
         if (Id === "1") {
             close.click();
-        } else {
+        } 
+        else if (Id === "2") {
+            sentMessage();
+            liff.closeWindow();
+        }
+        else {
             liff.closeWindow();
         }
     });
 }
 
+//----------メッセージを送信-----------
+function sentMessage() {
+    try {
+        liff.sendMessages([
+            {
+                type: "text",
+                text: "コトノハを送りました",
+            },
+        ]);
+
+        console.log("message sent");
+
+    } catch (error) {
+        // エラーハンドリング
+        console.error(error.code, err.message);
+        return null;
+    }
+}
