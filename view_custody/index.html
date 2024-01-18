@@ -11,28 +11,55 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <script>
+        (function(d) {
+          var config = {
+            kitId: 'phr6cpg',
+            scriptTimeout: 3000,
+            async: true
+          },
+          h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+        })(document);
+    </script>
     <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script src="js/script.js" defer></script>
 </head>
 
 <body>
-    <header id="header">
-        <div class="header__inner">
-            <h1 class="header__title">手紙</h1>
-        </div>
-    </header>
-
     <main id="main">
         <div class="contain">
             <div class="contain__inner">
                 <img src="image/logo.png" alt="">
-                <p class="partner"></p>
+                <!-- <p class="partner"></p> -->
                 <p class="thought"></p>
-                <p class="me"></p>
+                <!-- <p class="me"></p> -->
                 <p class="days"></p>
             </div>
         </div>
-        <a href="https://liff.line.me/2000014015-QqLAlNmW/letter_edit/" class="form__send">もう一度手紙を送る</a>
+
+        <!-- <a href="https://liff.line.me/2000014015-QqLAlNmW/letter_edit/" class="form__send">もう一度手紙を送る</a> -->
+        <button class="form__send">送信を取り消す</button>
     </main>
+
+    <!-- モーダルウィンドウの設定 -->
+    <!-- 注意喚起 -->
+    <section id="modal" class="modal_common">
+        <!-- <button id="close">✕</button> -->
+        <div class="modal_content">
+            <img src="image/warning.png" alt="保存確認のマーク">
+            <h1 class="blue_save">本当に送信を取り消しますか？</h1>
+            <p>
+                <span>一度取り消したコトノハを</span>
+                <span>復元することは</span>
+                <span>できません</span>
+            </p>
+            <div class="modal_btn"> 
+                <p id="close">キャンセル</p>
+                <p id="cancelBtn">消去</p>
+            </div>
+        </div>
+    </section>
+
+    <div id="mask" class="mask"></div>
 </body>
 </html>

@@ -80,12 +80,12 @@ async function letter_indexApi(accessToken) {
 
 //-------- 起動時の挙動＆パートナーからの手紙一覧 ---------
 async function partnerLetter(postdata) {
-    try {
         let letterList = document.querySelector(".letter_list");
 
         if (postdata.data.from_partner === null) {
             letterList.innerHTML += "<div class='non_item'><p>このフォルダーは空です</p><span>想いを手紙に載せて届けましょう。</span></div>";
         } else {
+            const parterList = document.querySelector(".partner_list");
             const post_number = postdata.data.is_sending;
             console.log(post_number);
 
@@ -100,7 +100,7 @@ async function partnerLetter(postdata) {
                 // パートナー宛の場合
                 if (post_number[i].send_to === 2) {
                     // 画像の情報
-                    const imageUrl = "image/unopened_male.png";
+                    const imageUrl = "image/kotonoha.png";
                     const imageAltText = "パートナー宛てのコトノハ";
                     // <img> 要素を作成
                     const imageElement = document.createElement("img");
@@ -119,7 +119,7 @@ async function partnerLetter(postdata) {
                 // 自分宛の場合
                 } else if (post_number[i].send_to === 1) {
                     // 画像の情報
-                    const imageUrl = "image/unopened_male.png";
+                    const imageUrl = "image/kotonoha.png";
                     const imageAltText = "自分宛てのコトノハ";
                     // <img> 要素を作成
                     const imageElement = document.createElement("img");
@@ -134,7 +134,7 @@ async function partnerLetter(postdata) {
                 const newListDay = document.createElement("p");
 
                 // 変換した日付情報
-                const newDateinfo = post_number[i].send_at
+                const newDateinfo = post_number[i].send_at;
                 // Dateオブジェクトを作成して日付文字列を解析
                 var dateObject = new Date(newDateinfo);
                 // 年、月、日を取得
@@ -153,10 +153,8 @@ async function partnerLetter(postdata) {
                 // <li> に <a> を追加
                 newListItem.appendChild(newListURL);
                 // <ul> に <li> を追加
-                letterList.appendChild(newListItem);
+                parterList.appendChild(newListItem);
             }
         }
-    } catch (error) {
-        console.error(error);
-    }
+
 }

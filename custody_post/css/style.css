@@ -54,7 +54,7 @@ li {
 .letter_list {
     display: flex;
     flex-direction: column;
-    gap: 60px;
+    gap: 10px;
 }
 
 .letter_list li {
