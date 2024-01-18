@@ -80,7 +80,6 @@ async function letter_indexApi(accessToken) {
 
 //-------- 起動時の挙動＆パートナーからの手紙一覧 ---------
 async function partnerLetter(postdata) {
-    try {
         let letterList = document.querySelector(".letter_list");
 
         if (postdata.data.from_partner === null) {
@@ -157,7 +156,5 @@ async function partnerLetter(postdata) {
                 parterList.appendChild(newListItem);
             }
         }
-    } catch (error) {
-        console.error(error);
-    }
+
 }
