@@ -28,6 +28,8 @@ liffId: "2000014015-QqLAlNmW"
         await letter_showApi(accessToken);
         //Note()関数の呼び出し
         await Note();
+        //Delete()関数の呼び出し
+        await Delete(accessToken);
     }
 })
 .catch((err) => {
@@ -58,7 +60,7 @@ async function callApi(accessToken) {
     }
 }
 
-//------- 手紙を既読状態にする -------
+//------- 手紙を表示状態にする -------
 async function letter_showApi(accessToken) {
     try {
         // URLからvalueデータ値を受け取る　// myself_postページから飛ばないとvalueを取得できない
@@ -144,4 +146,56 @@ function modalWindow() {
     });
 }
 
+//------------手紙を消去する-----------
+async function Delete(accessToken) {
+    try {
+        const cancelBtn = document.querySelector("#cancelBtn");
+        cancelBtn.addEventListener('click', async () => {
 
+            // URLからvalueデータ値を受け取る　// myself_postページから飛ばないとvalueを取得できない
+            const urlParams = await new URLSearchParams(window.location.search);
+            const value = await urlParams.get('value');
+            console.log(value);
+    
+            const canselApi = await fetch(
+                `https://dev.2-rino.com/api/v1/letter/${value}/`,{
+                    method: "POST",
+                    headers: {
+                        Authorization : `Bearer ${accessToken}`,
+                        'Content-Type': 'application/json'  // JSON形式のデータを送信する場合に必要
+                    },
+                    body: JSON.stringify({
+                       _method: "DELETE"
+                    })
+                });
+            // レスポンスオブジェクトから JSON データを抽出
+            const response = await canselApi.json();
+            console.log(JSON.stringify(response));
+
+            sentMessage();
+            liff.closeWindow();
+        });
+
+    } catch(error) {
+        console.error(error);
+    }
+}
+
+//----------メッセージを送信-----------
+function sentMessage() {
+    try {
+        liff.sendMessages([
+            {
+                type: "text",
+                text: "コトノハを消去しました",
+            },
+        ]);
+
+        console.log("message sent");
+
+    } catch (error) {
+        // エラーハンドリング
+        console.error(error.code, err.message);
+        return null;
+    }
+}

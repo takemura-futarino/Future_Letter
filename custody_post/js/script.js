@@ -86,6 +86,7 @@ async function partnerLetter(postdata) {
         if (postdata.data.from_partner === null) {
             letterList.innerHTML += "<div class='non_item'><p>このフォルダーは空です</p><span>想いを手紙に載せて届けましょう。</span></div>";
         } else {
+            const parterList = document.querySelector(".partner_list");
             const post_number = postdata.data.is_sending;
             console.log(post_number);
 
@@ -134,7 +135,7 @@ async function partnerLetter(postdata) {
                 const newListDay = document.createElement("p");
 
                 // 変換した日付情報
-                const newDateinfo = post_number[i].send_at
+                const newDateinfo = post_number[i].send_at;
                 // Dateオブジェクトを作成して日付文字列を解析
                 var dateObject = new Date(newDateinfo);
                 // 年、月、日を取得
@@ -153,7 +154,7 @@ async function partnerLetter(postdata) {
                 // <li> に <a> を追加
                 newListItem.appendChild(newListURL);
                 // <ul> に <li> を追加
-                letterList.appendChild(newListItem);
+                parterList.appendChild(newListItem);
             }
         }
     } catch (error) {

@@ -109,7 +109,7 @@ li {
 .modal_common {
     background-color: #FFF;
     max-width: 36rem;
-    width: 70%;
+    width: 80%;
     padding: 2rem;
     padding-top: 2rem;
     border-radius: 1.5rem;
@@ -133,7 +133,7 @@ li {
 }
 
 .modal_common h1 {
-    font-size: 2em;
+    font-size: 1.7em;
 }
 
 .modal_common button {
@@ -168,4 +168,25 @@ li {
 
 .h1_kome {
     margin-bottom: 22px;
+}
+
+.modal_btn {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 2%;
+}
+
+#close {
+    border: 1px solid #252525;
+    border-radius: 16px;
+    width: 45%;
+    padding: 8px 0;
+}
+
+#cancelBtn {
+    border-radius: 16px;
+    background: #FFBA38;
+    width: 45%;
+    padding: 8px 0;
 }
