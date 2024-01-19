@@ -254,6 +254,7 @@ function modalWindow(Id) {
     modal.animate(showKeyframes, options);
     mask.animate(showKeyframes, options);
 
+    // 一時保存の場合
     if (Id === "0") {
         let Content = "<div class='modal_content'><img src='image/black_save.png' alt='保存確認のマーク'><h1 class='blue_save'>保存しました</h1></div><button id='close'>>ホームへ</button>";
         modal.innerHTML = Content;
@@ -263,15 +264,16 @@ function modalWindow(Id) {
         console.log(close);
 
         close.addEventListener('click', () => {
-            modal.animate(hideKeyframes, options);
-            mask.animate(hideKeyframes, options);
+            sentMessage("0");
+            liff.closeWindow();
         });
 
         mask.addEventListener('click', () => {
-            modal.animate(hideKeyframes, options);
-            mask.animate(hideKeyframes, options);
+            sentMessage("0");
+            liff.closeWindow();
         });
     }
+    // パートナー連係が出来ていない場合
     else if (Id === "1") {
         let Content = "<div id='close' style='text-align: left;'>✕</div><div class='modal_content'><img src='image/warning.png' alt='注意！パートナー連係していません'><h1 class='h1_kome'>注意!</h1><p><span>パートナーに</span><span>メッセージをお届けするには</span><span>パートナー連係が必要です。</span></p><a href='https://liff.line.me/2000014015-QqLAlNmW/linkage/' class='send_link'>パートナー連係画面</a></div>";
         modal.innerHTML = Content;
@@ -290,6 +292,7 @@ function modalWindow(Id) {
             mask.animate(hideKeyframes, options);
         });
     } 
+    // コトノハを送ったとき
     else if (Id === "2") {
         let Content = "<div class='modal_content'><img src='image/black_letter.png' alt='送信が完了しました'><h1 class='h1_kome'>カードを預かりました</h1><p><span>配信日時の変更・キャンセル等は</span><span>お預かりBOXで操作できます</span></p><button id='close'>>ホームへ</button></div>";
         modal.innerHTML = Content;
@@ -299,15 +302,16 @@ function modalWindow(Id) {
         console.log(close);
 
         close.addEventListener('click', () => {
-            modal.animate(hideKeyframes, options);
-            mask.animate(hideKeyframes, options);
+            sentMessage("2");
+            liff.closeWindow();
         });
 
         mask.addEventListener('click', () => {
-            modal.animate(hideKeyframes, options);
-            mask.animate(hideKeyframes, options);
+            sentMessage("2");
+            liff.closeWindow();
         });
     }
+    // 手持ちのコトノハがなかった場合
     else if (Id === "3") {
         let Content = " <div id='close' style='text-align: left;'>✕</div><div class='modal_content'><p style='padding-top: 30px;'>手持ちのカードがありません</p><a href='https://liff.line.me/2000014015-QqLAlNmW/purchase_screen/' class='send_link'>手紙購入画面</a></div>";
         modal.innerHTML = Content;
@@ -317,28 +321,40 @@ function modalWindow(Id) {
         console.log(close);
 
         close.addEventListener('click', () => {
-            modal.animate(hideKeyframes, options);
-            mask.animate(hideKeyframes, options);
+            liff.closeWindow();
         });
 
         mask.addEventListener('click', () => {
-            modal.animate(hideKeyframes, options);
-            mask.animate(hideKeyframes, options);
+            liff.closeWindow();
         });
     }
 }
 
 //----------メッセージを送信-----------
-function sentMessage() {
+function sentMessage(Id) {
     try {
-        liff.sendMessages([
-            {
-                type: "text",
-                text: "コトノハを送りました",
-            },
-        ]);
-
-        console.log("message sent");
+        // 一時保存の場合
+        if (Id === "0") {
+            liff.sendMessages([
+                {
+                    type: "text",
+                    text: "一時保存しました",
+                },
+            ]);
+    
+            console.log("message sent");
+        }
+        // コトノハを送った場合
+        else if (Id === "2") {
+            liff.sendMessages([
+                {
+                    type: "text",
+                    text: "コトノハを送りました",
+                },
+            ]);
+    
+            console.log("message sent");
+        }
 
     } catch (error) {
         // エラーハンドリング
