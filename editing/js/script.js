@@ -183,11 +183,60 @@ document.querySelector(".saving__btn").addEventListener('click', () => {
 });
 
 //---------モーダルウィンドウを表示させる関数------------
+// function modalWindow(Id) {
+//     const close = document.querySelector(`#modal${Id} #close`);
+//     console.log (close);
+//     const modal = document.querySelector(`#modal${Id}`);
+//     const mask = document.querySelector(`#mask${Id}`);
+//     const showKeyframes = {
+//         opacity: [0,1],
+//         visibility: 'visible',
+//     };
+//     const hideKeyframes = {
+//         opacity: [1,0],
+//         visibility: 'hidden',
+//     };
+//     const options = {
+//         duration: 800,
+//         easing: 'ease',
+//         fill: 'forwards',
+//     };
+
+//     modal.animate(showKeyframes, options);
+//     mask.animate(showKeyframes, options);
+
+//     close.addEventListener('click', () => {
+//         if (Id === "1") {
+//             modal.animate(hideKeyframes, options);
+//             mask.animate(hideKeyframes, options);
+//         } 
+//         else if (Id === "0") {
+//             sentMessage();
+//             liff.closeWindow();
+//         }
+//         else {
+//             liff.closeWindow();
+//         }
+//     });
+
+//     mask.addEventListener('click', () => {
+//         if (Id === "1") {
+//             close.click();
+//         } 
+//         else if (Id === "0") {
+//             sentMessage();
+//             liff.closeWindow();
+//         }
+//         else {
+//             liff.closeWindow();
+//         }
+//     });
+// }
+
+//---------モーダルウィンドウを表示させる関数------------
 function modalWindow(Id) {
-    const close = document.querySelector(`#modal${Id} #close`);
-    console.log (close);
-    const modal = document.querySelector(`#modal${Id}`);
-    const mask = document.querySelector(`#mask${Id}`);
+    let modal = document.querySelector("#modal");
+    const mask = document.querySelector("#mask");
     const showKeyframes = {
         opacity: [0,1],
         visibility: 'visible',
@@ -205,21 +254,111 @@ function modalWindow(Id) {
     modal.animate(showKeyframes, options);
     mask.animate(showKeyframes, options);
 
-    close.addEventListener('click', () => {
-        if (Id === "1") {
+    // 一時保存の場合
+    if (Id === "0") {
+        let Content = "<div class='modal_content'><img src='image/black_save.png' alt='保存確認のマーク'><h1 class='blue_save'>保存しました</h1></div><button id='close'>>ホームへ</button>";
+        modal.innerHTML = Content;
+        console.log(modal);
+
+        const close = document.querySelector("#close");
+        console.log(close);
+
+        close.addEventListener('click', () => {
+            sentMessage("0");
+            liff.closeWindow();
+        });
+
+        mask.addEventListener('click', () => {
+            sentMessage("0");
+            liff.closeWindow();
+        });
+    }
+    // パートナー連係が出来ていない場合
+    else if (Id === "1") {
+        let Content = "<div id='close' style='text-align: left;'>✕</div><div class='modal_content'><img src='image/warning.png' alt='注意！パートナー連係していません'><h1 class='h1_kome'>注意!</h1><p><span>パートナーに</span><span>メッセージをお届けするには</span><span>パートナー連係が必要です。</span></p><a href='https://liff.line.me/2000014015-QqLAlNmW/linkage/' class='send_link'>パートナー連係画面</a></div>";
+        modal.innerHTML = Content;
+        console.log(modal);
+
+        const close = document.querySelector("#close");
+        console.log(close);
+
+        close.addEventListener('click', () => {
             modal.animate(hideKeyframes, options);
             mask.animate(hideKeyframes, options);
-        } else {
-            liff.closeWindow();
-        }
-    });
+        });
 
-    mask.addEventListener('click', () => {
-        if (Id === "1") {
-            close.click();
-        } else {
+        mask.addEventListener('click', () => {
+            modal.animate(hideKeyframes, options);
+            mask.animate(hideKeyframes, options);
+        });
+    } 
+    // コトノハを送ったとき
+    else if (Id === "2") {
+        let Content = "<div class='modal_content'><img src='image/black_letter.png' alt='送信が完了しました'><h1 class='h1_kome'>カードを預かりました</h1><p><span>配信日時の変更・キャンセル等は</span><span>お預かりBOXで操作できます</span></p><button id='close'>>ホームへ</button></div>";
+        modal.innerHTML = Content;
+        console.log(modal);
+
+        const close = document.querySelector("#close");
+        console.log(close);
+
+        close.addEventListener('click', () => {
+            sentMessage("2");
             liff.closeWindow();
-        }
-    });
+        });
+
+        mask.addEventListener('click', () => {
+            sentMessage("2");
+            liff.closeWindow();
+        });
+    }
+    // 手持ちのコトノハがなかった場合
+    else if (Id === "3") {
+        let Content = " <div id='close' style='text-align: left;'>✕</div><div class='modal_content'><p style='padding-top: 30px;'>手持ちのカードがありません</p><a href='https://liff.line.me/2000014015-QqLAlNmW/purchase_screen/' class='send_link'>手紙購入画面</a></div>";
+        modal.innerHTML = Content;
+        console.log(modal);
+
+        const close = document.querySelector("#close");
+        console.log(close);
+
+        close.addEventListener('click', () => {
+            liff.closeWindow();
+        });
+
+        mask.addEventListener('click', () => {
+            liff.closeWindow();
+        });
+    }
 }
 
+//----------メッセージを送信-----------
+function sentMessage(Id) {
+    try {
+        // 一時保存の場合
+        if (Id === "0") {
+            liff.sendMessages([
+                {
+                    type: "text",
+                    text: "一時保存しました",
+                },
+            ]);
+    
+            console.log("message sent");
+        }
+        // コトノハを送った場合
+        else if (Id === "2") {
+            liff.sendMessages([
+                {
+                    type: "text",
+                    text: "コトノハを送りました",
+                },
+            ]);
+    
+            console.log("message sent");
+        }
+
+    } catch (error) {
+        // エラーハンドリング
+        console.error(error.code, err.message);
+        return null;
+    }
+}

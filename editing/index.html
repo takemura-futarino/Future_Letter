@@ -15,16 +15,14 @@
 </head>
 
 <body>
-    <header id="header">
-        <div class="header__inner">
-            <h1 class="header__title">手紙を送る</h1>
-        </div>
-    </header>
-
     <div id="main">
         <div class="main__inner">
             <div id="saving">
                 <button class="saving__btn">一次保存</button>
+            </div>
+
+            <div id="icon">
+                <img src="image/f-black_wing.png" alt="コトノハアイコン">
             </div>
 
             <form id="form">
@@ -42,29 +40,63 @@
                 </div>
 
                 <div class="form__rsv">
-                    <p>＜配信予定日時設定＞</p>
-                    <input type="date" id="send_day" name="send_day" class="form__rsv__day dateInput">
-                    <input type="time" id="send_time" name="send_time" class="form__rsv__time">
+                    <p class="deliveryTime">＜配信予定日時設定＞</p>
+                    <div class="form__day">
+                        <img src="image/calendar.png" alt="カレンダーのアイコン">
+                        <input type="date" id="send_day" name="send_day" class="form__rsv__day dateInput">
+                    </div>
+                    <div class="form__time">
+                        <img src="image/clock.png" alt="時計のアイコン">
+                        <input type="time" id="send_time" list="data-list" name="send_time" step="3600" class="form__rsv__time">
+                        <datalist id="data-list">
+                            <option value="00:00"></option>
+                            <option value="01:00"></option>
+                            <option value="02:00"></option>
+                            <option value="03:00"></option>
+                            <option value="04:00"></option>
+                            <option value="05:00"></option>
+                            <option value="06:00"></option>
+                            <option value="07:00"></option>
+                            <option value="08:00"></option>
+                            <option value="09:00"></option>
+                            <option value="10:00"></option>
+                            <option value="11:00"></option>
+                            <option value="12:00"></option>
+                            <option value="13:00"></option>
+                            <option value="14:00"></option>
+                            <option value="15:00"></option>
+                            <option value="16:00"></option>
+                            <option value="17:00"></option>
+                            <option value="18:00"></option>
+                            <option value="19:00"></option>
+                            <option value="20:00"></option>
+                            <option value="21:00"></option>
+                            <option value="22:00"></option>
+                            <option value="23:00"></option>
+                        </datalist>
+                    </div>
                 </div>
 
-                <button id="form-btn" class="form__send">未来に手紙を送る</button>
+                <button id="form-btn" class="form__send">未来にコトノハを送る</button>
             </form>
         </div>
     </div>
 
     <!-- モーダルウィンドウの設定 -->
+    <section id="modal" class="modal_common"></section>
+
     <!-- 一時保存 -->
-    <section id="modal0" class="modal_common">
-        <button id="close">✕</button>
+    <!-- <section id="modal0" class="modal_common">
         <div class="modal_content">
-            <img src="image/blue_save.png" alt="保存確認のマーク">
+            <img src="image/black_save.png" alt="保存確認のマーク">
             <h1 class="blue_save">保存しました</h1>
         </div>
-    </section>
+        <button id="close">>ホームへ</button>
+    </section> -->
 
     <!-- パートナー連係の注意 -->
-    <section id="modal1" class="modal_common">
-        <button id="close">✕</button>
+    <!-- <section id="modal1" class="modal_common">
+        <div id="close" style="text-align: left;">✕</div>
         <div class="modal_content">
             <img src="image/warning.png" alt="注意！パートナー連係していません">
             <h1 class="h1_kome">注意!</h1>
@@ -73,40 +105,37 @@
                 <span>メッセージをお届けするには</span>
                 <span>パートナー連係が必要です。</span>
             </p>
-            <a href="https://liff.line.me/2000014015-QqLAlNmW/linkage/">パートナー連係画面</a>
+            <a href="https://liff.line.me/2000014015-QqLAlNmW/linkage/" class="send_link">パートナー連係画面</a>
         </div>
     </section>
 
     <section id="modal2" class="modal_common">
-        <button id="close">✕</button>
         <div class="modal_content">
-            <img src="image/blue_letter.png" alt="送信が完了しました">
+            <img src="image/black_letter.png" alt="送信が完了しました">
             <h1 class="h1_kome">カードを預かりました</h1>
             <p>
-                <span>お預かりしたカードの</span>
                 <span>配信日時の変更・キャンセル等は</span>
-                <span>お預かりBOXで確認できます</span>
+                <span>お預かりBOXで操作できます</span>
             </p>
-            <a href="https://liff.line.me/2000014015-QqLAlNmW/custody_post/">お預かりBOXへ</a>
+            <button id="close">>ホームへ</button>
         </div>
     </section>
 
     <section id="modal3" class="modal_common">
-        <button id="close">✕</button>
+        <div id="close" style="text-align: left;">✕</div>
         <div class="modal_content">
-            <h1 class="h1_kome">手持ちのカードがありません</h1>
-            <p>
-                <span>素敵なカードライフを</span>
-                <span>始めましょう!</span>
-            </p>
-            <a href="https://liff.line.me/2000014015-QqLAlNmW/purchase_screen/">手紙購入画面</a>
+            <p style="padding-top: 30px;">手持ちのカードがありません</p>
+            <a href="https://liff.line.me/2000014015-QqLAlNmW/purchase_screen/" class="send_link">手紙購入画面</a>
         </div>
-    </section>
+    </section> -->
 
+    <!-- マスク -->
+    <div id="mask" class="mask"></div>
+<!-- 
     <div id="mask0" class="mask"></div>
     <div id="mask1" class="mask"></div>
     <div id="mask2" class="mask"></div>
-    <div id="mask3" class="mask"></div>
+    <div id="mask3" class="mask"></div> -->
 
     <script>
         document.querySelector(".dateInput").value = "サンプルテキスト";

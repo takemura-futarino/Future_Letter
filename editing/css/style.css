@@ -9,9 +9,9 @@ html {
     font-size: 62.5%;
 }
 
-body {
+/* body {
     background-color: #EAF4FC;
-}
+} */
 
 a {
     text-decoration: none;
@@ -30,25 +30,16 @@ textarea {
     resize: none;
 }
 
-
-/* HEADER
------------------------ */
-#header {
-    background: linear-gradient(to right, #D4EEFC, #FEEAC4);
-    /* グラデーションの開始色（左側）と終了色（右側）を指定 */
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 18px;
-}
-
 .header__title {
     font-size: 1.6em;
 }
 
 /* MAIN
 --------------------------*/
+#main {
+    padding-top: 26px;
+}
+
 .main__inner {
     width: 83%;
     margin: 0 auto;
@@ -62,10 +53,18 @@ textarea {
 }
 
 .saving__btn {
-    background-color: #70C7F5;
-    color: #FFF;
+    background-color: white;
+    color: #252525;
     padding: 5px 22px 4px;
-    border-radius: 8px;
+    border: 1.5px solid #252525;
+    border-radius: 16px;
+    font-weight: bold;
+}
+
+/* Icon */
+#icon {
+    width: 15%;
+    margin: 0 auto 19px;
 }
 
 /* FORM 
@@ -79,10 +78,10 @@ textarea {
 .letter__item {
     width: 100%;
     height: 48px;
-    border-radius: 8px;
     border: none;
     color: #B9BCBD;
-    background-color: #FCF7ED;
+    border-bottom: 1px solid #252525;
+    background-color: white;
 }
 
 .letter__contain {
@@ -103,35 +102,60 @@ textarea {
     margin-bottom: 45px;
 }
 
+.deliveryTime {
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.form__day{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.form__day img {
+    width: 10%;
+}
+
 .form__rsv__day {
-    width: 100%;
+    width: 85%;
     height: 48px;
     border-radius: 8px;
     background: #FFF;
     font-size: 1.6em;
     font-weight: bold;
     color: #252525;
-    border-style: none;
+    border: 1px solid #252525;
+}
+
+.form__time {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.form__time img {
+    width: 10%;
 }
 
 .form__rsv__time {
     height: 48px;
-    width: 100%;
+    width: 85%;
     border-radius: 8px;
     background: #FFF;
     font-size: 1.6em;
     font-weight: bold;
     color: #252525;
-    border-style: none;
+    border: 1px solid #252525;
 }
 
 
 .form__send{
     width: 100%;
     height: 48px;
-    background-color: #FFBA38;
+    background-color: #252525;
     color: #FFF;
-    border-radius: 8px;
+    border-radius: 24px;
     margin-bottom: 42px;
 }
 
@@ -140,16 +164,16 @@ input[type="date"] {
     -webkit-appearance: none;
     -moz-appearance: none;
     background-color: white;
-    width: 100%;
+    width: 85%;
     box-sizing: border-box;
 }
 
 input[type="time"] {
-    appearance: none; /* ブラウザのデフォルトスタイルを無効化 */
+    appearance: none; 
     -webkit-appearance: none;
     -moz-appearance: none;
     background-color: white;
-    width: 100%;
+    width: 85%;
     box-sizing: border-box;
 }
 
@@ -177,6 +201,7 @@ input[type="time"] {
     z-index: 9999;
     opacity: 0;
     visibility: hidden;
+    text-align: center;
 }
 
 .modal_content {
@@ -197,8 +222,12 @@ input[type="time"] {
 .modal_common button {
     background: none;
     font-weight: bold;
-    padding-left: 6px;
-    font-size: 2em;
+    font-size: 1.5em;
+    height: 48px;
+    width: 80%;
+    border: 1px solid #252525;
+    border-radius: 24px;
+    color: #252525;
 }
 
 .modal_common p {
@@ -212,16 +241,31 @@ input[type="time"] {
     display: block;
 }
 
-.modal_common a {
-    background-color: #FFBA38;
+.send_link {
+    background-color: #252525;
+    border-radius: 24px;
     color: #FFF;
     width: 70%;
     padding: 12px;
     text-align: center;
 }
 
+.send_complete {
+    background: none;
+    font-weight: bold;
+    font-size: 1.5em;
+    height: 48px;
+    width: 80%;
+    border: 1px solid #252525;
+    border-radius: 24px;
+    color: #252525;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .blue_save {
-    margin-bottom: 13px;
+    margin-bottom: 24px;
 }
 
 .h1_kome {
