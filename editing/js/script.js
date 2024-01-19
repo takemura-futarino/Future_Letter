@@ -210,7 +210,7 @@ function modalWindow(Id) {
             modal.animate(hideKeyframes, options);
             mask.animate(hideKeyframes, options);
         } 
-        else if (Id === "2") {
+        else if (Id === "0") {
             sentMessage();
             liff.closeWindow();
         }
@@ -223,7 +223,7 @@ function modalWindow(Id) {
         if (Id === "1") {
             close.click();
         } 
-        else if (Id === "2") {
+        else if (Id === "0") {
             sentMessage();
             liff.closeWindow();
         }
