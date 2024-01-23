@@ -22,6 +22,7 @@ if(!liff.isLoggedIn() && !liff.isInClient()) {
     let accessToken = liff.getAccessToken();
     await fetch(`https://dev.2-rino.com/api/v1/is_registed?line_access_token=${accessToken}`);
     console.log(accessToken); 
+    await callApi(accessToken);
     await enquete(accessToken);
     }
 })
@@ -29,6 +30,28 @@ if(!liff.isLoggedIn() && !liff.isInClient()) {
 // 初期化中にエラーが発生します
 console.error(err.code, err.message);
 });
+
+//--------アクセストークンを登録する--------
+async function callApi(accessToken) {
+    try {
+        //パラメータ（line_access_token）を付与するために、クエリ文字列を作成する
+        let queryString = `?line_access_token=${accessToken}`;
+
+        //アクセストークンが登録済みか未登録か判定する----------------
+        const api = await fetch("https://dev.2-rino.com/api/v1/is_registed" + queryString);
+        const res = await api.json();
+        console.log(res.data);
+
+        //フタリノに登録していない（false）の場合に実行するAPI
+        if (res.data.result === "false") {
+            const apiReg = await fetch("https://dev.2-rino.com/api/v1/regist" + queryString);
+            const reg = await apiReg.json();
+            console.log(reg.data);
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
 
 //-------アンケート回答のAPI-------
 async function enquete(accessToken) {
