@@ -275,7 +275,7 @@ function modalWindow(Id) {
     }
     // パートナー連係が出来ていない場合
     else if (Id === "1") {
-        let Content = "<div id='close' style='text-align: left;'>✕</div><div class='modal_content'><img src='image/warning.png' alt='注意！パートナー連係していません'><h1 class='h1_kome'>注意!</h1><p><span>パートナーに</span><span>メッセージをお届けするには</span><span>パートナー連係が必要です。</span></p><a href='https://liff.line.me/2000014015-QqLAlNmW/linkage/' class='send_link'>パートナー連係画面</a></div>";
+        let Content = "<div id='close' style='text-align: left;'>✕</div><div class='modal_content'><img src='image/warning.png' alt='注意！パートナー連係していません'><h1 class='h1_kome'>注意!</h1><p><span>相手に</span><span>コトノハをおくるには</span><span>ペア登録が必要です。</span></p><a href='https://liff.line.me/2000014015-QqLAlNmW/linkage/' class='send_link'>ペア登録に進む</a></div>";
         modal.innerHTML = Content;
         console.log(modal);
 
@@ -294,7 +294,7 @@ function modalWindow(Id) {
     } 
     // コトノハを送ったとき
     else if (Id === "2") {
-        let Content = "<div class='modal_content'><img src='image/black_letter.png' alt='送信が完了しました'><h1 class='h1_kome'>カードを預かりました</h1><p><span>配信日時の変更・キャンセル等は</span><span>お預かりBOXで操作できます</span></p><button id='close'>>ホームへ</button></div>";
+        let Content = "<div class='modal_content'><img src='image/black_letter.png' alt='送信が完了しました'><h1 class='h1_kome'>コトノハを寝かせました…</h1><p><span>変更・キャンセルは</span><span>寝かせ中のコトノハで操作できます</span></p><button id='close'>>ホームへ</button></div>";
         modal.innerHTML = Content;
         console.log(modal);
 
@@ -313,7 +313,7 @@ function modalWindow(Id) {
     }
     // 手持ちのコトノハがなかった場合
     else if (Id === "3") {
-        let Content = " <div id='close' style='text-align: left;'>✕</div><div class='modal_content'><p style='padding-top: 30px;'>手持ちのカードがありません</p><a href='https://liff.line.me/2000014015-QqLAlNmW/purchase_screen/' class='send_link'>手紙購入画面</a></div>";
+        let Content = " <div id='close' style='text-align: left;'>✕</div><div class='modal_content'><p style='padding-top: 30px;'>手持ちのコトノハがありません</p><a href='https://liff.line.me/2000014015-QqLAlNmW/purchase_screen/' class='send_link'>コトノハを購入する</a></div>";
         modal.innerHTML = Content;
         console.log(modal);
 

@@ -59,9 +59,8 @@ li {
 
 .user__day{
     display: flex;
-    gap: 3%;
-    justify-content: flex-end;
-    width: 70%;
+    justify-content: space-between;
+    width: 40%;
 }
 
 
@@ -79,7 +78,7 @@ li {
 }
 
 .user__hitorino__date{
-    font-size: 1.5em;
+    font-size: 1.7em;
 }
 
 .user__futarino  {
@@ -96,7 +95,7 @@ li {
 }
 
 .user__futarino__date{
-    font-size: 1.5em;
+    font-size: 1.7em;
 }
 
 
