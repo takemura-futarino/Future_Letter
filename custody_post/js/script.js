@@ -82,7 +82,7 @@ async function letter_indexApi(accessToken) {
 async function partnerLetter(postdata) {
         let letterList = document.querySelector(".letter_list");
 
-        if (postdata.data.from_partner === null) {
+        if (postdata.data.from_partner === null && postdata.data.from_me === null) {
             letterList.innerHTML += "<div class='non_item'><p>このフォルダーは空です</p><span>想いを手紙に載せて届けましょう。</span></div>";
         } else {
             const parterList = document.querySelector(".partner_list");
@@ -119,7 +119,7 @@ async function partnerLetter(postdata) {
                 // 自分宛の場合
                 } else if (post_number[i].send_to === 1) {
                     // 画像の情報
-                    const imageUrl = "image/kotonoha.png";
+                    const imageUrl = "image/closed_letter.png";
                     const imageAltText = "自分宛てのコトノハ";
                     // <img> 要素を作成
                     const imageElement = document.createElement("img");
