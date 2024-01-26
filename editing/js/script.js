@@ -95,10 +95,12 @@ async function getSelectedValue(accessToken) {
         // select要素を取得
         const selectElement = document.getElementById('send_to');
         selectElement.addEventListener('change', () => {
-            const selectedValue = selectElement.value;
+            let selectedValue = selectElement.value;
             console.log("選択された値:", selectedValue);
 
             if (selectedValue === "2" && name.data.partner_user === null) {
+                // 選択を無効にする
+                selectElement.selectedIndex = -1;
                 // 引数に"1"を指定
                 modalWindow('1');
             } else {
