@@ -20,7 +20,7 @@ if(!liff.isLoggedIn() && !liff.isInClient()) {
 } else {
     // ユーザーのLINEアカウントのアクセストークンを取得
     let accessToken = liff.getAccessToken();
-    await fetch(`https://dev.2-rino.com/api/v1/is_registed?line_access_token=${accessToken}`);
+    // await fetch(`https://dev.2-rino.com/api/v1/is_registed?line_access_token=${accessToken}`);
     console.log(accessToken); 
     await callApi(accessToken);
     await enquete(accessToken);
