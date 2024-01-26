@@ -42,27 +42,96 @@ if(!liff.isLoggedIn() && !liff.isInClient()) {
 console.error(err.code, err.message);
 });
 
-async function release(accessToken) {
-    try {
-        const releasebtn = document.getElementById('button');
-        releasebtn.addEventListener('click', async function() {
+// async function release(accessToken) {
+//     try {
+//         const releasebtn = document.getElementById('button');
+//         releasebtn.addEventListener('click', async function() {
 
+//             const apiUrl = await fetch("https://dev.2-rino.com/api/v1/room/destroy",{
+//                 method: 'POST',
+//                 headers: {
+//                     'Authorization': `Bearer ${accessToken}`,
+//                 },
+//             });
+//             const postResponse = await apiUrl.json();
+//             console.log(postResponse.data);
+//             alert('パートナー連携を解除しました');
+
+//             // クリックイベントが発生した後にウィンドウを閉じる
+//             liff.closeWindow();
+            
+//         });
+//     } catch (error) {
+//         console.error('Error: ' + error);
+//     }
+// }
+
+async function release(accessToken) {
+    const releasebtn = document.getElementById('button');
+
+    releasebtn.addEventListener('click', () => {
+        modalWindow(accessToken);
+    });
+}
+
+//---------モーダルウィンドウを表示させる関数------------
+function modalWindow(accessToken) {
+    let modal = document.querySelector("#modal");
+    const mask = document.querySelector("#mask");
+    const showKeyframes = {
+        opacity: [0,1],
+        visibility: 'visible',
+    };
+    const hideKeyframes = {
+        opacity: [1,0],
+        visibility: 'hidden',
+    };
+    const options = {
+        duration: 800,
+        easing: 'ease',
+        fill: 'forwards',
+    };
+
+    modal.animate(showKeyframes, options);
+    mask.animate(showKeyframes, options);
+
+    let Content = "<div class='modal_content'><img src='image/warning.png' alt='危険のマーク'><h1 class='blue_save'>本当に？解除しますか</h1><p><span>ペア登録を解除すると</span><span>相手からもらったコトノハは</span><span>すべて消えてしまいます</span></p></div><div class='cancel_btn'><button id='cancel'>キャンセル</buttton><button id='close'>解除</button></div>";
+    modal.innerHTML = Content;
+    console.log(modal);
+
+    const close = document.querySelector("#close");
+    console.log(close);
+    const cancel = document.querySelector("#cancel");
+    console.log(cancel);
+
+    close.addEventListener('click', async() => {
+        try {
             const apiUrl = await fetch("https://dev.2-rino.com/api/v1/room/destroy",{
                 method: 'POST',
                 headers: {
-                    'Authorization': `Bearer ${accessToken}`,
+                        'Authorization': `Bearer ${accessToken}`,
                 },
             });
             const postResponse = await apiUrl.json();
             console.log(postResponse.data);
             alert('パートナー連携を解除しました');
 
-            // クリックイベントが発生した後にウィンドウを閉じる
-            liff.closeWindow();
-            // console.log("liff.closeWindow()",liff.closeWindow());
-        });
-    } catch (error) {
-        console.error('Error: ' + error);
-    }
+            closeWindow();
+
+        } catch(error) {
+                console.error(error);
+        }
+    });
+
+    cancel.addEventListener('click', () => {
+        modal.animate(hideKeyframes, options);
+        mask.animate(hideKeyframes, options);
+    });
+
+    mask.addEventListener('click', () => {
+        modal.animate(hideKeyframes, options);
+        mask.animate(hideKeyframes, options);
+    });
+    
 }
 
