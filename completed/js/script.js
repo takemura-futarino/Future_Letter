@@ -42,30 +42,6 @@ if(!liff.isLoggedIn() && !liff.isInClient()) {
 console.error(err.code, err.message);
 });
 
-// async function release(accessToken) {
-//     try {
-//         const releasebtn = document.getElementById('button');
-//         releasebtn.addEventListener('click', async function() {
-
-//             const apiUrl = await fetch("https://dev.2-rino.com/api/v1/room/destroy",{
-//                 method: 'POST',
-//                 headers: {
-//                     'Authorization': `Bearer ${accessToken}`,
-//                 },
-//             });
-//             const postResponse = await apiUrl.json();
-//             console.log(postResponse.data);
-//             alert('パートナー連携を解除しました');
-
-//             // クリックイベントが発生した後にウィンドウを閉じる
-//             liff.closeWindow();
-            
-//         });
-//     } catch (error) {
-//         console.error('Error: ' + error);
-//     }
-// }
-
 async function release(accessToken) {
     const releasebtn = document.getElementById('button');
 
