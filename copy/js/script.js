@@ -24,21 +24,8 @@ liffId: "2000014015-QqLAlNmW"
 
         //callApi()関数の呼び出し
         await callApi(accessToken);
-        //get_userApi()関数の呼び出し
-        const userName = await get_userApi(accessToken);
-        //letter_indexApi()関数の呼び出し
-        const postData = await letter_indexApi(accessToken);
-
-        //user_input()関数の呼び出し
-        await userName_input(userName);
-        //letter_number()関数の呼び出し
-        await letter_number(userName, postData);
-        //hitorino()関数の呼び出し
-        await hitorino(userName);
-        //liff.getProfileでユーザーの情報取得
-        const profile = await liff.getProfile();
-        console.log(profile);
-        await icon(profile);
+        //enquete()関数の呼び出し
+        await enquete(accessToken);
     }
 })
 .catch((err) => {
@@ -69,71 +56,85 @@ async function callApi(accessToken) {
     }
 }
 
-//-------- ユーザーとパートナーの名前取得 ---------
-async function get_userApi(accessToken) {
-    try {
-        const getuser = await fetch("https://dev.2-rino.com/api/v1/user",{
-            headers:{
-                Authorization: `Bearer ${accessToken}`
-            }
-        });
-        const name = await getuser.json();
-        console.log(name);
-        return name;
+//-------アンケート回答のAPI-------
+async function enquete(accessToken) {
+    let line_access_token = accessToken;//相手のアクセストークンにする
 
-    } catch(error) {
-        console.error(error);
+    document.querySelector('form').addEventListener('submit', async function(event) {
+        event.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const gender = document.getElementById('gender').value;
+    const birthday = document.getElementById('birthday').value;
+    const pref = document.getElementById('pref').value;
+    const state = document.getElementById('state').value;
+    const accept = document.getElementById('accept').checked;
+
+    // すべての項目が入力され、チェックボックスがオンになっていることを確認します
+    if (name.trim() === '' || gender.trim() === '' || birthday.trim() === '' || pref.trim() === '' || state.trim() === '' || !accept) {
+        alert('全ての項目を入力してください。');
+        return;
     }
+
+    try {
+        const enqueteApi = await fetch(
+            `https://dev.2-rino.com/api/v1/user`,{
+                method: "POST",
+                headers: {
+                    Authorization : `Bearer ${line_access_token}`,
+                    'Content-Type': 'application/json'  // JSON形式のデータを送信する場合に必要
+                },
+                body: JSON.stringify({  // ボディにJSON形式でデータを含める
+                    name: name,
+                    gender: gender,
+                    birthday: birthday,
+                    pref: pref,
+                    state: state,
+                    accept: accept
+                })
+            });
+        console.log(line_access_token);
+        // レスポンスオブジェクトから JSON データを抽出
+        const response = await enqueteApi.json();
+        console.log(JSON.stringify(response));
+
+        // エラーが存在する場合のみ、エラーメッセージを表示
+        if (response.errors && response.errors.name) {
+            const nameErrors = response.errors.name;
+            alert(nameErrors[0]);
+        } else {
+            console.log(response.data); // JSON データをコンソールに出力
+            // alert(response.data.result);
+            await sentMessage();
+            await liff.closeWindow();
+        }
+        
+        // let debug = document.getElementById("debug");
+        // debug.innerText = response;
+
+        } catch (error) {
+            // エラーハンドリング
+            console.error(error.code, err.message);
+            return null;
+        }
+    });
 }
 
-//--------- 手紙一覧の情報取得 ----------
-async function letter_indexApi(accessToken) {
+//-------メッセージを送信-------
+async function sentMessage() {
     try {
-        const getLetter = await fetch('https://dev.2-rino.com/api/v1/letter/',{
-            headers:{
-                Authorization: `Bearer ${accessToken}`
-            }
-        });
-        const postdata = await getLetter.json();
-        return postdata;
+        await liff.sendMessages([
+            {
+                type: "text",
+                text: "回答が完了しました",
+            },
+        ]);
+
+        console.log("message sent");
 
     } catch (error) {
-        console.error(error);
+        // エラーハンドリング
+        console.error(error.code, err.message);
+        return null;
     }
-}
-
-//--------- アイコン表示 -----------
-async function icon(profile) {
-    try {
-        const iconImg = document.querySelector('.icon');
-        iconImg.src = profile.pictureUrl;
-
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-//------------------------------ データの入力 -----------------------------------
-// 名前のデータ取得
-const userName_input = (userName) => {
-    const user = document.querySelector(".user__name__content");
-    user.textContent = userName.data.name;
-} 
-
-// 各手紙情報の取得
-const letter_number = (userName, postData) => {
-    const onHand = document.querySelector(".onhand__letter");
-    onHand.textContent = userName.data.letter_num;
-
-    const custody = document.querySelector(".custody__letter");
-    custody.textContent = postData.data.is_sending.length;
-}
-
-// ヒトリノデーの情報の取得
-const hitorino = (userName) => {
-    const hitorinoDate = document.querySelector(".user__hitorino__date");
-    const DateInfo = userName.data.birthday;
-    const dateObject = new Date(DateInfo);
-    const day = dateObject.getDate();
-    hitorinoDate.textContent = day;
 }
