@@ -111,7 +111,7 @@ async function getSelectedValue(accessToken) {
     }
 }
 
-//----------手紙送信のAPI---------------
+// //----------手紙送信のAPI---------------
 async function send(accessToken) {
     const formBtn = document.querySelector('#form-btn');
     formBtn.addEventListener('click', async function(event) {
@@ -121,40 +121,52 @@ async function send(accessToken) {
         let send_to = parseInt(str, 10); // 数値に変換するプログラム
         const content = document.querySelector('#content').value;
         const sendDay = document.querySelector("#send_day").value;
+        console.log(sendDay);
         const sendTime = document.querySelector('#send_time').value;
         const send_at = sendDay + sendTime;
 
+        // 今日の日付を取得
+        const today = moment();
+        // sendDayをDateオブジェクトに変換
+        const sendDayDate = moment(sendDay, 'YYYY-MM-DD');
+
         // すべての項目が入力されているかのチェック
         if (str.trim() === '' || content.trim() === '' || sendDay.trim() === '' || sendTime.trim() === '' ) {
-            alert('全ての項目を入力してください。');
+            alert('全ての項目を入力してください');
             return;
         } 
-
-        try {
-            const sendApi = await fetch(
-                `https://dev.2-rino.com/api/v1/letter/`,{
-                    method: "POST",
-                    headers: {
-                        Authorization : `Bearer ${accessToken}`,
-                        'Content-Type': 'application/json'  // JSON形式のデータを送信する場合に必要
-                    },
-                    body: JSON.stringify({
-                        content: content,
-                        send_to: send_to,
-                        send_at: send_at
-                    })
-                });
-            // レスポンスオブジェクトから JSON データを抽出
-            const response = await sendApi.json();
-            console.log(JSON.stringify(response));
-            
-        } catch (error) {
-            // エラーハンドリング
-            console.error(error.code, err.message);
-            return null;
+        // 日付が今日から一年以内かのチェック
+        else if (!sendDayDate.isValid() || sendDayDate.isBefore(today) || sendDayDate.diff(today, 'years') >= 1) {
+            alert('日付は今日から一年以内に設定してください')
+            return;
         }
+        else {
+            try {
+                const sendApi = await fetch(
+                    `https://dev.2-rino.com/api/v1/letter/`,{
+                        method: "POST",
+                        headers: {
+                            Authorization : `Bearer ${accessToken}`,
+                            'Content-Type': 'application/json'  // JSON形式のデータを送信する場合に必要
+                        },
+                        body: JSON.stringify({
+                            content: content,
+                            send_to: send_to,
+                            send_at: send_at
+                        })
+                    });
+                // レスポンスオブジェクトから JSON データを抽出
+                const response = await sendApi.json();
+                console.log(JSON.stringify(response));
 
-        modalWindow('2');
+                modalWindow('2');
+
+            } catch (error) {
+                // エラーハンドリング
+                console.error(error.code, err.message);
+                return null;
+            }
+        }
         }
     );
 }
@@ -181,57 +193,6 @@ document.querySelector(".saving__btn").addEventListener('click', () => {
 
     modalWindow('0');
 });
-
-//---------モーダルウィンドウを表示させる関数------------
-// function modalWindow(Id) {
-//     const close = document.querySelector(`#modal${Id} #close`);
-//     console.log (close);
-//     const modal = document.querySelector(`#modal${Id}`);
-//     const mask = document.querySelector(`#mask${Id}`);
-//     const showKeyframes = {
-//         opacity: [0,1],
-//         visibility: 'visible',
-//     };
-//     const hideKeyframes = {
-//         opacity: [1,0],
-//         visibility: 'hidden',
-//     };
-//     const options = {
-//         duration: 800,
-//         easing: 'ease',
-//         fill: 'forwards',
-//     };
-
-//     modal.animate(showKeyframes, options);
-//     mask.animate(showKeyframes, options);
-
-//     close.addEventListener('click', () => {
-//         if (Id === "1") {
-//             modal.animate(hideKeyframes, options);
-//             mask.animate(hideKeyframes, options);
-//         } 
-//         else if (Id === "0") {
-//             sentMessage();
-//             liff.closeWindow();
-//         }
-//         else {
-//             liff.closeWindow();
-//         }
-//     });
-
-//     mask.addEventListener('click', () => {
-//         if (Id === "1") {
-//             close.click();
-//         } 
-//         else if (Id === "0") {
-//             sentMessage();
-//             liff.closeWindow();
-//         }
-//         else {
-//             liff.closeWindow();
-//         }
-//     });
-// }
 
 //---------モーダルウィンドウを表示させる関数------------
 function modalWindow(Id) {
