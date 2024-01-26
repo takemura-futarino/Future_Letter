@@ -13,23 +13,26 @@ liff
 .init({
 // 自分のLIFF IDを入力する
 liffId: "2000014015-QqLAlNmW"
-}).then(async() => { // 初期化完了. 以降はLIFF SDKの各種メソッドを利用できる
+})
+.then(async() => { // 初期化完了. 以降はLIFF SDKの各種メソッドを利用できる
+    if(!liff.isLoggedIn() && !liff.isInClient()) {
+        liff.login();
+    } else {
+        //ユーザーのLINEアカウントのアクセストークンを取得
+        let accessToken = liff.getAccessToken();
+        console.log(accessToken);
 
-if(!liff.isLoggedIn() && !liff.isInClient()) {
-    liff.login();
-} else {
-    // ユーザーのLINEアカウントのアクセストークンを取得
-    let accessToken = liff.getAccessToken();
-    // await fetch(`https://dev.2-rino.com/api/v1/is_registed?line_access_token=${accessToken}`);
-    console.log(accessToken); 
-    await callApi(accessToken);
-    await enquete(accessToken);
+        //callApi()関数の呼び出し
+        await callApi(accessToken);
+        //enquete()関数の呼び出し
+        await enquete(accessToken);
     }
 })
 .catch((err) => {
-// 初期化中にエラーが発生します
-console.error(err.code, err.message);
+    //初期化中にエラーが発生します
+    console.error(err.code, err.message);
 });
+
 
 //--------アクセストークンを登録する--------
 async function callApi(accessToken) {
