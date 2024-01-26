@@ -64,12 +64,14 @@ async function callApi(accessToken) {
 //--------手紙一覧の取得----------
 async function letter_indexApi(accessToken) {
     try {
+        //手紙一覧を取得
         const getLetter = await fetch('https://dev.2-rino.com/api/v1/letter/',{
             headers:{
                 Authorization: `Bearer ${accessToken}`
             }
         });
         const postdata = await getLetter.json();
+        // 取得した手紙一覧の情報を関数の呼び出し元に返す
         return postdata;
 
     } catch (error) {
