@@ -48,14 +48,18 @@
 
 .modal_common h1 {
     font-size: 2em;
-}
-
-.modal_common p span {
-    display: block;
+    margin-bottom: 10px;
 }
 
 .blue_save {
     margin-bottom: 13px;
+}
+
+.modal_common p {
+    line-height: 1.5em;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-align: center;
 }
     </style>
     <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
@@ -122,17 +126,9 @@
     </div>
 
     <!-- モーダルウィンドウの設定 -->
-    <!-- 一時保存 -->
-    <section id="modal0" class="modal_common">
-        <div class="modal_content">
-            <img src="image/blue_save.png" alt="保存確認のマーク">
-            <h1 class="blue_save">保存しました</h1>
-            <button id="close">ホームへ</button>
-        </div>
-    </section>
+    <section id="modal" class="modal_common"></section>
 
-
-    <div id="mask0" class="mask"></div>
+    <div id="mask" class="mask"></div>
 </body>
 
 </html>

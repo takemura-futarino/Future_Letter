@@ -7,27 +7,6 @@ if (!allowedHostnames.includes(window.location.hostname)) {
     // 必要に応じて他のメソッドも無効化
 }
 
-//　ローカルホストからデータを引っ張ってきた
-// document.addEventListener('DOMContentLoaded', () => {
-//     const JSONData = localStorage.getItem('letterData') 
-//     const letterData = JSON.parse(JSONData);
-//     console.log(letterData);
-
-//     if (letterData) {
-//         const send_to = document.querySelector('#send_to');
-//         const content = document.querySelector('#content');
-//         const setDate = document.querySelector('#send_day');
-//         const setTime = document.querySelector('#send_time');
-
-//         send_to.value = letterData.address;
-//         content.value = letterData.content;
-//         setDate.value = letterData.sendDay;
-//         setTime.value = letterData.sendTime;
-
-//         localStorage.removeItem('letterData');
-//     }
-// });
-
 // LIFFの初期化を行う
 liff
 .init({
@@ -43,8 +22,8 @@ liffId: "2000014015-QqLAlNmW"
         console.log(accessToken);
         //callApi()関数の呼び出し
         await callApi(accessToken);
-        //getSelectedValue()関数の呼び出し
-        // await getSelectedValue(accessToken);
+        //has_Firstletter()関数の呼び出し
+        await has_Firstletter(accessToken);
         //send()関数の呼び出し
         await send(accessToken);
     }
@@ -76,40 +55,27 @@ async function callApi(accessToken) {
     }
 }
 
-//--------パートナー連係をしていない状態でのパートナー選択の禁止----------
-// async function getSelectedValue(accessToken) {
-//     try {
-//         const getuser = await fetch("https://dev.2-rino.com/api/v1/user",{
-//             headers:{
-//                 Authorization: `Bearer ${accessToken}`
-//             }
-//         });
-//         const name = await getuser.json();
-//         console.log(name);
+//---------初回レターの有無の確認----------
+async function has_Firstletter(accessToken) {
+    try {
+        const first_letter = await fetch("https://dev.2-rino.com/api/v1/has_first_letter/", {
+            headers:{
+                Authorization: `Bearer ${accessToken}`
+            }
+        });
+        const check = await first_letter.json();
+        console.log(check);
 
-//         // 手持ちのレターがない場合
-//         if (name.data.letter_num === 0) {
-//             modalWindow('3');
-//         }
+        if (check.data.result === "no") {
+            modalWindow("1");
+        }
 
-//         // select要素を取得
-//         const selectElement = document.getElementById('send_to');
-//         selectElement.addEventListener('change', () => {
-//             const selectedValue = selectElement.value;
-//             console.log("選択された値:", selectedValue);
+    } catch(error) {
+        console.error(error);
+    }
+}
 
-//             if (selectedValue === "2" && name.data.partner_user === null) {
-//                 // 引数に"1"を指定
-//                 modalWindow('1');
-//             } else {
-//                 console.log("ok");
-//             }
-//         });
-   
-//     } catch(error) {
-//         console.error(error);
-//     }
-// }
+
 
 //----------手紙送信のAPI---------------
 async function send(accessToken) {
@@ -117,12 +83,7 @@ async function send(accessToken) {
     formBtn.addEventListener('click', async function(event) {
         event.preventDefault();
 
-        // const str = document.querySelector('#send_to').value; // valueで得たデータは全て文字列で返ってくるため、数値に変換する必要がある
-        // let send_to = parseInt(str, 10); // 数値に変換するプログラム
         const content = document.querySelector('#content').value;
-        // const sendDay = document.querySelector("#send_day").value;
-        // const sendTime = document.querySelector('#send_time').value;
-        // const send_at = sendDay + sendTime;
 
         // すべての項目が入力されているかのチェック
         if (content.trim() === '') {
@@ -157,35 +118,11 @@ async function send(accessToken) {
     );
 }
 
-//---------一時保存の関数-----------
-// document.querySelector(".saving__btn").addEventListener('click', () => {
-//     const str = document.querySelector('#send_to').value;
-//     let send_to = parseInt(str, 10);
-//     const content = document.querySelector('#content').value;
-//     const sendDay = document.querySelector("#send_day").value;
-//     const sendTime = document.querySelector('#send_time').value;
-
-//     const array = [];
-//     const obj = {
-//         'address':send_to,
-//         'content':content,
-//         'sendDay':sendDay,
-//         'sendTime':sendTime  
-//     };
-//     array.push(obj);
-
-//     const setjson = JSON.stringify(obj);
-//     localStorage.setItem('letterData', setjson);
-
-//     modalWindow('0');
-// });
-
 //---------モーダルウィンドウを表示させる関数------------
+
 function modalWindow(Id) {
-    const close = document.querySelector(`#modal${Id} #close`);
-    console.log (close);
-    const modal = document.querySelector(`#modal${Id}`);
-    const mask = document.querySelector(`#mask${Id}`);
+    let modal = document.querySelector("#modal");
+    const mask = document.querySelector("#mask");
     const showKeyframes = {
         opacity: [0,1],
         visibility: 'visible',
@@ -203,24 +140,44 @@ function modalWindow(Id) {
     modal.animate(showKeyframes, options);
     mask.animate(showKeyframes, options);
 
-    close.addEventListener('click', () => {
-        if (Id === "0") {
-            sentMessage();
-            liff.closeWindow();
-        } else {
-            liff.closeWindow();
-        }
-    });
+    // 初回コトノハ送信の場合
+    if (Id === "0") {
+        let Content = "<div class='modal_content'><img src='image/black_letter.png' alt='送信が完了しました'><h1 class='h1_kome'>コトノハを寝かせました…</h1><p><span>変更・キャンセルは</span><span>寝かせ中のコトノハで操作できます</span></p><button id='close'>>ホームへ</button></div>";
+        modal.innerHTML = Content;
+        console.log(modal);
 
-    mask.addEventListener('click', () => {
-        if (Id === "0") {
+        const close = document.querySelector("#close");
+        console.log(close);
+
+        close.addEventListener('click', () => {
             sentMessage();
             liff.closeWindow();
-        } else {
+        });
+
+        mask.addEventListener('click', () => {
+            sentMessage();
             liff.closeWindow();
-        }
-    });
+        });
+    }
+    // 初回コトノハがない場合
+    else if (Id === "1") {
+        let Content = "<div id='close' style='text-align: left;'>✕</div><div class='modal_content'><img src='image/warning.png' alt='注意！パートナー連係していません'><h1 class='h1_kome'>注意!</h1><p>初回コトノハは既に使用済みです</p></div>";
+        modal.innerHTML = Content;
+        console.log(modal);
+
+        const close = document.querySelector("#close");
+        console.log(close);
+
+        close.addEventListener('click', () => {
+            liff.closeWindow();
+        });
+
+        mask.addEventListener('click', () => {
+            liff.closeWindow();
+        });
+    } 
 }
+
 
 //----------メッセージを送信-----------
 function sentMessage() {
