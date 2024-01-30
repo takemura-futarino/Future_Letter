@@ -132,6 +132,7 @@ textarea {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
 }
 
 .form__time img {
@@ -271,3 +272,40 @@ input[type="time"] {
 .h1_kome {
     margin-bottom: 22px;
 }
+
+#myButton {
+    height: 48px;
+    background-color: #fff;
+    border: 1px solid #252525;
+    border-radius: 8px;
+    width: 85%;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #252525;
+}
+
+.tooltip {
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 8px;
+    display: none;
+    width: 70%;
+    text-align: center;
+    height: 150px;
+    overflow: scroll;
+    bottom: 0;
+    right: 0;
+}
+
+.tooltip__list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.tooltip__list__item {
+    font-size: 1.8em;
+}
+

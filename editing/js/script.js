@@ -47,6 +47,8 @@ liffId: "2000014015-QqLAlNmW"
         await getSelectedValue(accessToken);
         //send()関数の呼び出し
         await send(accessToken);
+        await tool();
+
     }
 })
 .catch((err) => {
@@ -124,7 +126,7 @@ async function send(accessToken) {
         const content = document.querySelector('#content').value;
         const sendDay = document.querySelector("#send_day").value;
         console.log(sendDay);
-        const sendTime = document.querySelector('#send_time').value;
+        const sendTime = document.querySelector('#myButton').textContent;
         const send_at = sendDay + sendTime;
 
         // 今日の日付を取得
@@ -325,3 +327,62 @@ function sentMessage(Id) {
         return null;
     }
 }
+
+// ----------ツールチップの表示-----------
+async function tool() {
+    try {
+        const myButton = document.querySelector("#myButton");
+        const tooltip = document.querySelector("#tooltip");
+
+        let tooltipVisible = false;
+
+        myButton.addEventListener('click', async (event) => {
+            event.preventDefault();
+            // tooltipVisible の中身が true(ある) なら
+            if (tooltipVisible) {
+                hideTooltip();
+            // tooltipVisible の中身が false(ない) なら
+            } else {
+                await showTooltip();
+                await getlistitem();
+            }
+            });
+
+        function showTooltip() {
+        
+            // ツールチップの位置を設定
+            tooltip.style.bottom = 0;
+            tooltip.style.right = 0;
+        
+            // ツールチップを表示
+            tooltip.style.display = "block";
+            tooltipVisible = true;
+        
+        }
+
+        function hideTooltip() {
+            tooltip.style.display = "none";
+            tooltipVisible = false;
+        }
+
+        function getlistitem() {
+            const tooltipList = document.querySelector('#tooltipList')
+
+            tooltipList.addEventListener('click', (event) => {
+                if (event.target.tagName === 'LI') {
+                    const clickedItemContent = event.target.textContent;
+                    console.log(clickedItemContent);
+                    myButton.textContent = clickedItemContent;
+                }
+                hideTooltip();
+            });
+        }
+
+    } catch (error) {
+        console.error(error.code, err.message);
+    }
+}
+
+
+
+
