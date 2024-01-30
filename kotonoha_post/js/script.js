@@ -82,7 +82,7 @@ async function partnerLetter(postdata) {
     try {
         let letterList = document.querySelector(".letter_list");
 
-        if (postdata.data.from_partner === null) {
+        if (postdata.data.from_partner.length === 0) {
             letterList.innerHTML += "<div class='non_item'><p>このフォルダーは空です</p><span>想いを手紙に載せて届けましょう。</span></div>";
         } else {
             const post_number = postdata.data.from_partner;
@@ -168,7 +168,7 @@ async function partnerLetter(postdata) {
 //--------- 自分自身の手紙一覧 ----------
 async function myselfLetter(postdata) {
     try {
-        if (postdata.data.from_me === null) {
+        if (postdata.data.from_me.length === 0) {
             letterList.innerHTML += "<div class='non_item'><p>このフォルダーは空です</p><span>想いを手紙に載せて届けましょう。</span></div>";
         } else {
             const post_number = postdata.data.from_me;

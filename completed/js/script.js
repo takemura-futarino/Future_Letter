@@ -71,7 +71,7 @@ function modalWindow(accessToken) {
     modal.animate(showKeyframes, options);
     mask.animate(showKeyframes, options);
 
-    let Content = "<div class='modal_content'><img src='image/warning.png' alt='危険のマーク'><h1 class='blue_save'>本当に？解除しますか</h1><p><span>ペア登録を解除すると</span><span>相手からもらったコトノハは</span><span>すべて消えてしまいます</span></p></div><div class='cancel_btn'><button id='cancel'>キャンセル</buttton><button id='close'>解除</button></div>";
+    let Content = "<div class='modal_content'><img src='image/warning.png' alt='危険のマーク'><h1 class='blue_save'>本当に解除しますか?</h1><p><span>ペア登録を解除すると</span><span>相手からもらったコトノハは</span><span>すべて消えてしまいます</span></p></div><div class='cancel_btn'><button id='cancel'>キャンセル</buttton><button id='close'>解除</button></div>";
     modal.innerHTML = Content;
     console.log(modal);
 
