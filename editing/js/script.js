@@ -349,8 +349,6 @@ async function tool() {
             });
 
         function showTooltip() {
-            // ボタンの位置を取得
-            const buttonRect = myButton.getBoundingClientRect();
         
             // ツールチップの位置を設定
             tooltip.style.bottom = 0;
