@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const send_to = document.querySelector('#send_to');
         const content = document.querySelector('#content');
         const setDate = document.querySelector('#send_day');
-        const setTime = document.querySelector('#send_time');
+        const setTime = document.querySelector('#myButton');
 
         send_to.value = letterData.address;
         content.value = letterData.content;
@@ -181,7 +181,7 @@ document.querySelector(".saving__btn").addEventListener('click', () => {
     let send_to = parseInt(str, 10);
     const content = document.querySelector('#content').value;
     const sendDay = document.querySelector("#send_day").value;
-    const sendTime = document.querySelector('#send_time').value;
+    const sendTime = document.querySelector('#myButton').textContent;
 
     const array = [];
     const obj = {
