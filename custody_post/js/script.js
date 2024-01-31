@@ -98,6 +98,7 @@ async function partnerLetter(postdata) {
                 const newListURL = document.createElement("div"); 
                 // <div> にクラスを追加   
                 newListURL.classList.add("newID"); 
+
                 // パートナー宛か自分宛かの確認
                 // パートナー宛の場合
                 if (post_number[i].send_to === 2) {
@@ -117,6 +118,45 @@ async function partnerLetter(postdata) {
                     });
                     // <div> に <img> を追加
                     newListURL.appendChild(imageElement);
+                    // <div>要素を追加
+                    const newListContent = document.createElement("div");
+                    // <p>要素を作成
+                    const who_you = document.createElement("p");
+                    who_you.textContent = "相手へ";
+                    newListContent.appendChild(who_you);
+
+                    // 新しい要素 <p> 要素を作成
+                    const newListDay = document.createElement("p");
+
+                    // 変換した日付情報
+                    const newDateinfo = post_number[i].send_at;
+                    // Dateオブジェクトを作成して日付文字列を解析
+                    var dateObject = new Date(newDateinfo);
+                    // 年、月、日を取得
+                    var year = dateObject.getFullYear();
+                    var month = dateObject.getMonth() + 1; // 月は0から11で表されるため、1を加える
+                    var day = dateObject.getDate();
+                    // フォーマットした日付文字列を作成
+                    var formattedDateString = year + "年" + month + "月" + day + "日";
+                    // 結果をコンソールに表示
+                    console.log(formattedDateString);
+
+                    // <p> に日付の情報を入れる
+                    newListDay.textContent = formattedDateString;
+                    // <div> に <p> を追加
+                    newListContent.appendChild(newListDay);
+                    // <div> に <div> を追加
+                    newListURL.appendChild(newListContent);
+                    // <img> 要素を作成
+                    const editImg = document.createElement("img");
+                    editImg.classList.add("edit_img");
+                    editImg.src = "image/black_pen.png";
+                    editImg.alt = "編集可能";
+                    newListURL.appendChild(editImg);
+                    // <li> に <a> を追加
+                    newListItem.appendChild(newListURL);
+                    // <ul> に <li> を追加
+                    parterList.appendChild(newListItem);
                 
                 // 自分宛の場合
                 } else if (post_number[i].send_to === 1) {
@@ -131,31 +171,40 @@ async function partnerLetter(postdata) {
                     imageElement.classList.add("letter_number");
                     // <div> に <img> を追加
                     newListURL.appendChild(imageElement);
+                    // <div>要素を追加
+                    const newListContent = document.createElement("div");
+                    // <p>要素を作成
+                    const who_me = document.createElement("p");
+                    who_me.textContent = "自分へ";
+                    newListContent.appendChild(who_me);
+
+                    // 新しい要素 <p> 要素を作成
+                    const newListDay = document.createElement("p");
+
+                    // 変換した日付情報
+                    const newDateinfo = post_number[i].send_at;
+                    // Dateオブジェクトを作成して日付文字列を解析
+                    var dateObject = new Date(newDateinfo);
+                    // 年、月、日を取得
+                    var year = dateObject.getFullYear();
+                    var month = dateObject.getMonth() + 1; // 月は0から11で表されるため、1を加える
+                    var day = dateObject.getDate();
+                    // フォーマットした日付文字列を作成
+                    var formattedDateString = year + "年" + month + "月" + day + "日";
+                    // 結果をコンソールに表示
+                    console.log(formattedDateString);
+                    
+                    // <p> に日付の情報を入れる
+                    newListDay.textContent = formattedDateString;
+                    // <div> に <p> を追加
+                    newListContent.appendChild(newListDay);
+                    // <div> に <div> を追加
+                    newListURL.appendChild(newListContent);
+                    // <li> に <a> を追加
+                    newListItem.appendChild(newListURL);
+                    // <ul> に <li> を追加
+                    parterList.appendChild(newListItem);
                 }
-                // 新しい要素 <p> 要素を作成
-                const newListDay = document.createElement("p");
-
-                // 変換した日付情報
-                const newDateinfo = post_number[i].send_at;
-                // Dateオブジェクトを作成して日付文字列を解析
-                var dateObject = new Date(newDateinfo);
-                // 年、月、日を取得
-                var year = dateObject.getFullYear();
-                var month = dateObject.getMonth() + 1; // 月は0から11で表されるため、1を加える
-                var day = dateObject.getDate();
-                // フォーマットした日付文字列を作成
-                var formattedDateString = year + "年" + month + "月" + day + "日";
-                // 結果をコンソールに表示
-                console.log(formattedDateString);
-
-                // <p> に日付の情報を入れる
-                newListDay.textContent = formattedDateString;
-                // <div> に <p> を追加
-                newListURL.appendChild(newListDay);
-                // <li> に <a> を追加
-                newListItem.appendChild(newListURL);
-                // <ul> に <li> を追加
-                parterList.appendChild(newListItem);
             }
         }
 

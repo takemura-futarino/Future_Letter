@@ -7,11 +7,6 @@ html {
     font-size: 62.5%;
 }
 
-img {
-    width: 100%;
-    display: block;
-}
-
 button {
     border: none;
 }
@@ -54,7 +49,7 @@ li {
 .letter_list {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 60px;
 }
 
 .letter_list li {
@@ -64,13 +59,19 @@ li {
 .newID {
     display: flex;
     gap: 5%;
+    align-items: end;
 }
 
-.newID img {
+.letter_number {
     width: 54%;
 }
 
 .newID p {
     font-weight: bold;
     font-size: 1.5em;
+}
+
+.edit_img {
+    width: 5%;
+    height: 5%;;
 }
