@@ -28,6 +28,8 @@ liffId: "2000014015-QqLAlNmW"
         await letter_showApi(accessToken);
         //Note()関数の呼び出し
         await Note();
+        //Change()関数の呼び出し
+        await Change(accessToken);
         //Delete()関数の呼び出し
         await Delete(accessToken);
     }
@@ -77,13 +79,13 @@ async function letter_showApi(accessToken) {
         console.log(postdata);
 
         //JSONデータを記入する
-        const Partner = document.querySelector('.partner');
+        // const Partner = document.querySelector('.partner');
         const Thought = document.querySelector('.thought');
-        const Me = document.querySelector('.me');
+        // const Me = document.querySelector('.me');
         const Days = document.querySelector(".days");
         
         // 内容は？
-        Thought.textContent = postdata.data.result.content;
+        Thought.value = postdata.data.result.content;
         // 日付は？
         const newDateinfo = postdata.data.result.send_at;
         // Dateオブジェクトを作成して日付文字列を解析
@@ -104,7 +106,7 @@ async function letter_showApi(accessToken) {
 // --------注意喚起--------
 async function Note() {
     try {
-        const Cancel = document.querySelector('.form__send');
+        const Cancel = document.querySelector('#form__send');
         Cancel.addEventListener('click', () => {
             modalWindow();
         });
@@ -146,6 +148,42 @@ function modalWindow() {
     });
 }
 
+//------------変更した内容を保存する------------
+async function Change(accessToken) {
+    try {
+        // URLからvalueデータ値を受け取る　// myself_postページから飛ばないとvalueを取得できない
+        const urlParams = await new URLSearchParams(window.location.search);
+        const value = await urlParams.get('value');
+        console.log(value);
+
+        const changeBTN = document.querySelector("#change__send");
+        changeBTN.addEventListener('click', async() => {
+            const content = document.querySelector(".thought").value;
+            console.log(content);
+
+            const sendApi = await fetch(
+                `https://dev.2-rino.com/api/v1/letter/${value}/`,{
+                    method: "POST",
+                    headers: {
+                        Authorization : `Bearer ${accessToken}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ 
+                        _method: "PATCH",
+                        content: content
+                    })
+                }
+            );
+            // レスポンスオブジェクトから JSON データを抽出
+            const response = await sendApi.json();
+            console.log(JSON.stringify(response));
+        });
+    } catch(error) {
+        console.error(error);
+    }
+}
+
+
 //------------手紙を消去する-----------
 async function Delete(accessToken) {
     try {
@@ -167,7 +205,8 @@ async function Delete(accessToken) {
                     body: JSON.stringify({
                        _method: "DELETE"
                     })
-                });
+                }
+            );
             // レスポンスオブジェクトから JSON データを抽出
             const response = await canselApi.json();
             console.log(JSON.stringify(response));
