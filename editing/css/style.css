@@ -26,6 +26,10 @@ button {
     border: none;
 }
 
+li {
+    list-style: none;
+}
+
 textarea {
     resize: none;
 }

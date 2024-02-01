@@ -117,7 +117,7 @@ li {
 .letter_list {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 60px;
 }
 
 .letter_list li {
@@ -127,6 +127,7 @@ li {
 .newID {
     display: flex;
     gap: 5%;
+    align-items: end;
 }
 
 .newID img {

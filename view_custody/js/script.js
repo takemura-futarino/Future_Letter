@@ -177,6 +177,8 @@ async function Change(accessToken) {
             // レスポンスオブジェクトから JSON データを抽出
             const response = await sendApi.json();
             console.log(JSON.stringify(response));
+
+            alert('変更した内容を保存しました。');
         });
     } catch(error) {
         console.error(error);
