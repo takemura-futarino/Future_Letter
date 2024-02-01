@@ -36,7 +36,7 @@ li {
 .contain {
     height: 246px;
     background-color: #FCF7ED;
-    margin-bottom: 48px;
+    margin-bottom: 116px;
     border-radius: 12px;
 
     box-shadow:
@@ -91,7 +91,7 @@ li {
     width: 100%;
     color: #252525;
     border-radius: 24px;
-    margin-bottom: 42px;
+    margin-bottom: 15px;
     font-size: 1.5em;
     border: 1px solid #252525;
 }
