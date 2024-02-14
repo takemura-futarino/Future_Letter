@@ -71,12 +71,6 @@ li {
     
 }
 
-.hitorino__day{
-    border-bottom: 1px solid #b9bcbd;
-    margin-bottom: 9px;
-    padding-bottom: 5px;
-}
-
 .user__hitorino__date{
     font-size: 1.7em;
 }
@@ -86,12 +80,6 @@ li {
     font-size: 1.25em;
     font-weight: bold;
     
-}
-
-.futarino__day{
-    border-bottom: 1px solid #b9bcbd;
-    margin-bottom: 9px;
-    padding-bottom: 5px;
 }
 
 .user__futarino__date{
