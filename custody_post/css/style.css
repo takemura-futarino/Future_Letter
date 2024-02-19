@@ -24,6 +24,16 @@ li {
     padding-top: 64px;
 }
 
+.limit {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.limit p {
+    font-size: 1.6rem;
+    color: #B9BCBD;
+}
+
 /* letter_list */
 .non_item {
     display: flex;
