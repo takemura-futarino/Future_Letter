@@ -314,7 +314,7 @@ function sentMessage(Id) {
             liff.sendMessages([
                 {
                     type: "text",
-                    text: "コトノハを送りました",
+                    text: "コトノハを送りました☺",
                 },
             ]);
     
