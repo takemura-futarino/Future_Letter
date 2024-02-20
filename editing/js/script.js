@@ -240,7 +240,7 @@ function modalWindow(Id) {
     }
     // パートナー連係が出来ていない場合
     else if (Id === "1") {
-        let Content = "<div id='close' style='text-align: left;'>✕</div><div class='modal_content'><img src='image/warning.png' alt='注意！パートナー連係していません'><h1 class='h1_kome'>注意!</h1><p><span>相手に</span><span>コトノハをおくるには</span><span>ペア登録が必要です。</span></p><a href='https://liff.line.me/2000014015-QqLAlNmW/linkage/' class='send_link'>ペア登録に進む</a></div>";
+        let Content = "<div id='close' style='text-align: left;'>✕</div><div class='modal_content'><img src='image/warning.png' alt='注意！パートナー連係していません'><p><span>相手に</span><span>コトノハをおくるには</span><span>ペア登録が必要です。</span></p><a href='https://liff.line.me/2000014015-QqLAlNmW/linkage/' class='send_link'>ペア登録に進む</a></div>";
         modal.innerHTML = Content;
         console.log(modal);
 
@@ -259,7 +259,7 @@ function modalWindow(Id) {
     } 
     // コトノハを送ったとき
     else if (Id === "2") {
-        let Content = "<div class='modal_content'><img src='image/black_letter.png' alt='送信が完了しました'><h1 class='h1_kome'>コトノハを寝かせました…</h1><p><span>変更・キャンセルは</span><span>寝かせ中のコトノハで操作できます</span></p><button id='close'>>ホームへ</button></div>";
+        let Content = "<div class='modal_content'><img src='image/black_letter.png' alt='送信が完了しました'><h1 class='h1_kome'>コトノハを寝かせました…</h1><p><span>確認・変更は</span><span>熟成庫で操作できます</span></p><button id='close'>>ホームへ</button></div>";
         modal.innerHTML = Content;
         console.log(modal);
 
@@ -314,7 +314,7 @@ function sentMessage(Id) {
             liff.sendMessages([
                 {
                     type: "text",
-                    text: "コトノハを送りました",
+                    text: "コトノハを送りました☺",
                 },
             ]);
     

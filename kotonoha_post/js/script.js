@@ -83,7 +83,7 @@ async function partnerLetter(postdata) {
         let letterList = document.querySelector(".letter_list");
 
         if (postdata.data.from_partner.length === 0) {
-            letterList.innerHTML += "<div class='non_item'><p>このフォルダーは空です</p><span>想いを手紙に載せて届けましょう。</span></div>";
+            letterList.innerHTML += "<div class='non_item'><p>もらったコトノハはありません。</p></div>";
         } else {
             const post_number = postdata.data.from_partner;
             const partnerList = document.querySelector('.partner_list');

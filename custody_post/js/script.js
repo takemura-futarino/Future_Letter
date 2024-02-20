@@ -84,7 +84,7 @@ async function letter_indexApi(accessToken) {
 async function partnerLetter(postdata) {
         let letterList = document.querySelector(".letter_list");
 
-        if (postdata.data.from_partner === null && postdata.data.from_me === null) {
+        if (postdata.data.is_sending.length === 0) {
             letterList.innerHTML += "<div class='non_item'><p>このフォルダーは空です</p><span>想いを手紙に載せて届けましょう。</span></div>";
         } else {
             const parterList = document.querySelector(".partner_list");
