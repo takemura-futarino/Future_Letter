@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>パートナー招待</title>
+    <link rel="stylesheet" href="CSS/style.css" />
+    <script
+      charset="utf-8"
+      src="https://static.line-scdn.net/liff/edge/2/sdk.js"
+    ></script>
+  </head>
+  <body>
+    <section class="Toparea">
+      <h1><img src="images/KV.png" alt="" /></h1>
+      <div class="patna">
+        <img src="images/introduction_title.png" alt="" />
+      </div>
+      <div class="msg">
+        <ul class="list_01">
+          <li>日々のコンディションを共有できる</li>
+          <li>会員限定コンテンツが届く</li>
+          <li>相互理解のきっかけが生まれる</li>
+        </ul>
+      </div>
+    </section>
+    <section class="m">
+      <h1><img src="images/use_title.png" alt="パートナーを招待する方法" /></h1>
+      <div class="sample">
+        <h2 class="m_container">
+          <span>1.</span>
+          どちらの方法でパートナーに招待を送りましょう
+        </h2>
+      </div>
+      <div class="btnarea">
+        <p class="m_line">LINEの友達から探す</p>
+        <div class="list_btn">
+          <button id="button_friend">友達一覧へ</button>
+          <div class="or">
+            <p>or</p>
+          </div>
+          <p>招待リンクをコピーして送る＊</p>
+          <div class="inviteArea">
+            <p id="urlLink"></p>
+            <a href=""><button class="button_friend">コピーする</button></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="sample">
+        <h2 class="m_container">
+          <span>2.</span>
+          パートナーにフタリノを友達追加してもらいましょう
+        </h2>
+
+        <p>
+          上記URLから友達登録に進んでいただくと、ふたりがパートナーとして登録されます。
+        </p>
+
+        <h2 class="m_container">
+          <span>3.</span>
+          パートナー登録完了
+        </h2>
+        <p>
+          「パートナー登録が完了しました」のメッセージが届いたら、登録完了です！
+        </p>
+      </div>
+
+      <div class="mm">
+        <h1><img src="images/msg.png" alt="パートナー招待が完了しました" /></h1>
+      </div>
+    </section>
+
+    <!---------- QA start here --------->
+
+    <section class="QA">
+      <h1>
+        <img src="images/qa_title.png" alt="パートナー連携に関する質問" />
+      </h1>
+
+      <dl class="QA_content">
+        <dt><span>Q</span>:三人以上で使えますか？</dt>
+        <dd>残念ながら、三人以上で共有することはできません。</dd>
+        <dt><span>Q</span>:パートナー連携は途中で解除できますか？</dt>
+        <dd>はい、設定ページからいつでも解除いただけます。</dd>
+        <dt><span>Q</span>:既婚者でなくても使えますか？</dt>
+        <dd>
+          もちろんです。既婚／未婚の状況にかかわらずどなたでもご利用いただけます。
+        </dd>
+      </dl>
+    </section>
+    <script type="text/javascript" src="JS/script.js"></script>
+
+    <script>
+      const inviteLink = document.querySelector(".inviteArea a");
+
+      inviteLink.addEventListener("click", function (event) {
+        event.preventDefault();
+        let text = inviteLink.href;
+        console.log(text);
+
+        navigator.clipboard
+          .writeText(text)
+          .then(function () {
+            alert("リンクがクリップボードに保存されました: " + text);
+          })
+          .catch(function (error) {
+            console.error("クリップボードへの保存に失敗しました: ", error);
+          });
+
+        return false;
+      });
+    </script>
+  </body>
+</html>

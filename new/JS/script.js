@@ -1,18 +1,8 @@
-// ページ読み込み後の2秒遅延表示設定
 window.addEventListener("load", function () {
   setTimeout(function () {
     document.body.style.opacity = "1";
-  }, 2000); // 2000ミリ秒 = 2秒
+  }, 2000);
 });
-
-//------- サーバー環境によってコンソール表示を制御-------
-const allowedHostnames = ["localhost", "127.0.0.1", "roca-inc.jp"];
-
-if (!allowedHostnames.includes(window.location.hostname)) {
-  console.log = function () {};
-  console.info = function () {};
-  // 必要に応じて他のメソッドも無効化
-}
 
 // LIFFの初期化を行う
 liff
@@ -20,20 +10,18 @@ liff
     // 自分のLIFF IDを入力する
     liffId: "2000014015-QqLAlNmW",
   })
+  // ここでLineにログインしていなかったらログインする。
   .then(async () => {
-    // 初期化完了. 以降はLIFF SDKの各種メソッドを利用できる
-
     if (!liff.isLoggedIn() && !liff.isInClient()) {
       liff.login();
+      // ログインしていたらLiffからアクセストークンを取得して「accessToken」という変数に格納される。
     } else {
-      // ユーザーのLINEアカウントのアクセストークンを取得
       let accessToken = liff.getAccessToken();
       console.log(accessToken);
-      // callApi()関数の呼び出し
+      // ログインしていたら「accessToken」を引数として受け取りcallApi(),linkage(),picker()関数を呼び出す。
       await callApi(accessToken);
-      // linkage()関数の呼び出し
+      // ここまでは定型
       await linkage(accessToken);
-      // piker()関数の呼び出し
       await picker();
 
       let partnerData = await partnerUser(accessToken);
@@ -47,24 +35,19 @@ liff
     }
   })
   .catch((err) => {
-    // 初期化中にエラーが発生します
     console.error(err.code, err.message);
   });
 
-//--------アクセストークンを登録する--------
+// callApi関数の定義
+// この関数はアクセストークン使用してAPIの呼び出し
 async function callApi(accessToken) {
   try {
-    //パラメータ（line_access_token）を付与するために、クエリ文字列を作成する
     let queryString = `?line_access_token=${accessToken}`;
-
-    //アクセストークンが登録済みか未登録か判定する----------------
     const api = await fetch(
       "https://dev.2-rino.com/api/v1/is_registed" + queryString
     );
     const res = await api.json();
     console.log(res.data);
-
-    //フタリノに登録していない（false）の場合に実行するAPI
     if (res.data.result === "false") {
       const apiReg = await fetch(
         "https://dev.2-rino.com/api/v1/regist" + queryString
@@ -77,54 +60,33 @@ async function callApi(accessToken) {
   }
 }
 
-//--------パートナー連携するための招待URLを発行-------
+// linkage関数の定義
+// APIからデータを取得してユーザーに表示させるための関数
 async function linkage(accessToken) {
-  // async関数の中でawaitキーワードを使う
   try {
-    // fetchメソッドでAPIのURLを指定してリクエストを送る
     const partres = await fetch("https://dev.2-rino.com/api/v1/invite_url", {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
     });
-    // レスポンスからjsonメソッドでデータを取り出す
     const partResData = await partres.json();
     console.log(partResData.data);
 
-    //パートナー連携URLを代入する
     let partnerUrl = partResData.data.invite_url;
-    // <a>タグのhref属性にURLを代入する
+    // hrefに取得したパートナーURLの設定
     document.querySelector(".inviteArea a").href = partnerUrl;
+    // urlLinkに取得したパートナーURLの設定
     document.getElementById("urlLink").textContent = partnerUrl;
-    // document.querySelector(".inviteArea a").textContent = partnerUrl;
   } catch (error) {
-    // エラーが発生した場合は、コンソールに出力する
     console.error(error);
   }
 }
 
-//--------パートナー連携しているか確認する-------
-async function partnerUser(accessToken) {
-  try {
-    const getUser = await fetch("https://dev.2-rino.com/api/v1/user", {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-    const partnerData = await getUser.json();
-    console.log(partnerData.data);
-    return partnerData;
-  } catch (error) {
-    // エラーが発生した場合は、コンソールに出力する
-    console.error(error);
-  }
-}
-
-// --------shareTargetPicker（LIFFで用意されているAPI）-------
+// picker関数の定義
+// 共有URL取得のための関数
 async function picker() {
   try {
-    const friends = document.getElementById("shareTargetPicker");
-    // console.log(friends.outerHTML);
+    const friends = document.getElementById("button_friend");
     friends.addEventListener("click", async function () {
       console.log("クリックしました");
       if (liff.isApiAvailable("shareTargetPicker")) {
@@ -145,7 +107,6 @@ async function picker() {
           .catch((res) => {
             console.log("Failed to launch ShareTargetPicker");
           });
-        // console.log("shareTargetPicker:",liff.shareTargetPicker());
       }
     });
   } catch (error) {

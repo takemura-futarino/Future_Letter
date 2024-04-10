@@ -1,0 +1,177 @@
+@charset "UTF-8";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  opacity: 0;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+html {
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-size: 70.5%;
+}
+
+h2 {
+  margin-block-start: 0.83em;
+  margin-block-end: 0.83em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+  unicode-bidi: isolate;
+}
+
+.patna {
+  margin-top: 30px;
+  padding: 0 30px;
+}
+.msg {
+}
+
+.list_01 {
+  padding: 30px 55px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.list_01 li {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.1em;
+  gap: 10px;
+  margin-bottom: 10px;
+  width: fit-content;
+}
+
+.list_01 li:first-child::before {
+  content: "";
+  display: inline-block;
+  background-image: url(../images/talk_icon.png);
+  background-size: contain;
+  vertical-align: middle;
+  width: 35px;
+  height: 35px;
+}
+
+.list_01 li:nth-child(2)::before {
+  content: "";
+  display: inline-block;
+  background-image: url(../images/key_icon.png);
+  background-size: contain;
+  vertical-align: middle;
+  width: 35px;
+  height: 35px;
+}
+
+.list_01 li:nth-child(3)::before {
+  content: "";
+  display: inline-block;
+  background-image: url(../images/shakehands_icon.png);
+  background-size: contain;
+  vertical-align: middle;
+  width: 35px;
+  height: 35px;
+}
+
+#button_friend::before {
+  content: "";
+  display: inline-block;
+  background-image: url(../images/arrow_icon.png);
+  width: 30px;
+  height: 35px;
+  background-repeat: no-repeat;
+}
+
+.m {
+  padding: 0 30px;
+  text-align: center;
+}
+.m img {
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+.mm img {
+  width: 70%;
+  display: block;
+  margin: 15px auto;
+}
+.sample {
+  display: inline-block;
+  text-align: left;
+}
+.m_container {
+  display: flex;
+
+  align-items: center;
+  font-size: 1.4em;
+  gap: 8px;
+}
+
+.m_container span {
+  display: block;
+  font-size: 2.7em;
+}
+
+.m_line {
+  text-align: center;
+}
+button {
+  background-color: #76bdde;
+  color: #ffffff;
+  border-radius: 40px;
+  padding: 1px 0px;
+  width: 100%;
+  border: none;
+  font-size: 0.9em;
+  height: 4.5em;
+}
+
+.list_btn {
+  padding: 5px;
+}
+
+.btnarea {
+  padding: 10px 40px;
+  font-size: 1.3em;
+  text-align: center;
+}
+.or {
+  margin: 10px;
+}
+
+.QA {
+  padding-bottom: 66px;
+  padding: 80px 30px 80px 30px;
+}
+
+.QA dt {
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+.QA dt span {
+  color: #ffba38;
+}
+
+.QA .QA_content {
+  padding-top: 30px;
+  margin: 0 auto;
+}
+
+.QA .QA_content dd {
+  padding-left: 28px;
+  margin-top: 7px;
+}
+
+.QA .QA_content dt:nth-child(n + 2) {
+  margin-top: 18px;
+}
