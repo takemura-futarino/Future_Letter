@@ -1,0 +1,90 @@
+body {
+  margin: 50px 30px;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* top */
+.top_flex {
+  display: flex;
+}
+
+.top_flex_left,
+.top_flex_right {
+  flex: 1;
+}
+
+.top_flex_right {
+  text-align: right;
+}
+
+.top_flex_right p {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+/* medium */
+.medium {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button {
+  margin: 10px;
+  background-color: black;
+  color: white;
+  padding: 15px 40px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  border-radius: 40px;
+  width: 100%;
+}
+.button img {
+  margin-right: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.bottom p {
+  font-size: 0.8rem;
+}
+.bottom_flex {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+/* main */
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+/* 下線を付ける */
+ul li {
+  border-bottom: 1px solid black;
+  padding: 20px;
+  gap: 10px;
+  position: relative;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul li::after {
+  content: ">";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+ul li img {
+  width: 10%;
+  margin-right: 10px;
+}
+
+/*# sourceMappingURL=style.css.map */
