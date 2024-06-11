@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>振込画面</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="container">
+        <form>
+            <div class="form_text">
+                <textarea cols="24" row="3" onkeyup="ShowLength(value);" name="content" id="content" placeholder="入力してください"></textarea>
+                <p>振り込んだことばの数</p>
+                <p id="inputlength">0文字</p>
+            </div>
+            
+            <div class="form__rsv">
+                <p class="deliveryTime">＜配信予定日時設定＞</p>
+                <div class="form__day">
+                    <img src="image/calendar.png" alt="カレンダーのアイコン">
+                    <input type="date" id="send_day" name="send_day" class="form__rsv__day dateInput">
+                </div>
+                <div class="form__time">
+                    <img src="image/clock.png" alt="時計のアイコン">
+                    <button id="myButton"></button>
+                    <div id="tooltip" class="tooltip">
+                        <ul id="tooltipList" class="tooltip__list">
+                            <li class="tooltip__list__item">00:00</li>
+                            <li class="tooltip__list__item">01:00</li>
+                            <li class="tooltip__list__item">02:00</li>
+                            <li class="tooltip__list__item">03:00</li>
+                            <li class="tooltip__list__item">04:00</li>
+                            <li class="tooltip__list__item">05:00</li>
+                            <li class="tooltip__list__item">06:00</li>
+                            <li class="tooltip__list__item">07:00</li>
+                            <li class="tooltip__list__item">08:00</li>
+                            <li class="tooltip__list__item">09:00</li>
+                            <li class="tooltip__list__item">10:00</li>
+                            <li class="tooltip__list__item">11:00</li>
+                            <li class="tooltip__list__item">12:00</li>
+                            <li class="tooltip__list__item">13:00</li>
+                            <li class="tooltip__list__item">14:00</li>
+                            <li class="tooltip__list__item">15:00</li>
+                            <li class="tooltip__list__item">16:00</li>
+                            <li class="tooltip__list__item">17:00</li>
+                            <li class="tooltip__list__item">18:00</li>
+                            <li class="tooltip__list__item">19:00</li>
+                            <li class="tooltip__list__item">20:00</li>
+                            <li class="tooltip__list__item">21:00</li>
+                            <li class="tooltip__list__item">22:00</li>
+                            <li class="tooltip__list__item">23:00</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <button id="form-btn" class="form__send">未来にコトノハを送る</button>
+        </form>
+        </form>
+    </div>
+
+    <script src="JS/script.js"></script>
+</body>
+</html>

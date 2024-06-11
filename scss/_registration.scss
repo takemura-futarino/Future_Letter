@@ -1,0 +1,169 @@
+.container{
+    
+    &_title{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        margin: 0px 0px 32px 0px;
+        
+        img{
+            width: 46px;
+            height: 30px;
+        }
+
+        h2{
+            margin: 0px;
+            font-weight: medium;
+            font-size: 1.5rem;
+        }
+    }
+
+    // 入力フォーム----------------------------------------------------------------
+    #registrationForm{
+        .input-group{
+            // テキストフォーム-------------------------------------------
+            input[type="text"]{
+                width: 100%;
+                box-sizing: border-box;
+                padding: 4px;
+                font-size: 1rem;
+                margin-bottom: 35px;
+                background-color: transparent;
+                border: none;
+                border-bottom: solid 2px ;
+                border-color: #000000;
+                outline: none;
+                border-radius: 0px;
+                appearance: none; /* デフォルトの矢印を非表示 */
+                background-image:url(../registration/images/pen.png);
+                background-position: right 10px center;
+                background-repeat: no-repeat;
+                background-size: 16px;
+                color: #000000;
+                &::placeholder{
+                    color: #B9BCBD;
+                }
+                        }
+            
+            // セレクトフォーム----------------------------------------------
+            select{
+                width: 100%;
+                box-sizing: border-box;
+                padding: 4px;
+                font-size: 1rem;
+                margin-bottom: 35px;
+                background-color: transparent;
+                border: none;
+                border-bottom: solid 2px ;
+                border-color: #000000;
+                outline: none;
+                border-radius: 0px;
+                appearance: none; /* デフォルトの矢印を非表示 */
+                background-image:url(../registration/images/v.png);
+                background-position: right 10px center;
+                background-repeat: no-repeat;
+                background-size: 16px;
+                color: #000000;
+                &:invalid{
+                    color: #B9BCBD;
+                }
+            }
+            // 誕生日--------------------------------------------------------------
+            &_birthday{
+
+                &_flex{
+                    display: flex;
+
+                    label{
+                        margin: 3px 0;
+                        color: #B9BCBD;
+                    }
+                }
+
+                select{
+                    margin-bottom: 35px;
+                    width: 100%;
+                    box-sizing: border-box;
+                    // padding: 4px 4px 4px 14px;
+                    font-size: 1rem;
+                    background-color: transparent;
+                    border: none;
+                    border-bottom: solid 2px ;
+                    border-color: #000000;
+                    outline: none;
+                    border-radius: 0px;
+                    appearance: none; /* デフォルトの矢印を非表示 */
+                    background-image:url(../registration/images/v.png);
+                    background-position: right 10px center;
+                    background-repeat: no-repeat;
+                    background-size: 16px;
+                    color: #000000;
+                }
+            }
+        }
+
+        .parent-container{
+            text-align: center;
+            margin: 20px 0px;
+
+            .input-group_agree{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                margin: 38px 0 35px;
+
+                input[type="checkbox"]{
+                    /* チェックボックスの大きさを指定 */
+                    width: 25px;
+                    height: 25px;
+                }
+
+                a{
+                    text-decoration: none;
+                    color: #000000;
+                    background-image: linear-gradient(transparent 80%,#70C7F5 60%);
+                }
+
+                label{
+                    font-size: 0.9rem;
+                }
+            }
+        }
+    }
+}
+
+
+// .inout-group_birthday{
+
+//     &_flex{
+//         display: flex;
+
+//         label{
+//             margin: 3px 0;
+//             color: #B9BCBD;
+//         }
+//     }
+
+//     select{
+//         margin-bottom: 35px;
+//         width: 100%;
+//         box-sizing: border-box;
+//         padding: 4px 4px 4px 14px;
+//         font-size: 1rem;
+//         background-color: transparent;
+//         border: none;
+//         border-bottom: solid 2px ;
+//         border-color: #000000;
+//         outline: none;
+//         border-radius: 0px;
+//         appearance: none; /* デフォルトの矢印を非表示 */
+//         background-image:url(../images/Vector\ 45.png);
+//         background-position: right 10px center;
+//         background-repeat: no-repeat;
+//         background-size: 16px;
+//         color: #000000;
+//     }
+// }

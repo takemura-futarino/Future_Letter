@@ -1,0 +1,21 @@
+/* 開設ボタン */
+#OpenButton {
+    display: flex; /* Flexbox を使用 */
+    justify-content: center; /* 要素を水平方向に中央配置 */
+    align-items: center; /* 要素を垂直方向に中央配置 */
+  }
+  
+  #OpenButton a {
+    width: 200px; /* 幅170px */
+    height: 60px; /* 高さ30px */
+    background-image: url(../images/button.png); /* 背景画像のURL */
+    background-size: 100%;
+    background-position: top left; /* 背景画像の位置、上・左 */
+    background-repeat: no-repeat; /* 背景画像を繰り返さない */
+    text-decoration: none; /* テキストを装飾しない */
+    color: #FFFFFF; /* テキストの色を「白」 */
+    font-size: 1rem; /* テキストのサイズ14px */
+    text-align: center; /* テキストを中央寄せ */
+    display: block; /* ブロック要素として表示 */
+    line-height: 50px;
+  }

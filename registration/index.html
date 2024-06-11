@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>口座開設</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="container_title">
+            <img src="../registration/images/passbook.png" alt="通帳">
+        <h2>口座開設</h2>
+         </div>
+        <form id="registrationForm">
+            <div class="input-group">
+                <label for="name">名前</label>
+                <input type="text" id="username" name="username" placeholder="名前" required>
+            </div>
+            <div class="input-group">
+                <label for="gender">性別</label>
+                <select id="gender" name="gender" required>
+                    <option value="" disabled selected>性別</option>
+                    <option value="2">男性</option>
+                    <option value="1">女性</option>
+                    <option value="3">回答しない</option>
+                </select>
+            </div>
+            <div class="input-group_birthday">
+                <label for="birthday" class="birthday-label">誕生日</label>
+                <div class="input-group_birthday_flex">
+                <!-- 年プルダウン -->
+                <label for="year">年：</label>
+                <select id="year" name="year"></select>
+                <!-- 月プルダウン -->
+                <label for="month">月：</label>
+                <select id="month" name="month"></select>
+                <!-- 日プルダウン -->
+                <label for="day">日：</label>
+                <select id="day" name="day"></select>
+                 </div>
+            </div>
+            <div class="input-group">
+                <label for="status">ステータス</label>
+                <select id="status" name="status" required>
+                    <option value="" disabled selected>ステータス</option>
+                    <option value="1">交際中</option>
+                    <option value="2">婚約中</option>
+                    <option value="3">結婚後</option>
+                    <option value="4">その他</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="from">居住地</label>
+                <select id="from" name="from" required>
+                    <option value="" disabled selected>居住地</option>
+                    <option value="1">北海道</option>
+                    <option value="2">青森県</option>
+                    <option value="3">岩手県</option>
+                    <option value="4">宮城県</option>
+                    <option value="5">秋田県</option>
+                    <option value="6">山形県</option>
+                    <option value="7">福島県</option>
+                    <option value="8">茨城県</option>
+                    <option value="9">栃木県</option>
+                    <option value="10">群馬県</option>
+                    <option value="11">埼玉県</option>
+                    <option value="12">千葉県</option>
+                    <option value="13">東京都</option>
+                    <option value="14">神奈川県</option>
+                    <option value="15">新潟県</option>
+                    <option value="16">富山県</option>
+                    <option value="17">石川県</option>
+                    <option value="18">福井県</option>
+                    <option value="19">山梨県</option>
+                    <option value="20">長野県</option>
+                    <option value="21">岐阜県</option>
+                    <option value="22">静岡県</option>
+                    <option value="23">愛知県</option>
+                    <option value="24">三重県</option>
+                    <option value="25">滋賀県</option>
+                    <option value="26">京都府</option>
+                    <option value="27">大阪府</option>
+                    <option value="28">兵庫県</option>
+                    <option value="29">奈良県</option>
+                    <option value="30">和歌山県</option>
+                    <option value="31">鳥取県</option>
+                    <option value="32">島根県</option>
+                    <option value="33">岡山県</option>
+                    <option value="34">広島県</option>
+                    <option value="35">山口県</option>
+                    <option value="36">徳島県</option>
+                    <option value="37">香川県</option>
+                    <option value="38">愛媛県</option>
+                    <option value="39">高知県</option>
+                    <option value="40">福岡県</option>
+                    <option value="41">佐賀県</option>
+                    <option value="42">長崎県</option>
+                    <option value="43">熊本県</option>
+                    <option value="44">大分県</option>
+                    <option value="45">宮崎県</option>
+                    <option value="46">鹿児島県</option>
+                    <option value="47">沖縄県</option>
+
+                </select>
+            </div>
+            <div class="parent-container">
+                <div class="input-group_agree">
+                    <input type="checkbox" id="agree" name="agree" required>
+                    <label for="agree"><a href="">プライバシーポリシー</a>および
+                        <br><a href="">利用規約</a>に同意する</label>
+                </div>
+            </div> 
+            <div id="OpenButton"><a href="#" id="buttonLink">開設</a></div>
+            <h2>a</h2>
+        </form>
+        <p id="message"></p>
+    </div>
+    <script src="JS/script.js" defer></script>
+</body>
+</html>
